@@ -13,7 +13,7 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         firstName: 'Victor',
-        lastname: 'Navarro',
+        lastName: 'Navarro',
         username: 'VictorN',
         companyName: 'Navarro Construction',
         industrySector: 'Construction',
