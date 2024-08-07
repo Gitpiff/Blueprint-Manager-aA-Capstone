@@ -50,6 +50,22 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
+    jobTitle: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: {
+          args: [2, 30],
+          msg: "Job Title must have between 2 and 30 characters"
+        },
+        notEmpty: { 
+          msg: "Job Title is required" 
+        },
+        notNull: {
+          msg: "Job Title is required"
+        }
+      }
+    },
     hireDate: {
       type: DataTypes.DATE,
       allowNull: false,
