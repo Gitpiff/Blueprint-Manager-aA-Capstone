@@ -5,6 +5,7 @@ import LoginFormPage from './components/LoginFormPage/LoginFormPage';
 import * as sessionActions from './store/session';
 import HeroPage from './components/HeroPage/HeroPage';
 import Homepage from './components/Homepage/Homepage';
+import SignUpFormPage from './components/SignupFormPage/SignupFormPage';
 // import './LoginForm.css';
 
 function Layout() {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <LoginFormPage />
+      },
+      {
+        path: '/signup',
+        element: <SignUpFormPage />
       }
     ]
   }
