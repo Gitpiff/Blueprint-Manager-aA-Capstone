@@ -7,3 +7,59 @@ body {
     margin: 0;
     padding: 0;
 }
+
+nav {
+    display: flex;
+    background-color: #001f3f;
+    padding: 2%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-decoration: none;
+    width: auto;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav > button {
+    background-color: white;
+    width: auto;
+    height: 40px;
+    padding: 10px
+}
+
+button:hover {
+    background-color: gray;
+}
+
+.link {
+    text-decoration: none;
+    font-size: small;
+    font-weight: 500;
+}
+
+.logo {
+    font-size: 4vh;
+    color: white;
+    height: auto;
+    width: auto;
+}
+
+.logo:hover {
+    cursor: pointer;
+}
+
+.nav-title {
+    font-size: xx-large;
+    font-weight: 600;
+    color: white;
+}

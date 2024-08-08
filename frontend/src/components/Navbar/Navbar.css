@@ -1,0 +1,10 @@
+.logo {
+    font-size: 4vh;
+    color: white;
+    height: auto;
+    width: auto;
+}
+
+.logo:hover {
+    cursor: pointer;
+}

@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import LoginFormPage from './components/LoginFormPage/LoginFormPage';
 import * as sessionActions from './store/session';
 import HeroPage from './components/HeroPage/HeroPage';
+import Homepage from './components/Homepage/Homepage';
 // import './LoginForm.css';
 
 function Layout() {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <HeroPage />
+      },
+      {
+        path: '/homepage',
+        element: <Homepage />
       },
       {
         path: '/login',
