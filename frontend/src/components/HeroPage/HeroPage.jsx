@@ -4,6 +4,7 @@ import OpenModalButton from "../OpenModalButton";
 import './HeroPage.css'
 import LoginFormPage from "../LoginFormPage/LoginFormPage";
 import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
  
 
 function HeroPage() {
@@ -21,6 +22,7 @@ function HeroPage() {
                 buttonText='Log In'
                 modalComponent={<LoginFormPage />}
             />
+            <Footer />
         </div>
     )
 }
