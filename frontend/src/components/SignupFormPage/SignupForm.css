@@ -2,7 +2,7 @@
     font-size: 3rem;
 }
 
-.login-modal {
+.signup-modal {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
@@ -11,7 +11,7 @@
     background-color: '#001f3f';
     color: white;
     align-items: center;
-    height: 35rem;
+    height: 70rem;
     width: 600px;
 }
 
@@ -28,18 +28,18 @@ form > label {
 
 label > input {
    width: -webkit-fill-available;
-   margin: 10px 0px;
-   height: 2rem;
+    margin: 10px 0px;
+    height: 2rem;
 }
 
-.login-btns {
+.signup-btns {
     margin: 15px;
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-.login-btns > button {
+.signup-btns > button {
     margin: 7px;
     height: 55px;
     width: 200px;

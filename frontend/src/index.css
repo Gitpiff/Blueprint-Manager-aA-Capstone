@@ -11,7 +11,7 @@ body {
 nav {
     display: flex;
     background-color: #001f3f;
-    padding: 2%;
+    padding: 2rem 2rem 0 2rem ;
     flex-direction: column; 
     text-decoration: none;
     width: auto;
@@ -32,6 +32,8 @@ nav > button {
 
 button:hover {
     background-color: gray;
+    color: aliceblue;
+    border: 1px solid white;
 }
 
 .link {
@@ -41,7 +43,7 @@ button:hover {
 }
 
 .logo {
-    font-size: 7vh;
+    font-size: 9vh;
     color: white;
     height: auto;
     width: auto;
