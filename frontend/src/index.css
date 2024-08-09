@@ -12,22 +12,15 @@ nav {
     display: flex;
     background-color: #001f3f;
     padding: 2%;
-    flex-direction: row;
-    justify-content: space-between;
-    align-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-nav {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column; 
     text-decoration: none;
     width: auto;
-    align-content: center;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
 }
 
 nav > button {
@@ -48,7 +41,7 @@ button:hover {
 }
 
 .logo {
-    font-size: 4vh;
+    font-size: 7vh;
     color: white;
     height: auto;
     width: auto;
@@ -59,7 +52,22 @@ button:hover {
 }
 
 .nav-title {
-    font-size: xx-large;
+    font-size: 3rem;
     font-weight: 600;
     color: white;
+}
+
+.slogan {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+    align-self: center;
+}
+
+.homepage-banner {
+    display: flex;
+    justify-content: center;
+    color: white;
+    background-color: #001f3f;
+    margin-top: 10%;
 }

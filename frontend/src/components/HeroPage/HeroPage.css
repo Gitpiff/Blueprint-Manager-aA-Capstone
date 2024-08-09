@@ -1,7 +1,30 @@
 .mainContainer {
     background-image: url('../public/blueprint.jpeg');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed; 
-        height: 100vh; 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    height: 100vh; 
+}
+
+.auth-btns {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    margin-top: 15%;
+}
+
+li > button {
+    background-color: #001f3f;
+    color: aliceblue;
+    font-size: 1.5rem;
+    border: 1px solid aliceblue;
+    width: 350px;
+    height: 100px;
+    padding: 5px;
+    margin: 5px;
+}
+
+li > button:hover {
+    cursor: pointer;
 }
