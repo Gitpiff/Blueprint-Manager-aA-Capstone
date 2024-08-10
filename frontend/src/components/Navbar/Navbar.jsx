@@ -1,17 +1,39 @@
 import { Link } from 'react-router-dom';
 import { SiNginxproxymanager } from "react-icons/si";
+import { FaUserCog } from "react-icons/fa";
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+    const sessionUser = useSelector((state) => state.session.user);
+
     return (
         <div>
-            <nav>
-                <div className='navbar'>
-                    <Link className="logo" to='/'><SiNginxproxymanager /></Link>
-                        <h1 className="nav-title">Blueprint Manager</h1>
-                    <Link className="logo" to='/'><SiNginxproxymanager /></Link>
-                </div>
-                <h3 className='slogan'>Your Ultimate Tool for Seamless Construction Project Management</h3>
-            </nav>
+            {sessionUser ? (
+                <>
+                     <nav>
+                        <div className='navbar'>
+                            <Link className="logo" to='/'><SiNginxproxymanager /></Link>
+                                <h1 className="nav-title">Blueprint Manager</h1>
+                            <Link className="logo" to='/'><FaUserCog /></Link>
+                        </div>
+                        <div className='subnavbar'>
+                            <h3 className='slogan'>Welcome Back {sessionUser.firstName} {sessionUser.lastName}</h3>
+                            <button>Logout</button>
+                        </div>
+                    </nav>
+                </>
+            ): (
+                <>
+                    <nav>
+                        <div className='navbar'>
+                            <Link className="logo" to='/'><SiNginxproxymanager /></Link>
+                                <h1 className="nav-title">Blueprint Manager</h1>
+                            <Link className="logo" to='/'><SiNginxproxymanager /></Link>
+                        </div>
+                        <h3 className='slogan'>Your Ultimate Tool for Seamless Construction Project Management</h3>
+                    </nav>
+                </>
+            )}
 
         </div>
     )

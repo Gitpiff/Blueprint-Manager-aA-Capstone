@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import Navbar from "../Navbar/Navbar";
 import { useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import Footer from '../Footer/Footer';
@@ -23,7 +22,6 @@ function Homepage() {
 
     return (
         <div className="mainContainer">
-            <Navbar />
             <button onClick={logout}>Logout</button>
             <h1>Homepage</h1>
             <Footer />

@@ -73,3 +73,17 @@ button:hover {
     background-color: #001f3f;
     margin-top: 10%;
 }
+
+.subnavbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.subnavbar > button {
+    width: 10rem;
+    height: 2.5rem;
+    font-size: 1rem;
+    color: aliceblue;
+    background-color: firebrick;
+}

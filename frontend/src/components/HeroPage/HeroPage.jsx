@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { Navigate} from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormPage from "../LoginFormPage/LoginFormPage";
-import Navbar from "../Navbar/Navbar";
+//import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import SignUpFormPage from "../SignupFormPage/SignupFormPage";
 import './HeroPage.css'
@@ -15,7 +15,7 @@ function HeroPage() {
 
     return (
         <div className="mainContainer">
-          <Navbar />
+          {/* <Navbar /> */}
             <div className="auth-btns">
                 <li>
                     <OpenModalButton

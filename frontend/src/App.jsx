@@ -6,6 +6,7 @@ import * as sessionActions from './store/session';
 import HeroPage from './components/HeroPage/HeroPage';
 import Homepage from './components/Homepage/Homepage';
 import SignUpFormPage from './components/SignupFormPage/SignupFormPage';
+import Navbar from './components/Navbar/Navbar';
 // import './LoginForm.css';
 
 function Layout() {
@@ -20,7 +21,10 @@ function Layout() {
 
   return (
     <>
-      {isLoaded && <Outlet />}
+      <Navbar isLoaded={isLoaded} />
+      <div>
+        {isLoaded && <Outlet />}
+      </div>
     </>
   );
 }
