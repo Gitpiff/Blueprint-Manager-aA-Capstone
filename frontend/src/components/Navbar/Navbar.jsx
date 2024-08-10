@@ -2,9 +2,21 @@ import { Link } from 'react-router-dom';
 import { SiNginxproxymanager } from "react-icons/si";
 import { FaUserCog } from "react-icons/fa";
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import * as sessionActions from '../../store/session';
 
 const Navbar = () => {
+    const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
+
+    const logout = (e) => {
+        e.preventDefault();
+
+        dispatch(sessionActions.logout());
+    
+        return <Navigate to="/" />;
+    };
 
     return (
         <div>
@@ -18,7 +30,7 @@ const Navbar = () => {
                         </div>
                         <div className='subnavbar'>
                             <h3 className='slogan'>Welcome Back {sessionUser.firstName} {sessionUser.lastName}</h3>
-                            <button>Logout</button>
+                            <button onClick={logout}>Logout</button>
                         </div>
                     </nav>
                 </>
