@@ -5,11 +5,6 @@ const {
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       // define association here
     }
@@ -60,11 +55,11 @@ module.exports = (sequelize, DataTypes) => {
           msg: "Username is required" 
         },
         notNull: {
-          msg: "Username Name is required"
+          msg: "Username is required"
         },
         isNotEmail(value) {
           if (Validator.isEmail(value)) {
-            throw new Error("Cannot be an email.");
+            throw new Error("Username cannot be an email address.");
           }
         }
       }
@@ -116,7 +111,10 @@ module.exports = (sequelize, DataTypes) => {
         notNull: {
           msg: "Email is required"
         },
-        isEmail: true
+        isEmail: {
+          args: true,
+          msg: "Must be a valid email address"
+        }
       }
     },
     hashedPassword: {
