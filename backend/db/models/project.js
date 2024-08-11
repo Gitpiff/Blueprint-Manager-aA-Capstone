@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Project.init({
-    ownerId: {
+    projectManagerId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },

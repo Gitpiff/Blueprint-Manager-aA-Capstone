@@ -1,33 +1,42 @@
 'use strict';
 const bcrypt = require('bcryptjs');
 
-let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  
 }
 
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    options.tableName = 'Users';
-    return queryInterface.bulkInsert(options, [
-      {
-        firstName: 'Victor',
-        lastName: 'Navarro',
-        username: 'VictorN',
-        companyName: 'Navarro Construction',
-        industrySector: 'Construction',
-        email: 'victorn@navarroconstruction.com',
-        hashedPassword: bcrypt.hashSync('password', 10)  
-      },
-    ], {});
+    const options = { tableName: 'Users' }; 
+
+    try {
+      await queryInterface.bulkInsert(options, [
+        {
+          firstName: 'Victor',
+          lastName: 'Navarro',
+          username: 'VictorN',
+          companyName: 'Navarro Construction',
+          industrySector: 'Construction',
+          email: 'victorn@navarroconstruction.com',
+          hashedPassword: bcrypt.hashSync('password', 10)  
+        },
+      ]);
+    } catch (error) {
+      console.error('Error inserting users:', error); 
+    }
   },
 
   async down(queryInterface, Sequelize) {
-    options.tableName = 'Users';
+    const options = { tableName: 'Users' };
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete(options, {
-      username: { [Op.in]: ['VictorN'] }
-    }, {});
+
+    try {
+      await queryInterface.bulkDelete(options, {
+        username: { [Op.in]: ['VictorN'] }
+      });
+    } catch (error) {
+      console.error('Error deleting users:', error);
+    }
   }
 };
+

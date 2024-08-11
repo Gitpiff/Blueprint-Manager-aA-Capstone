@@ -14,6 +14,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      projectManagerId: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
       name: {
         type: Sequelize.STRING,
         allowNull: false
