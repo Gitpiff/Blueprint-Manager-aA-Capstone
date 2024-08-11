@@ -11,8 +11,7 @@ function Homepage() {
 
     return (
         <div className="mainContainer">
-            <button >Logout</button>
-            <h1>Homepage</h1>
+            <h1>Current Projects</h1>
             <Footer />
         </div>
     );

@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Project.hasMany(models.ProjectImage, {
         foreignKey: 'projectId',
-        as: 'images'
+        as: 'projectImages'
       })
 
       Project.hasMany(models.Employee, {
