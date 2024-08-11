@@ -88,6 +88,23 @@ router.post('/new', validateProject, requireAuth, async (req, res, next) => {
     }
 });
 
+
+// Get a Project By Id
+router.get('/:projectId', async (req, res, next) => {
+    try {
+        const project = await Project.findByPk(req.params.projectId);
+        console.log(`params ${project}`)
+        if (project) {
+            res.status(200).json(project);
+        } else {
+            res.status(404).json({ message: "Project not found" });
+        }
+    } catch (error) {
+        next(error);
+    }
+});
+
+
 // Update Project 
 router.put('/:projectId', validateProject, requireAuth, async (req, res, next) => {
     const { user } = req;
