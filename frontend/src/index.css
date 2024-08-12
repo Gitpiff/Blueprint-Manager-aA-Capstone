@@ -71,6 +71,14 @@ button:hover {
     align-self: center;
 }
 
+.currentProjectsText {
+    font-size: 2rem;
+    font-weight: 600;
+    color: white;
+    align-self: center;
+    padding-right: 5%;
+}
+
 .homepage-banner {
     display: flex;
     justify-content: center;
@@ -92,3 +100,4 @@ button:hover {
     color: aliceblue;
     background-color: firebrick;
 }
+

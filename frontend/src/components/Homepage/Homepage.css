@@ -6,3 +6,48 @@
     height: 100vh; 
     padding-top: 12%;
 }
+
+/* .imageContainer {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-evenly;
+} */
+
+.projectImage {
+    width: 300px;
+    height: 300px;
+}
+
+.card {
+    border: solid;
+    padding: 20px;
+    margin: 30px; 
+    background-color: white;
+    opacity: .9;
+    text-decoration: none;
+    color: black;
+    height: 550px;
+    width: 500px;
+}
+
+.card:hover{
+    cursor: pointer;
+}
+
+.card-image {
+    display: flex;
+    height: 300px;
+    width: 300px;
+    margin: auto;
+    border: 1px solid white;
+    border-radius: 20%;
+}
+
+.cardContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+}

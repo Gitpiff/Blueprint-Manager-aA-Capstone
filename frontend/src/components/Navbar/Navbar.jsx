@@ -30,6 +30,7 @@ const Navbar = () => {
                         </div>
                         <div className='subnavbar'>
                             <h3 className='slogan'>Welcome Back {sessionUser.firstName} {sessionUser.lastName}</h3>
+                            <h2 className='currentProjectsText'>Current Projects</h2>
                             <button onClick={logout}>Logout</button>
                         </div>
                     </nav>
