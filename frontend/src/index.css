@@ -17,6 +17,11 @@ nav {
     width: auto;
 }
 
+.navbarContainer {
+    position: fixed;
+    width: 100%;
+}
+
 .navbar {
     display: flex;
     flex-direction: row;

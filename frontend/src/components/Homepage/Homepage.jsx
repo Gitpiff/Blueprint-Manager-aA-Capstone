@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import Footer from '../Footer/Footer';
+import './Homepage.css'
 
 function Homepage() {    
     const sessionUser = useSelector((state) => state.session.user);

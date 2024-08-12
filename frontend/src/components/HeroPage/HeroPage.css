@@ -9,9 +9,9 @@
 .auth-btns {
     list-style-type: none;
     display: flex;
-    justify-content: space-evenly;
     flex-direction: row;
-    padding-top: 15%;
+    padding-top: 11%;
+    justify-content: center;
 }
 
 li > button {

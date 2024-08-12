@@ -1,7 +1,8 @@
 .mainContainer {
     background-image: url('../public/blueprint.jpeg');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed; 
-        height: 100vh; 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    height: 100vh; 
+    padding-top: 12%;
 }

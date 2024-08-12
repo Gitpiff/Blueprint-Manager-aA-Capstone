@@ -19,7 +19,7 @@ const Navbar = () => {
     };
 
     return (
-        <div>
+        <div className='navbarContainer'>
             {sessionUser ? (
                 <>
                      <nav>
