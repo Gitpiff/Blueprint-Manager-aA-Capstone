@@ -5,18 +5,21 @@
     background-attachment: fixed; 
     height: 100vh; 
     padding-top: 12%;
-}
-
-/* .imageContainer {
     display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
     flex-direction: row;
-    align-content: center;
-    justify-content: space-evenly;
-} */
+}
 
 .projectImage {
     width: 300px;
     height: 300px;
+}
+
+.imageContainer {
+    display: flex;
+    justify-content: center;
 }
 
 .card {
@@ -44,10 +47,3 @@
     border-radius: 20%;
 }
 
-.cardContainer {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    flex-direction: row;
-}

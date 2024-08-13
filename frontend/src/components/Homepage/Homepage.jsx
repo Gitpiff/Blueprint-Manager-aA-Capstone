@@ -42,7 +42,9 @@ const Homepage = () => {
                             <h2>Client: {project.clientName}</h2>
                             <h3>Start Date: {project.startDate}</h3>
                             <h3>Completion Date: {project.completionDate}</h3>
-                            <img className='projectImage' src={project.projectImages[0]['url']} alt="" />
+                            <div className='imageContainer'>
+                                <img className='projectImage' src={project.projectImages[0]['url']} alt="" />
+                            </div>
                             {/* <div className='imageContainer'>
                                 {Array.isArray(project.projectImages) && project.projectImages.map(image => {
                                     return (
