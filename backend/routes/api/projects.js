@@ -48,7 +48,7 @@ router.get('/', async (req, res, next) => {
                 model: ProjectImage,
                 as: 'projectImages',
                 attributes: ['url']
-            }
+            },
         ],
         where: {
             projectManagerId: 1

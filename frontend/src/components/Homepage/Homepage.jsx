@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import { useEffect } from 'react';
 import { getProjects } from '../../store/project';
@@ -37,24 +37,17 @@ const Homepage = () => {
         <div className="mainContainer">
             {projects?.map((project) => (
                     <div className='cardContainer' key={project.id}>
-                        <div className='card'>
-                            <h2>Project Name: {project.name}</h2>
-                            <h2>Client: {project.clientName}</h2>
-                            <h3>Start Date: {project.startDate}</h3>
-                            <h3>Completion Date: {project.completionDate}</h3>
-                            <div className='imageContainer'>
-                                <img className='projectImage' src={project.projectImages[0]['url']} alt="" />
+                        <Link to={`/projects/${project.id}`} >
+                            <div className='card'>
+                                <h2>Project Name: {project.name}</h2>
+                                <h2>Client: {project.clientName}</h2>
+                                <h3>Start Date: {project.startDate}</h3>
+                                <h3>Completion Date: {project.completionDate}</h3>
+                                <div className='imageContainer'>
+                                    <img className='projectImage' src={project.coverImage} alt="" />
+                                </div>
                             </div>
-                            {/* <div className='imageContainer'>
-                                {Array.isArray(project.projectImages) && project.projectImages.map(image => {
-                                    return (
-                                        <div key={image.id}>
-                                            <img src={image.url} className='projectImage' />
-                                        </div>
-                                    )
-                                })}
-                            </div> */}
-                        </div>
+                        </Link>
                     </div>
                 ))}
             <Footer />

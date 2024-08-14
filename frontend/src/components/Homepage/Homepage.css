@@ -32,6 +32,7 @@
     color: black;
     height: 550px;
     width: 500px;
+    margin-top: 30%;
 }
 
 .card:hover{

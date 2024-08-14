@@ -1,6 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 const GET_ALL_PROJECTS = 'projects/GET_ALL_PROJECTS';
+const GET_PROJECT_DETAILS = 'projects/GET_PROJECT_DETAILS';
 
 // Action Creator
 const getAllProjects = (projects) => {
@@ -9,6 +10,14 @@ const getAllProjects = (projects) => {
         projects
     };
 };
+
+const getSingleProject = (project) => {
+    return {
+        type: GET_PROJECT_DETAILS,
+        project
+    }
+};
+
 
 // Thunks
 export const getProjects = () => async (dispatch) => {
@@ -23,6 +32,23 @@ export const getProjects = () => async (dispatch) => {
     }
 };
 
+export const getProject = (projectId) => async (dispatch) => {
+    try {
+        const response = await csrfFetch(`/api/projects/${projectId}`);
+
+        if (response.ok) {
+            const project = await response.json();
+            dispatch(getSingleProject(project));
+        } else {
+            const errors = await response.json();
+            throw new Error(errors);
+        }
+    } catch (error) {
+        console.error("Failed to fetch project:", error);
+        throw error; 
+    }
+};
+
 
 // Reducer
 const projectsReducer = (state = {}, action) => {
@@ -33,6 +59,9 @@ const projectsReducer = (state = {}, action) => {
                 projectState[project.id] = project;
             });
             return projectState;
+        }
+        case GET_PROJECT_DETAILS: {
+            return { ...state, [action.project.id]: action.project}
         }
         default:
             return state;

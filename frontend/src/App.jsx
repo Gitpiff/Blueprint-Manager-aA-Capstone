@@ -7,6 +7,7 @@ import HeroPage from './components/HeroPage/HeroPage';
 import Homepage from './components/Homepage/Homepage';
 import SignUpFormPage from './components/SignupFormPage/SignupFormPage';
 import Navbar from './components/Navbar/Navbar';
+import ProjectDetails from './components/ProjectDetails/ProjectDetails';
 // import './LoginForm.css';
 
 function Layout() {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: '/signup',
         element: <SignUpFormPage />
+      },
+      {
+        path: '/projects/:projectId',
+        element: <ProjectDetails />
       }
     ]
   }
