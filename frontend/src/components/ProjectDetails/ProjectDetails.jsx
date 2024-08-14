@@ -62,20 +62,20 @@ const ProjectDetails = () => {
                 <nav className="projectNav">
                     <div>
                         <h2>Days Until Completion</h2>
-                        <h2>You have {totalDays(project.startDate, project.completionDate)} days to complete</h2>
-                        <h3>Days Left: {daysLeft(project.completionDate)}</h3>
+                        <h2>Project will start in {totalDays(project.startDate, project.completionDate)} days</h2>
+                        <h2>You have {daysLeft(project.completionDate)} days to finish it</h2>
                     </div>
 
                     <div>
                         <h2>Project </h2>
                         <h2>{project.name}</h2>
-                        <h4>Start Date: {getYearMonthDay(project.startDate)}</h4>
+                        <h3>Start Date: {getYearMonthDay(project.startDate)}</h3>
                     </div>
 
                 <div>
                     <h2>Client Name</h2>
                     <h2>{project.clientName}</h2>
-                    <h4>Completion Date: {getYearMonthDay(project.completionDate)}</h4>
+                    <h3>Completion Date: {getYearMonthDay(project.completionDate)}</h3>
                 </div>
 
                 <div>
@@ -83,6 +83,10 @@ const ProjectDetails = () => {
                     <h2>{formatCurrency(project.budget)}</h2>
                 </div>
                 </nav>
+
+                <div>
+                    {/* {Array.isArray(project.)} */}
+                </div>
                 <h1>Project Details</h1>
                 <h1>{project.name}</h1>
             </div>

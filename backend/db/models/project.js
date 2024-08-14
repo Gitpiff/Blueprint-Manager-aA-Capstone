@@ -13,7 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Project.hasMany(models.ProjectImage, {
         foreignKey: 'projectId',
-        as: 'projectImages'
+        as: 'projectImages',
+        onDelete: 'CASCADE',
+        hooks: true
       })
 
       Project.hasMany(models.Employee, {

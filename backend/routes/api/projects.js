@@ -91,16 +91,24 @@ router.post('/new', validateProject, requireAuth, async (req, res, next) => {
 
 // Get a Project By Id
 router.get('/:projectId', async (req, res, next) => {
+    const { projectId } = req.params;
+
     try {
-        const project = await Project.findByPk(req.params.projectId);
-        console.log(`params ${project}`)
-        if (project) {
-            res.status(200).json(project);
-        } else {
-            res.status(404).json({ message: "Project not found" });
+        const project = await Project.findByPk(projectId, {
+            include: [{
+                model: ProjectImage,
+                as: 'projectImages',
+                attributes: ['id', 'url'], // Include only necessary fields
+            }]
+        });
+
+        if (!project) {
+            return res.status(404).json({ message: "Project not found" });
         }
-    } catch (error) {
-        next(error);
+
+        return res.json(project);
+    } catch (err) {
+        next(err);
     }
 });
 
