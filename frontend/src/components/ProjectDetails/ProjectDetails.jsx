@@ -21,6 +21,10 @@ const ProjectDetails = () => {
         return <Navigate to="/" />;
     }
 
+    if (!project) {
+        return <div>Loading project details...</div>;  // Show a loading message while the project data is being fetched
+    }
+
     const totalDays = (commencementDate, completionDate) => {
         const startDate = new Date(commencementDate);
         const endDate = new Date(completionDate);
