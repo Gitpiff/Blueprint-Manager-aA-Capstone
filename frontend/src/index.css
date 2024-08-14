@@ -101,3 +101,20 @@ button:hover {
     background-color: firebrick;
 }
 
+.projectNav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-decoration: none;
+    width: auto;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: white;
+}
+
+
+.projectDetails {
+    margin-top: -4%;
+    width: -webkit-fill-available;
+}

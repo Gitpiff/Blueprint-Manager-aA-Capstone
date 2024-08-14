@@ -21,10 +21,71 @@ const ProjectDetails = () => {
         return <Navigate to="/" />;
     }
 
+    const totalDays = (commencementDate, completionDate) => {
+        const startDate = new Date(commencementDate);
+        const endDate = new Date(completionDate);
+        const timeDifference = endDate - startDate;
+        const totalDays = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+        return totalDays;
+    }
+
+    const daysLeft = (completionDate) => {
+        const endDate = new Date(completionDate);
+        const now = new Date();
+        const timeDifference = endDate - now;
+        const daysLeft = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+        return daysLeft;
+    }
+
+    const formatCurrency = (num, locale = 'en-US', currency = 'USD') => {
+        const formatter = new Intl.NumberFormat(locale, {
+            style: 'currency',
+            currency: currency,
+        });
+        return formatter.format(num);
+    }
+
+    const getYearMonthDay = (dateString) => {
+        if (!dateString) return 'N/A';
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        const formattedMonth = month.toString().padStart(2, '0');
+        const formattedDay = day.toString().padStart(2, '0');
+        return `${formattedMonth}-${formattedDay}-${year}`;
+    }
+
     return (
         <div className="mainContainer">
-            <h1>Project Details</h1>
-            <h1>{project.name}</h1>
+            <div className="projectDetails">
+                <nav className="projectNav">
+                    <div>
+                        <h2>Days Until Completion</h2>
+                        <h2>You have {totalDays(project.startDate, project.completionDate)} days to complete</h2>
+                        <h3>Days Left: {daysLeft(project.completionDate)}</h3>
+                    </div>
+
+                    <div>
+                        <h2>Project </h2>
+                        <h2>{project.name}</h2>
+                        <h4>Start Date: {getYearMonthDay(project.startDate)}</h4>
+                    </div>
+
+                <div>
+                    <h2>Client Name</h2>
+                    <h2>{project.clientName}</h2>
+                    <h4>Completion Date: {getYearMonthDay(project.completionDate)}</h4>
+                </div>
+
+                <div>
+                    <h2>Budget</h2>
+                    <h2>{formatCurrency(project.budget)}</h2>
+                </div>
+                </nav>
+                <h1>Project Details</h1>
+                <h1>{project.name}</h1>
+            </div>
         </div>
     
     )
