@@ -3,7 +3,9 @@ import { Link, Navigate } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import { useEffect } from 'react';
 import { getProjects } from '../../store/project';
+import OpenModalButton from '../OpenModalButton';
 import './Homepage.css'
+import NewProjectForm from '../NewProjectForm/NewProjectForm';
 
 const Homepage = () => {
     const dispatch = useDispatch();    
@@ -35,6 +37,10 @@ const Homepage = () => {
 
     return (
         <div className="mainContainer">
+            <OpenModalButton
+                buttonText='Add New Project'
+                modalComponent={<NewProjectForm />}
+            />
             {projects?.map((project) => (
                     <div className='cardContainer' key={project.id}>
                         <Link to={`/projects/${project.id}`} >
