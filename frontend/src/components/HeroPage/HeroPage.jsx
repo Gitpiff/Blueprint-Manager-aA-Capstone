@@ -15,7 +15,6 @@ function HeroPage() {
 
     return (
         <div className="mainContainer">
-          {/* <Navbar /> */}
             <div className="auth-btns">
                 <li>
                     <OpenModalButton

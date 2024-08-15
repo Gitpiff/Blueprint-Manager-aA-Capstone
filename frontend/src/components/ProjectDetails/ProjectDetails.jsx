@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import { getProject } from "../../store/project";
+import Footer from '../Footer/Footer';
+import './ProjectDetails.css'
 
 const ProjectDetails = () => {
     const dispatch = useDispatch();    
@@ -10,6 +12,9 @@ const ProjectDetails = () => {
     const { projectId } = useParams();
 
     const project = useSelector(state => state.projects ? state.projects[projectId] : null);
+
+    // const projectImages = Object.values(project.projectImages);
+    // console.log(projectImages);
 
     useEffect(() => {
         if (projectId) {
@@ -61,41 +66,55 @@ const ProjectDetails = () => {
     }
 
     return (
-        <div className="mainContainer">
-            <div className="projectDetails">
-                <nav className="projectNav">
-                    <div>
-                        <h2>Days Until Completion</h2>
-                        <h2>Project will start in {totalDays(project.startDate, project.completionDate)} days</h2>
-                        <h2>You have {daysLeft(project.completionDate)} days to finish it</h2>
-                    </div>
-
-                    <div>
-                        <h2>Project </h2>
-                        <h2>{project.name}</h2>
-                        <h3>Start Date: {getYearMonthDay(project.startDate)}</h3>
-                    </div>
-
-                <div>
-                    <h2>Client Name</h2>
-                    <h2>{project.clientName}</h2>
-                    <h3>Completion Date: {getYearMonthDay(project.completionDate)}</h3>
-                </div>
-
-                <div>
-                    <h2>Budget</h2>
-                    <h2>{formatCurrency(project.budget)}</h2>
-                </div>
-                </nav>
-
-                <div>
-                    {/* {Array.isArray(project.)} */}
-                </div>
-                <h1>Project Details</h1>
-                <h1>{project.name}</h1>
-            </div>
-        </div>
+        project && (
+            <div className="projectDetailsContainer">
+                <div className="projectDetails">
+                    <nav className="projectNav">
+                        <div>
+                            <h2>Days Until Completion</h2>
+                            <h2>Project will start in {totalDays(project.startDate, project.completionDate)} days</h2>
+                            <h2>You have {daysLeft(project.completionDate)} days to finish it</h2>
+                        </div>
     
+                        <div>
+                            <h2>Project </h2>
+                            <h2>{project.name}</h2>
+                            <h3>Start Date: {getYearMonthDay(project.startDate)}</h3>
+                        </div>
+    
+                        <div>
+                            <h2>Client Name</h2>
+                            <h2>{project.clientName}</h2>
+                            <h3>Completion Date: {getYearMonthDay(project.completionDate)}</h3>
+                        </div>
+    
+                        <div>
+                            <h2>Budget</h2>
+                            <h2>{formatCurrency(project.budget)}</h2>
+                        </div>
+                    </nav>
+    
+                    <div className="projectImagesContainer">
+                        {Array.isArray(project.projectImages) && project.projectImages.map(image => {
+                            return (
+                                <>
+                                    
+                                    <div key={image.id}>
+                                        <img className="projectImage" src={image.url} alt="project.name" />
+                                    </div>
+                                </>
+                            )
+                        })}
+                    </div>
+                    <div className="projectDescription">
+                        <h1>Project Description</h1>
+                        <p>{project.description}</p>
+                    </div>
+                </div>
+                <Footer />
+            </div>
+        
+        )
     )
 
 }

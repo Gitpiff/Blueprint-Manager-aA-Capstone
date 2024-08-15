@@ -1,0 +1,39 @@
+.projectDetailsContainer {
+    background-image: url('../public/blueprint.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    height: 100vh; 
+    padding-top: 12%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.projectImagesContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.projectImage {
+    width: 400px;
+    height: 400px;
+    margin: 15px;
+}
+
+.projectDescription {
+    background-color: white;
+    margin: 10px;
+    width: 50%;
+
+}
+
+.projectDescription > p {
+    font-size: larger;
+}
+
+.projectDescription > h1 {
+    text-align: center;
+}
