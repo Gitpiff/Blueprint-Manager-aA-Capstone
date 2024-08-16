@@ -1,0 +1,26 @@
+.createProjectForm {
+    background-color: #001f3f;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: space-evenly;
+    background-color: '#001f3f';
+    color: white;
+    align-items: center;
+    height: 65rem;
+    width: 600px;
+}
+
+.modal-content {
+    background-color: #001f3f;
+}
+
+.newProjectButton {
+    margin: 7px;
+    height: 55px;
+    width: 350px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+}

@@ -12,6 +12,20 @@
     flex-direction: row;
 }
 
+.newProject {
+    height: 35rem;
+}
+
+.newProject > button {
+    height: 15%;
+    width: 20rem;
+    font-size: large;
+}
+
+.newProject > button:hover {
+    cursor: pointer;
+}
+
 .projectImage {
     width: 300px;
     height: 300px;

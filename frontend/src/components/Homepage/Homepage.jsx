@@ -37,10 +37,12 @@ const Homepage = () => {
 
     return (
         <div className="mainContainer">
-            <OpenModalButton
-                buttonText='Add New Project'
-                modalComponent={<NewProjectForm />}
-            />
+            <div className='newProject'>
+                <OpenModalButton
+                    buttonText='Add New Project'
+                    modalComponent={<NewProjectForm />}
+                />
+            </div>
             {projects?.map((project) => (
                     <div className='cardContainer' key={project.id}>
                         <Link to={`/projects/${project.id}`} >
