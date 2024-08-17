@@ -3,6 +3,7 @@ import { csrfFetch } from "./csrf";
 const GET_ALL_PROJECTS = 'projects/GET_ALL_PROJECTS';
 const GET_PROJECT_DETAILS = 'projects/GET_PROJECT_DETAILS';
 const CREATE_PROJECT = 'projects/CREATE_PROJECT';
+const DELETE_PROJECT = 'projects/DELETE_PROJECT';
 
 // Action Creator
 const getAllProjects = (projects) => {
@@ -22,6 +23,13 @@ const getSingleProject = (project) => {
 const addProject = (project) => {
     return {
         type: CREATE_PROJECT,
+        project
+    }
+};
+
+const removeProject = (project) => {
+    return {
+        type: DELETE_PROJECT,
         project
     }
 };
@@ -74,6 +82,18 @@ export const createProject = (projectData) => async (dispatch) => {
     }
 };
 
+export const deleteProject = (projectId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/projects/${projectId}`, {
+        method: 'DELETE'
+    });
+
+    if (response.ok) {
+        dispatch(removeProject(projectId))
+    }
+};
+
+
+
 
 // Reducer
 const projectsReducer = (state = {}, action) => {
@@ -90,6 +110,11 @@ const projectsReducer = (state = {}, action) => {
         }
         case CREATE_PROJECT: {
             return { ...state, [action.project.id]: action.project}
+        }
+        case DELETE_PROJECT: {
+            const newState = {...state};
+            delete newState[action.project.id];
+            return newState;
         }
         default:
             return state;

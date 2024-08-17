@@ -20,8 +20,8 @@ const NewProjectForm = () => {
         completionDate: "",
         projectImages: []
     });
-
     const [errors, setErrors] = useState({});
+
 
     const handleImageChange = (index, value) => {
         const newProjectImages = [...formData.projectImages];
@@ -56,9 +56,7 @@ const NewProjectForm = () => {
                 if (data && data.errors) {
                     setErrors(data.errors);
                 }
-            } else {
-                setErrors({ general: "An unexpected error occurred. Please try again." });
-            }
+            } 
         }
       };
 

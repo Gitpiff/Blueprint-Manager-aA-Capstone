@@ -6,6 +6,7 @@ import { getProjects } from '../../store/project';
 import OpenModalButton from '../OpenModalButton';
 import './Homepage.css'
 import NewProjectForm from '../NewProjectForm/NewProjectForm';
+import DeleteProject from '../DeleteProject/DeleteProject';
 
 const Homepage = () => {
     const dispatch = useDispatch();    
@@ -56,6 +57,10 @@ const Homepage = () => {
                                 </div>
                             </div>
                         </Link>
+                        <OpenModalButton
+                            buttonText="Delete Project"
+                            modalComponent={<DeleteProject />}
+                        />
                     </div>
                 ))}
             <Footer />
