@@ -27,10 +27,10 @@ const addProject = (project) => {
     }
 };
 
-const removeProject = (project) => {
+const removeProject = (projectId) => {
     return {
         type: DELETE_PROJECT,
-        project
+        projectId
     }
 };
 
@@ -113,7 +113,7 @@ const projectsReducer = (state = {}, action) => {
         }
         case DELETE_PROJECT: {
             const newState = {...state};
-            delete newState[action.project.id];
+            delete newState[action.projectId];
             return newState;
         }
         default:

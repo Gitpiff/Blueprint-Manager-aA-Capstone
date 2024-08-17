@@ -5,13 +5,16 @@ import { Navigate } from "react-router-dom";
 import './DeleteProject.css'
 
 const DeleteProject = ({ projectId }) => {
+    console.log("Project to Delete: ", projectId);
     const { closeModal } = useModal();
     const dispatch = useDispatch();
 
-    const yes = () => {
-        dispatch(deleteProject(projectId))
-        closeModal();
-        return <Navigate to="/projects" />
+    const yes = async () => {
+        return dispatch(deleteProject(projectId))
+        .then (() => {
+            closeModal();
+            <Navigate to="/homepage" />
+        })
     }    
 
     return (

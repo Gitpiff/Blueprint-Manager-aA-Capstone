@@ -138,8 +138,26 @@ router.get('/:projectId', async (req, res, next) => {
 });
 
 
-// Add Project
+// Delete Project
+router.delete('/:projectId', requireAuth, async (req, res, next) => {
+    const { user } = req;
+    try {
+        const project = await Project.findByPk(req.params.projectId);
 
+        if (project) {
+            if (project.projectManagerId !== user.id) {
+                return res.status(403).json({ message: "Unauthorized to delete this project" });
+            }
+
+            await project.destroy();
+            res.status(200).json({ message: "Project Successfully Deleted" });
+        } else {
+            res.status(404).json({ message: "Project not found" });
+        }
+    } catch (error) {
+        next(error);
+    }
+});
 
 
 // Update Project 

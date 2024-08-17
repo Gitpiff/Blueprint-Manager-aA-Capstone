@@ -12,6 +12,7 @@ const Homepage = () => {
     const dispatch = useDispatch();    
     const sessionUser = useSelector((state) => state.session.user);
     const projects = Object.values(useSelector(state => state.projects));
+    
     console.log('Projects: ', projects);
 
 
@@ -23,19 +24,6 @@ const Homepage = () => {
         return <Navigate to="/" />;
     }
 
-    //  // Get the correct date format
-    //  function getYearMonthDay(dateString) {
-    //     const date = new Date(dateString);
-    //     const year = date.getFullYear();
-    //     const month = date.getMonth() + 1; // getMonth() returns 0-11
-    //     const day = date.getDate();
-        
-    //     const formattedMonth = month.toString().padStart(2, '0');
-    //     const formattedDay = day.toString().padStart(2, '0');
-        
-    //     return `${year}-${formattedMonth}-${formattedDay}`;
-    // }
-
     return (
         <div className="mainContainer">
             <div className='newProject'>
@@ -45,27 +33,28 @@ const Homepage = () => {
                 />
             </div>
             {projects?.map((project) => (
-                    <div className='cardContainer' key={project.id}>
-                        <Link to={`/projects/${project.id}`} >
-                            <div className='card'>
-                                <h2>Project Name: {project.name}</h2>
-                                <h2>Client: {project.clientName}</h2>
-                                <h3>Start Date: {project.startDate}</h3>
-                                <h3>Completion Date: {project.completionDate}</h3>
-                                <div className='imageContainer'>
-                                    <img className='projectImage' src={project.coverImage} alt="" />
-                                </div>
+                <div className='cardContainer' key={project.id}>
+                    <Link to={`/projects/${project.id}`} >
+                        <div className='card'>
+                            <h2>Project Name: {project.name}</h2>
+                            <h2>Client: {project.clientName}</h2>
+                            <h3>Start Date: {project.startDate}</h3>
+                            <h3>Completion Date: {project.completionDate}</h3>
+                            <div className='imageContainer'>
+                                <img className='projectImage' src={project.coverImage} alt="Project cover image" />
                             </div>
-                        </Link>
-                        <OpenModalButton
-                            buttonText="Delete Project"
-                            modalComponent={<DeleteProject />}
-                        />
-                    </div>
-                ))}
+                        </div>
+                    </Link>
+                    <OpenModalButton
+                        buttonText="Delete Project"
+                        modalComponent={<DeleteProject projectId={project.id} />}
+                    />
+                </div>
+            ))}
             <Footer />
         </div>
     );
+    
 }
 
 export default Homepage;
