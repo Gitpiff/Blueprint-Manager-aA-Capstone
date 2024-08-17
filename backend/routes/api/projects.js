@@ -23,7 +23,7 @@ const validateProject = [
         .exists({ checkFalsy: true })
         .isInt({ min: 500 })
         .withMessage('Budget must be an integer greater than 500'),
-    check('commencementDate')
+    check('startDate')
         .exists({ checkFalsy: true })
         .withMessage('Start Date is required'),
     check('completionDate')
@@ -64,29 +64,54 @@ router.get('/', async (req, res, next) => {
     res.status(200).json(projects);
 });
 
-// Post New Project
-router.post('/new', validateProject, requireAuth, async (req, res, next) => {
+/// Post New Project
+router.post('/new', validateProject, async (req, res, next) => {
     const { user } = req;
+    console.log(`User from BE API: ${user.id}`);  // Log only necessary information
+    
     try {
-        const { name, clientName, description, budget, commencementDate, completionDate } = req.body;
+        const { name, clientName, description, budget, startDate, completionDate, coverImage, projectImages } = req.body;
 
         const newProject = await Project.create({
+            projectManagerId: user.id,  // Use projectManagerId instead of userId
             name,
             clientName,
             description,
             budget,
-            projectManagerId: user.id,  // Use projectManagerId instead of userId
-            commencementDate,
-            completionDate
+            startDate,
+            completionDate,
+            coverImage,
         });
 
-        res.status(201).json(newProject);
+        const userImages = projectImages.map(imageUrl => {
+            return ProjectImage.create({
+                projectId: newProject.id,
+                url: imageUrl
+            })
+        })
+
+        await Promise.all(userImages);
+
+        const createdProject = await Project.findByPk(newProject.id, {
+            include: [
+                {
+                    model: ProjectImage,
+                    as: 'projectImages'
+                }
+            ]
+        })
+
+        console.log(`Project created with ID: ${newProject.id}`);  // Log only the project ID or other non-sensitive info
+
+        res.status(201).json(createdProject);
     } catch (error) {
+        console.error("Error creating project:", error);  // Log the original error
         error.message = "Bad Request";
         error.status = 400;
         next(error);
     }
 });
+
 
 
 // Get a Project By Id
@@ -111,6 +136,10 @@ router.get('/:projectId', async (req, res, next) => {
         next(err);
     }
 });
+
+
+// Add Project
+
 
 
 // Update Project 

@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const GET_ALL_PROJECTS = 'projects/GET_ALL_PROJECTS';
 const GET_PROJECT_DETAILS = 'projects/GET_PROJECT_DETAILS';
+const CREATE_PROJECT = 'projects/CREATE_PROJECT';
 
 // Action Creator
 const getAllProjects = (projects) => {
@@ -14,6 +15,13 @@ const getAllProjects = (projects) => {
 const getSingleProject = (project) => {
     return {
         type: GET_PROJECT_DETAILS,
+        project
+    }
+};
+
+const addProject = (project) => {
+    return {
+        type: CREATE_PROJECT,
         project
     }
 };
@@ -49,6 +57,23 @@ export const getProject = (projectId) => async (dispatch) => {
     }
 };
 
+export const createProject = (projectData) => async (dispatch) => {
+    const response = await csrfFetch('/api/projects/new', {
+        method: 'POST',
+        body: JSON.stringify(projectData)
+    });
+
+    console.log(response)
+    if (response.ok) {
+        const newProject = await response.json();
+        dispatch(addProject(newProject));
+        return newProject;
+    } else {
+        const errors = await response.json();
+        return errors;
+    }
+};
+
 
 // Reducer
 const projectsReducer = (state = {}, action) => {
@@ -61,6 +86,9 @@ const projectsReducer = (state = {}, action) => {
             return projectState;
         }
         case GET_PROJECT_DETAILS: {
+            return { ...state, [action.project.id]: action.project}
+        }
+        case CREATE_PROJECT: {
             return { ...state, [action.project.id]: action.project}
         }
         default:

@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from 'react-router-dom';
-import * as sessionActions from '../../store/session';
+import { createProject } from "../../store/project";
+import { useModal } from '../../context/Modal';
 import './NewProjectForm.css'
 
 const NewProjectForm = () => {
     const dispatch = useDispatch();
+    const { closeModal } = useModal();
     const sessionUser = useSelector((state) => state.session.user);
     const [formData, setFormData] = useState({
         projectManagerId: sessionUser.id,
@@ -15,10 +17,24 @@ const NewProjectForm = () => {
         description: "",
         budget: "",
         startDate: "",
-        completionDate: ""
+        completionDate: "",
+        projectImages: []
     });
 
     const [errors, setErrors] = useState({});
+
+    const handleImageChange = (index, value) => {
+        const newProjectImages = [...formData.projectImages];
+        newProjectImages[index] = value;
+        setFormData({ ...formData, projectImages: newProjectImages });
+    };
+
+    const addImageField = () => {
+        setFormData({
+            ...formData,
+            projectImages: [...formData.projectImages, ""]
+        });
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -28,15 +44,21 @@ const NewProjectForm = () => {
       const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors({});
+        console.log(formData);
     
         try {
-          await dispatch(sessionActions.createProject(formData));
+          await dispatch(createProject(formData));
+          closeModal();
           return <Navigate to="/projects" />;
         } catch (err) {
-          const data = await err.response.json();
-          if (data && data.errors) {
-            setErrors(data.errors);
-          }
+            if (err.response) {
+                const data = await err.response.json();
+                if (data && data.errors) {
+                    setErrors(data.errors);
+                }
+            } else {
+                setErrors({ general: "An unexpected error occurred. Please try again." });
+            }
         }
       };
 
@@ -127,6 +149,23 @@ const NewProjectForm = () => {
                     />
                 </label>
                 {errors.coverImage && <p className='errors'>{errors.coverImage}</p>}
+
+                <label>
+                    Add More Images:
+                </label>
+                <h4>One Image Minimum is Required</h4>
+                {formData.projectImages.map((image, index) => (
+                    <div key={index}>
+                        <input
+                            type="text"
+                            value={image}
+                            onChange={(e) => handleImageChange(index, e.target.value)}
+                            required
+                        />
+                    </div>
+                ))}
+                
+                <button className="addMoreImagesButton" type="button" onClick={addImageField}>Add Another Image</button>
                 
                 <button className="newProjectButton" type="submit">Create Project</button>
             </form>
