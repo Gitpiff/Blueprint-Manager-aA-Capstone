@@ -4,6 +4,7 @@ const GET_ALL_PROJECTS = 'projects/GET_ALL_PROJECTS';
 const GET_PROJECT_DETAILS = 'projects/GET_PROJECT_DETAILS';
 const CREATE_PROJECT = 'projects/CREATE_PROJECT';
 const DELETE_PROJECT = 'projects/DELETE_PROJECT';
+const UPDATE_PROJECT = 'projects/UPDATE_PROJECT';
 
 // Action Creator
 const getAllProjects = (projects) => {
@@ -31,6 +32,13 @@ const removeProject = (projectId) => {
     return {
         type: DELETE_PROJECT,
         projectId
+    }
+};
+
+const updateProject = (project) => {
+    return {
+        type: UPDATE_PROJECT,
+        project
     }
 };
 
@@ -92,6 +100,21 @@ export const deleteProject = (projectId) => async (dispatch) => {
     }
 };
 
+export const projectUpdate = (project) => async (dispatch) => {
+    console.log("Store Product ID: ", typeof project.id)
+    const response = await csrfFetch(`/api/projects/${project.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(project)
+    })
+
+    console.log("Response: ", response)
+
+    if (response.ok) {
+        const updatedProject = await response.json();
+        dispatch(updateProject(updatedProject));
+        return updatedProject;
+    }
+};
 
 
 
@@ -109,6 +132,9 @@ const projectsReducer = (state = {}, action) => {
             return { ...state, [action.project.id]: action.project}
         }
         case CREATE_PROJECT: {
+            return { ...state, [action.project.id]: action.project}
+        }
+        case UPDATE_PROJECT: {
             return { ...state, [action.project.id]: action.project}
         }
         case DELETE_PROJECT: {

@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal"
 import { deleteProject } from "../../store/project";
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 import './DeleteProject.css'
 
 const DeleteProject = ({ projectId }) => {
@@ -13,7 +13,8 @@ const DeleteProject = ({ projectId }) => {
         return dispatch(deleteProject(projectId))
         .then (() => {
             closeModal();
-            <Navigate to="/homepage" />
+            // <Navigate to="/homepage" replace={true}/>
+            window.location.href = '/homepage'
         })
     }    
 

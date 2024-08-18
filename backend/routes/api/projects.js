@@ -162,29 +162,57 @@ router.delete('/:projectId', requireAuth, async (req, res, next) => {
 
 // Update Project 
 router.put('/:projectId', validateProject, requireAuth, async (req, res, next) => {
-    const { user } = req;
+    const { user } = req;  // Assuming user is attached to req by authentication middleware
     try {
-        const { name, clientName, description, budget, commencementDate, completionDate } = req.body;
-        const project = await Project.findByPk(req.params.projectId);
+        const { name, clientName, description, budget, startDate, completionDate, coverImage, projectImages } = req.body;
+        const project = await Project.findByPk(req.params.projectId, {
+            include: [{ model: ProjectImage, as: 'projectImages' }] // Include existing images
+        });
 
         if (!project) {
             return res.status(404).json({ message: "Project not found" });
         }
 
+        // Check if the user is authorized to update the project
         if (project.projectManagerId !== user.id) {
             return res.status(403).json({ message: "Unauthorized to update this project" });
         }
 
+        // Update the existing project fields
         project.name = name;
         project.clientName = clientName;
         project.description = description;
         project.budget = budget;
-        project.commencementDate = commencementDate;
+        project.startDate = startDate;
         project.completionDate = completionDate;
+        project.coverImage = coverImage;
 
         await project.save();
 
-        res.status(200).json(project);
+        // Handle the project images
+        if (Array.isArray(projectImages) && projectImages.length > 0) {
+            const existingImageUrls = project.projectImages.map(img => img.url);
+
+            // Add only the new images that are not already in the database
+            const newImageUrls = projectImages.filter(url => !existingImageUrls.includes(url));
+
+            const imagePromises = newImageUrls.map(imageUrl => {
+                return ProjectImage.create({
+                    projectId: project.id,
+                    url: imageUrl
+                });
+            });
+
+            // Wait for all new images to be created
+            await Promise.all(imagePromises);
+        }
+
+        // Return the updated project along with its images
+        const updatedProject = await Project.findByPk(req.params.projectId, {
+            include: [{ model: ProjectImage, as: 'projectImages' }]
+        });
+
+        res.status(200).json(updatedProject);
     } catch (error) {
         next({
             message: "Bad Request",
@@ -193,6 +221,7 @@ router.put('/:projectId', validateProject, requireAuth, async (req, res, next) =
         });
     }
 });
+
 
 // Delete Project
 router.delete('/:projectId', requireAuth, async (req, res, next) => {

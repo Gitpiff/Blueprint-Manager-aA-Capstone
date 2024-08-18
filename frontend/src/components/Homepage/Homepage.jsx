@@ -4,9 +4,10 @@ import Footer from '../Footer/Footer';
 import { useEffect } from 'react';
 import { getProjects } from '../../store/project';
 import OpenModalButton from '../OpenModalButton';
-import './Homepage.css'
 import NewProjectForm from '../NewProjectForm/NewProjectForm';
 import DeleteProject from '../DeleteProject/DeleteProject';
+import './Homepage.css'
+import UpdateProject from '../UpdateProject/UpdateProject';
 
 const Homepage = () => {
     const dispatch = useDispatch();    
@@ -48,6 +49,10 @@ const Homepage = () => {
                     <OpenModalButton
                         buttonText="Delete Project"
                         modalComponent={<DeleteProject projectId={project.id} />}
+                    />
+                    <OpenModalButton
+                        buttonText="Edit Project"
+                        modalComponent={<UpdateProject project={project}/>}
                     />
                 </div>
             ))}

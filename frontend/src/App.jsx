@@ -9,6 +9,7 @@ import SignUpFormPage from './components/SignupFormPage/SignupFormPage';
 import Navbar from './components/Navbar/Navbar';
 import ProjectDetails from './components/ProjectDetails/ProjectDetails';
 import NewProjectForm from './components/NewProjectForm/NewProjectForm';
+import UpdateProject from './components/UpdateProject/UpdateProject';
 // import './LoginForm.css';
 
 function Layout() {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: '/projects/new',
         element: <NewProjectForm />
+      },
+      {
+        path: '/projects/:id/edit',
+        element: <UpdateProject />
       }
     ]
   }

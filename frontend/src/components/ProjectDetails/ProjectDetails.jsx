@@ -4,6 +4,8 @@ import { Navigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import { getProject } from "../../store/project";
 import Footer from '../Footer/Footer';
+import OpenModalButton from '../OpenModalButton';
+import DeleteProject from '../DeleteProject/DeleteProject';
 import './ProjectDetails.css'
 
 const ProjectDetails = () => {
@@ -110,6 +112,10 @@ const ProjectDetails = () => {
                         <h1>Project Description</h1>
                         <p>{project.description}</p>
                     </div>
+                    <OpenModalButton
+                        buttonText="Delete Project"
+                        modalComponent={<DeleteProject projectId={project.id} />}
+                    />
                 </div>
                 <Footer />
             </div>

@@ -1,16 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from 'react-router-dom';
-import { createProject } from "../../store/project";
+import { getProject, projectUpdate } from "../../store/project"; 
 import { useModal } from '../../context/Modal';
-import './NewProjectForm.css'
+import './UpdateProject.css';
 
-const NewProjectForm = () => {
+const UpdateProject = ({ project }) => {
+    const projectId = project?.id;
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const sessionUser = useSelector((state) => state.session.user);
+
     const [formData, setFormData] = useState({
-        projectManagerId: sessionUser.id,
+        id: project.id,
+        projectManagerId: sessionUser?.id || "",
         coverImage: "",
         name: "",
         clientName: "",
@@ -20,8 +22,61 @@ const NewProjectForm = () => {
         completionDate: "",
         projectImages: []
     });
+
     const [errors, setErrors] = useState({});
 
+    const validateProjectForm = () => {
+        const errors = {};
+    
+        if (!formData.name || formData.name.length < 7 || formData.name.length > 30) {
+            errors.name = "Project Name must be between 7 and 30 characters";
+        }
+        if (!formData.clientName || formData.clientName.length < 7 || formData.clientName.length > 30) {
+            errors.clientName = "Client Name must be between 7 and 30 characters";
+        }
+        if (!formData.description || formData.description.length < 30 || formData.description.length > 2000) {
+            errors.description = "Project Description must be between 30 and 2000 characters";
+        }
+        if (!formData.coverImage || !/^https?:\/\/[^\s]+$/.test(formData.coverImage)) {
+            errors.coverImage = "A valid Cover Image URL is required";
+        }
+        if (!formData.budget || formData.budget <= 500) {
+            errors.budget = "Budget must be greater than 500";
+        }
+        if (!formData.startDate) {
+            errors.startDate = "Start Date is required";
+        } else if (new Date(formData.startDate) <= new Date()) {
+            errors.startDate = "Start Date cannot be in the past";
+        }
+        if (!formData.completionDate) {
+            errors.completionDate = "Completion Date is required";
+        } else if (new Date(formData.completionDate) <= new Date(formData.startDate)) {
+            errors.completionDate = "Completion Date cannot be on or before Start Date";
+        }
+    
+        setErrors(errors);
+        return Object.keys(errors).length === 0;
+    };
+    
+
+    useEffect(() => {
+        if (!project) {
+            dispatch(getProject(projectId));
+        } else {
+            setFormData({
+                projectManagerId: sessionUser.id,
+                id: project.id,
+                coverImage: project.coverImage || "",
+                name: project.name || "",
+                clientName: project.clientName || "",
+                description: project.description || "",
+                budget: project.budget || "",
+                startDate: project.startDate ? project.startDate.split('T')[0] : "",
+                completionDate: project.completionDate ? project.completionDate.split('T')[0] : "",
+                projectImages: project.projectImages.map(image => image.url) || []
+            });
+        }
+    }, [dispatch, project, projectId, sessionUser?.id]);
 
     const handleImageChange = (index, value) => {
         const newProjectImages = [...formData.projectImages];
@@ -39,30 +94,31 @@ const NewProjectForm = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
-      };
-    
-      const handleSubmit = async (e) => {
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors({});
-        console.log(formData);
-    
+
+        if(!validateProjectForm()) return;
+
         try {
-          await dispatch(createProject(formData));
-          closeModal();
-          return <Navigate to="/projects" />;
+            console.log(formData, projectId)
+            await dispatch(projectUpdate(formData, projectId));
+            closeModal();
         } catch (err) {
             if (err.response) {
                 const data = await err.response.json();
                 if (data && data.errors) {
                     setErrors(data.errors);
                 }
-            } 
+            }
         }
-      };
+    };
 
-      return (
-        <div className='createProjectForm'>
-            <h1 className='login-title'>Create New Project</h1>
+    return (
+        <div className='updateProjectForm'>
+            <h1 className='login-title'>Update Project</h1>
             <form className='form' onSubmit={handleSubmit}>
                 <label>
                     Project Name:
@@ -149,9 +205,8 @@ const NewProjectForm = () => {
                 {errors.coverImage && <p className='errors'>{errors.coverImage}</p>}
 
                 <label>
-                    Add More Images:
+                    Project Images:
                 </label>
-                <h4>One Image Minimum is Required</h4>
                 {formData.projectImages.map((image, index) => (
                     <div key={index}>
                         <input
@@ -163,13 +218,13 @@ const NewProjectForm = () => {
                         />
                     </div>
                 ))}
-                
+
                 <button className="addMoreImagesButton" type="button" onClick={addImageField}>Add Another Image</button>
-                
-                <button className="newProjectButton" type="submit">Create Project</button>
+
+                <button className="updateProjectButton" type="submit">Update Project</button>
             </form>
         </div>
     );
-}
+};
 
-export default NewProjectForm;
+export default UpdateProject;
