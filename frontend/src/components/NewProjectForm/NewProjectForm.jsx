@@ -47,7 +47,11 @@ const NewProjectForm = () => {
         }
         if (!formData.completionDate) {
             errors.completionDate = "Completion Date is required";
-        } else if (new Date(formData.completionDate) <= new Date(formData.startDate)) {
+        } 
+        if (!formData.projectImages) {
+            errors.projectImages = "You Need At least Another Image";
+        }
+        else if (new Date(formData.completionDate) <= new Date(formData.startDate)) {
             errors.completionDate = "Completion Date cannot be on or before Start Date";
         }
     
@@ -174,6 +178,7 @@ const NewProjectForm = () => {
                 <label>
                     Cover Image URL:
                     <input
+                        placeholder="Cover Image URL"
                         type="text"
                         name="coverImage"
                         value={formData.coverImage}
@@ -186,16 +191,17 @@ const NewProjectForm = () => {
                 <label>
                     Add More Images:
                 </label>
-                <h4>One Image Minimum is Required</h4>
                 {formData.projectImages.map((image, index) => (
                     <div key={index}>
                         <input
+                            placeholder="Project Image"
                             className="addProjectImages"
                             type="text"
                             value={image}
                             onChange={(e) => handleImageChange(index, e.target.value)}
                             required
                         />
+                        {errors.projectImages && <p className='errors'>{errors.projectImages}</p>}
                     </div>
                 ))}
                 
