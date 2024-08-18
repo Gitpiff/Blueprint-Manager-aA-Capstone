@@ -22,6 +22,39 @@ const NewProjectForm = () => {
     });
     const [errors, setErrors] = useState({});
 
+    const validateProjectForm = () => {
+        const errors = {};
+    
+        if (!formData.name || formData.name.length < 7 || formData.name.length > 30) {
+            errors.name = "Project Name must be between 7 and 30 characters";
+        }
+        if (!formData.clientName || formData.clientName.length < 7 || formData.clientName.length > 30) {
+            errors.clientName = "Client Name must be between 7 and 30 characters";
+        }
+        if (!formData.description || formData.description.length < 30 || formData.description.length > 2000) {
+            errors.description = "Project Description must be between 30 and 2000 characters";
+        }
+        if (!formData.coverImage || !/^https?:\/\/[^\s]+$/.test(formData.coverImage)) {
+            errors.coverImage = "A valid Cover Image URL is required";
+        }
+        if (!formData.budget || formData.budget <= 500) {
+            errors.budget = "Budget must be greater than 500";
+        }
+        if (!formData.startDate) {
+            errors.startDate = "Start Date is required";
+        } else if (new Date(formData.startDate) <= new Date()) {
+            errors.startDate = "Start Date cannot be in the past";
+        }
+        if (!formData.completionDate) {
+            errors.completionDate = "Completion Date is required";
+        } else if (new Date(formData.completionDate) <= new Date(formData.startDate)) {
+            errors.completionDate = "Completion Date cannot be on or before Start Date";
+        }
+    
+        setErrors(errors);
+        return Object.keys(errors).length === 0;
+    };
+
 
     const handleImageChange = (index, value) => {
         const newProjectImages = [...formData.projectImages];
@@ -45,6 +78,8 @@ const NewProjectForm = () => {
         e.preventDefault();
         setErrors({});
         console.log(formData);
+
+        if(!validateProjectForm()) return;
     
         try {
           await dispatch(createProject(formData));
