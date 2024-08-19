@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 //import * as sessionActions from '../../store/session';
 import { useModal } from '../../context/Modal';
 import './LoginForm.css';
+import { Navigate } from 'react-router-dom';
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -15,12 +16,15 @@ function LoginFormPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors({});
-    return dispatch(sessionActions.login({ credential, password })).catch(
-      async (res) => {
-        const data = await res.json();
-        if (data?.errors) setErrors(data.errors);
-      }
-    );
+    return dispatch(sessionActions.login({ credential, password }))
+      .then((response) => {
+        if(response.errors) {
+          setErrors(response.errors)
+        } else {
+          closeModal()
+          return <Navigate to="/homepage" replace={true} />
+        }
+      })
   };
 
   const demoUser = (e) => {

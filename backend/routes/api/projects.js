@@ -34,13 +34,13 @@ const validateProject = [
 
 // Get All Projects of Current PM
 router.get('/', async (req, res, next) => {
-    // const { user } = req;
+    const { user } = req;
 
-    // if (!user) {
-    //     return res.status(401).json({
-    //         message: 'Authentication Required'
-    //     });
-    // }
+    if (!user) {
+        return res.status(401).json({
+            message: 'Authentication Required'
+        });
+    }
 
     const projects = await Project.findAll({
         include: [
@@ -51,7 +51,7 @@ router.get('/', async (req, res, next) => {
             },
         ],
         where: {
-            projectManagerId: 1
+            projectManagerId: user.id
         }
     });
 

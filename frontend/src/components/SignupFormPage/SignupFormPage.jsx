@@ -1,12 +1,14 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { useDispatch} from 'react-redux';
+//import { Navigate } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
+import { useModal } from '../../context/Modal';
 import './SignUpForm.css'
+import { Navigate } from 'react-router-dom';
 
 const SignUpFormPage = () => {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
+  //const sessionUser = useSelector((state) => state.session.user);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
@@ -16,6 +18,7 @@ const SignUpFormPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const { closeModal } = useModal();
 
   const validateSignupForm = () => {
     const errors = {};
@@ -70,7 +73,7 @@ const SignUpFormPage = () => {
     return Object.keys(errors).length === 0;
 };
 
-  if (sessionUser) return <Navigate to="/" replace={true} />;
+  // if (sessionUser) return <Navigate to="/" replace={true} />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -80,6 +83,7 @@ const SignUpFormPage = () => {
 
     
     if (password === confirmPassword) {
+
       return dispatch(
         sessionActions.signup({
           firstName,
@@ -94,6 +98,9 @@ const SignUpFormPage = () => {
         const data = await res.json();
         if (data?.errors) {
           setErrors(data.errors);
+        } else {
+          closeModal()
+          return <Navigate to="/" replace={true} />
         }
       });
     }
