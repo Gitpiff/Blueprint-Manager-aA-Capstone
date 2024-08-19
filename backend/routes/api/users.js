@@ -75,6 +75,61 @@ router.post('/', validateSignup, async(req, res) => {
 });
 
 
+// Update User
+// router.put('/:id', requireAuth, validateUpdate, async (req, res) => {
+//     const userId = req.params.id;
+//     const user = await User.findByPk(userId);
+
+//     if (!user) {
+//         return res.status(404).json({ message: 'User not found' });
+//     }
+
+//     if (user.id !== req.user.id) {
+//         return res.status(403).json({ message: 'Unauthorized to update this user' });
+//     }
+
+//     const { firstName, lastName, username, companyName, industrySector, email, password } = req.body;
+
+//     if (password) {
+//         user.hashedPassword = bcrypt.hashSync(password);
+//     }
+
+//     await user.update({ firstName, lastName, username, companyName, industrySector, email });
+
+//     const safeUser = {
+//         id: user.id,
+//         firstName: user.firstName,
+//         lastName: user.lastName,
+//         username: user.username,
+//         email: user.email,
+//         companyName: user.companyName,
+//         industrySector: user.industrySector,
+//     };
+
+//     return res.json({ user: safeUser });
+// });
+
+
+// // Delete User
+// router.delete('/:id', requireAuth, async (req, res) => {
+//     const userId = req.params.id;
+//     const user = await User.findByPk(userId);
+
+//     if (!user) {
+//         return res.status(404).json({ message: 'User not found' });
+//     }
+
+//     if (user.id !== req.user.id) {
+//         return res.status(403).json({ message: 'Unauthorized to delete this user' });
+//     }
+
+//     await user.destroy();
+
+//     return res.json({ message: 'User deleted successfully' });
+// });
+
+
+
 module.exports = router;
 
 

@@ -17,12 +17,69 @@ const SignUpFormPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
 
+  const validateSignupForm = () => {
+    const errors = {};
+
+    if (!firstName) {
+        errors.firstName = 'First Name is required';
+    } else if (firstName.length < 2 || firstName.length > 30) {
+        errors.firstName = 'First Name must have between 2 and 30 characters';
+    }
+
+    if (!lastName) {
+        errors.lastName = 'Last Name is required';
+    } else if (lastName.length < 2 || lastName.length > 30) {
+        errors.lastName = 'Last Name must have between 2 and 30 characters';
+    }
+
+    if (!username) {
+        errors.username = 'Username is required';
+    } else if (username.length < 2 || username.length > 15) {
+        errors.username = 'Username must have between 2 and 15 characters';
+    } else if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(username)) { 
+        errors.username = 'Username cannot be an email';
+    }
+
+    if (!email) {
+        errors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { 
+        errors.email = 'Must be a valid email';
+    } else if (email.length < 4 || email.length > 30) {
+        errors.email = 'Email must have between 4 and 30 characters';
+    }
+
+    if (!companyName) {
+        errors.companyName = 'Company Name is required';
+    } else if (companyName.length < 2 || companyName.length > 30) {
+        errors.companyName = 'Company Name must have between 2 and 30 characters';
+    }
+
+    if (!industrySector) {
+        errors.industrySector = 'Industry Sector is required';
+    } else if (industrySector.length < 2 || industrySector.length > 30) {
+        errors.industrySector = 'Industry Sector must have between 2 and 30 characters';
+    }
+
+    if (!password) {
+        errors.password = 'Password is required';
+    } else if (password.length < 7 || password.length > 80) {
+        errors.password = 'Password must have between 7 and 80 characters';
+    }
+
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+};
+
   if (sessionUser) return <Navigate to="/" replace={true} />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setErrors({});
+
+    if(!validateSignupForm()) return;
+
+    
     if (password === confirmPassword) {
-      setErrors({});
       return dispatch(
         sessionActions.signup({
           firstName,
