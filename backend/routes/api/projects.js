@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Project, ProjectImage } = require('../../db/models');
+const { Project, ProjectImage, Employee } = require('../../db/models');
 
 const router = express.Router();
 
@@ -49,6 +49,11 @@ router.get('/', async (req, res, next) => {
                 as: 'projectImages',
                 attributes: ['url']
             },
+            {
+                model: Employee,
+                as: 'employees',
+                attributes: ['firstName', 'lastName', 'jobTitle', 'hireDate', 'contactNumber', 'email', 'salary', 'picture']
+            }
         ],
         where: {
             projectManagerId: user.id
@@ -63,6 +68,30 @@ router.get('/', async (req, res, next) => {
 
     res.status(200).json(projects);
 });
+
+// GET /api/projects/:projectId/employees - Get all employees by projectId
+router.get('/projects/:projectId/employees', async (req, res) => {
+    const { projectId } = req.params;
+  
+    try {
+      // Find all employees associated with the given projectId
+      const employees = await Employee.findAll({
+        where: { projectId }
+      });
+  
+      // If no employees found, return a 404 status
+      if (!employees.length) {
+        return res.status(404).json({ message: 'No employees found for this project' });
+      }
+  
+      // Return the list of employees
+      return res.json(employees);
+    } catch (err) {
+      // Handle any errors
+      console.error(err);
+      return res.status(500).json({ message: 'Internal server error' });
+    }
+  });
 
 /// Post New Project
 router.post('/new', validateProject, async (req, res, next) => {
@@ -120,11 +149,18 @@ router.get('/:projectId', async (req, res, next) => {
 
     try {
         const project = await Project.findByPk(projectId, {
-            include: [{
-                model: ProjectImage,
-                as: 'projectImages',
-                attributes: ['id', 'url'], // Include only necessary fields
-            }]
+            include: [
+                {
+                    model: ProjectImage,
+                    as: 'projectImages',
+                    attributes: ['id', 'url']    
+                },
+                {
+                    model: Employee,
+                    as: 'employees',
+                    attributes: ['firstName', 'lastName', 'jobTitle', 'hireDate', 'contactNumber', 'email', 'salary', 'picture']
+                }
+            ]
         });
 
         if (!project) {

@@ -13,6 +13,9 @@ const Homepage = () => {
     const dispatch = useDispatch();    
     const sessionUser = useSelector((state) => state.session.user);
     const projects = Object.values(useSelector(state => state.projects));
+
+    // const employees = Object.values(useSelector(state => state.employees));
+    // console.log("Employees: ",employees);
     
     console.log('Projects: ', projects);
 

@@ -11,10 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Employee.belongsTo(models.User, {
-        foreignKey: 'userId',
-        as: 'project'
-      })
+      
     }
   }
   Employee.init({
@@ -120,10 +117,6 @@ module.exports = (sequelize, DataTypes) => {
     projectId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: 'Projects',
-        key: 'id'
-      }
     },
   }, {
     sequelize,

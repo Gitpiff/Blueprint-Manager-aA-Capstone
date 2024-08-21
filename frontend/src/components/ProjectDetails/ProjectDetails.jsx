@@ -14,9 +14,11 @@ const ProjectDetails = () => {
     const { projectId } = useParams();
 
     const project = useSelector(state => state.projects ? state.projects[projectId] : null);
+    // console.log(project.employees)
 
-    // const projectImages = Object.values(project.projectImages);
-    // console.log(projectImages);
+    // const employees = Object.values(useSelector(state => state.employees));
+    // console.log("Employees: ",employees);
+
 
     useEffect(() => {
         if (projectId) {
@@ -116,6 +118,19 @@ const ProjectDetails = () => {
                         buttonText="Delete Project"
                         modalComponent={<DeleteProject projectId={project.id} />}
                     />
+
+                    <div>
+                        {Array.isArray(project.employees) && project.employees.map(employee => {
+                            return (
+                                <>
+                                    <div key={employee.id}>
+                                        <h3>{employee.firstName}</h3>
+                                        <h3>{employee.lastName}</h3>
+                                    </div>
+                                </>
+                            )
+                        })}
+                    </div>
                 </div>
                 <Footer />
             </div>
