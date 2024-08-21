@@ -4,8 +4,9 @@ import { Navigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import { getProject } from "../../store/project";
 import Footer from '../Footer/Footer';
-import OpenModalButton from '../OpenModalButton';
-import DeleteProject from '../DeleteProject/DeleteProject';
+import { LuPencilRuler } from "react-icons/lu";
+import { CiSquareRemove } from "react-icons/ci";
+//import OpenModalButton from '../OpenModalButton';
 import './ProjectDetails.css'
 
 const ProjectDetails = () => {
@@ -71,69 +72,85 @@ const ProjectDetails = () => {
 
     return (
         project && (
-            <div className="projectDetailsContainer">
-                <div className="projectDetails">
-                    <nav className="projectNav">
-                        <div>
-                            <h2>Days Until Completion</h2>
-                            <h2>Project will start in {totalDays(project.startDate, project.completionDate)} days</h2>
-                            <h2>You have {daysLeft(project.completionDate)} days to finish it</h2>
+            <>
+                <div className="projectDetailsContainer">
+                    <div className="projectDetails">
+                        <nav className="projectNav">
+                            <div>
+                                <h2>Days Until Completion</h2>
+                                <h2>Project will start in {totalDays(project.startDate, project.completionDate)} days</h2>
+                                <h2>You have {daysLeft(project.completionDate)} days to finish it</h2>
+                            </div>
+        
+                            <div>
+                                <h2>Project </h2>
+                                <h2>{project.name}</h2>
+                                <h3>Start Date: {getYearMonthDay(project.startDate)}</h3>
+                            </div>
+        
+                            <div>
+                                <h2>Client Name</h2>
+                                <h2>{project.clientName}</h2>
+                                <h3>Completion Date: {getYearMonthDay(project.completionDate)}</h3>
+                            </div>
+        
+                            <div>
+                                <h2>Budget</h2>
+                                <h2>{formatCurrency(project.budget)}</h2>
+                            </div>
+                        </nav>
+        
+                        <div className="projectImagesContainer">
+                            {Array.isArray(project.projectImages) && project.projectImages.map(image => {
+                                return (
+                                    <>
+                                        
+                                        <div key={image.id}>
+                                            <img className="projectImage" src={image.url} alt="project.name" />
+                                        </div>
+                                    </>
+                                )
+                            })}
                         </div>
-    
-                        <div>
-                            <h2>Project </h2>
-                            <h2>{project.name}</h2>
-                            <h3>Start Date: {getYearMonthDay(project.startDate)}</h3>
+                        <div className="projectDescription">
+                            <h1>Project Description</h1>
+                            <p>{project.description}</p>
                         </div>
-    
-                        <div>
-                            <h2>Client Name</h2>
-                            <h2>{project.clientName}</h2>
-                            <h3>Completion Date: {getYearMonthDay(project.completionDate)}</h3>
-                        </div>
-    
-                        <div>
-                            <h2>Budget</h2>
-                            <h2>{formatCurrency(project.budget)}</h2>
-                        </div>
-                    </nav>
-    
-                    <div className="projectImagesContainer">
-                        {Array.isArray(project.projectImages) && project.projectImages.map(image => {
-                            return (
-                                <>
-                                    
-                                    <div key={image.id}>
-                                        <img className="projectImage" src={image.url} alt="project.name" />
-                                    </div>
-                                </>
-                            )
-                        })}
-                    </div>
-                    <div className="projectDescription">
-                        <h1>Project Description</h1>
-                        <p>{project.description}</p>
-                    </div>
-                    <OpenModalButton
-                        buttonText="Delete Project"
-                        modalComponent={<DeleteProject projectId={project.id} />}
-                    />
 
-                    <div>
-                        {Array.isArray(project.employees) && project.employees.map(employee => {
-                            return (
-                                <>
-                                    <div key={employee.id}>
-                                        <h3>{employee.firstName}</h3>
-                                        <h3>{employee.lastName}</h3>
-                                    </div>
-                                </>
-                            )
-                        })}
+                        <div className="employee-card-container">
+                            {Array.isArray(project.employees) && project.employees.map(employee => {
+                                return (
+                                    <>
+                                        <div>
+                                            <div key={employee.id} className="employee-card">
+                                                <img src={employee.picture} alt="Employee Picture" className="employee-picture" />
+                                                <div className="employee-details">
+                                                    <h2 className="employee-name">{employee.firstName}</h2>
+                                                    <p className="employee-job-title">{employee.lastName}</p>
+                                                    <p>Job Title: {employee.jobTitle}</p>
+                                                    <p className="employee-hire-date">Hired: {employee.hireDate}</p>
+                                                    <p className="employee-contact-number">Phone: {employee.contactNumber}</p>
+                                                    <p className="employee-email">Email: {employee.email}</p>
+                                                    <p className="employee-salary">Salary: {formatCurrency(employee.salary)}</p>
+                                                </div>
+                                                <div className="employee-actions">
+                                                    <button className="edit-btn">
+                                                        <LuPencilRuler />
+                                                    </button>
+                                                    <button className="delete-btn">
+                                                    <CiSquareRemove />
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </>
+                                )
+                            })}
+                        </div>
                     </div>
                 </div>
                 <Footer />
-            </div>
+            </>
         
         )
     )
