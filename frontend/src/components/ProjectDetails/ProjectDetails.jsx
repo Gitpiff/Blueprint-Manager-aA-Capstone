@@ -77,7 +77,7 @@ const ProjectDetails = () => {
                     <div className="projectDetails">
                         <nav className="projectNav">
                             <div>
-                                <h2>Days Until Completion</h2>
+                                <h2>Timeline</h2>
                                 <h2>Project will start in {totalDays(project.startDate, project.completionDate)} days</h2>
                                 <h2>You have {daysLeft(project.completionDate)} days to finish it</h2>
                             </div>
@@ -104,19 +104,35 @@ const ProjectDetails = () => {
                             {Array.isArray(project.projectImages) && project.projectImages.map(image => {
                                 return (
                                     <>
-                                        
-                                        <div key={image.id}>
-                                            <img className="projectImage" src={image.url} alt="project.name" />
+                                        <div>
+                                            <div key={image.id} className="project-image-card">
+                                                <img src={image.url} alt={project.name} className="project-image" />
+                                                {/* <div className="project-image-details">
+                                                    <h2 className="project-image-title">Project Image Title</h2>
+                                                    <p className="project-image-description">This is a description of the project image.</p>
+                                                </div> */}
+                                                <div className="project-image-actions">
+                                                <button className="edit-btn">
+                                                        <LuPencilRuler />
+                                                    </button>
+                                                    <button className="delete-btn">
+                                                    <CiSquareRemove />
+                                                    </button>
+                                                </div>
+                                            </div>
+
                                         </div>
+                                        
                                     </>
                                 )
                             })}
                         </div>
+                        <h1 className="staff-title">Project Description</h1>
                         <div className="projectDescription">
-                            <h1>Project Description</h1>
                             <p>{project.description}</p>
                         </div>
-
+                        
+                        <h1 className="staff-title">{'Project\'s Staff'}</h1>
                         <div className="employee-card-container">
                             {Array.isArray(project.employees) && project.employees.map(employee => {
                                 return (

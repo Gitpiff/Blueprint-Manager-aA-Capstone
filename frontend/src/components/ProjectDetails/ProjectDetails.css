@@ -25,11 +25,13 @@
 }
 
 .projectDescription {
-    background-color: white;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 10px;
-    margin-left: 15%;
-    margin-right: 15%;
-
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 5px;
 }
 
 .projectDescription > p {
@@ -139,4 +141,87 @@
 
 .delete-btn:hover {
     background-color: red;
+}
+
+
+/* Base styles for the project image card */
+.project-image-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: 20px;
+    overflow: hidden;
+    position: relative; /* To position the action icons */
+}
+
+.project-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.project-image-details {
+    padding: 15px;
+    text-align: center;
+}
+
+.project-image-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.project-image-description {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+/* Styles for the action icons */
+.project-image-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease;
+}
+
+.project-image-card:hover .project-image-actions {
+    opacity: 1; /* Show the icons on hover */
+}
+
+.project-image-actions button {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* .project-image-actions button:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+} */
+
+.project-image-actions > button {
+    font-size: 1.5em;
+}
+
+.staff-title {
+    margin-left: 43%;
+    background: center;
+    margin-right: 40%;
+    color: currentColor;
+    background-color: #f9f9f9;
+    width: 13%;
+    border-radius: 10%;
+    padding: 10px;
 }
