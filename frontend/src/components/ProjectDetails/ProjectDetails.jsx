@@ -8,6 +8,8 @@ import { LuPencilRuler } from "react-icons/lu";
 import { CiSquareRemove } from "react-icons/ci";
 //import OpenModalButton from '../OpenModalButton';
 import './ProjectDetails.css'
+import EditEmployee from "../EditEmployee/EditEmployee";
+import OpenModalButton from '../OpenModalButton';
 
 const ProjectDetails = () => {
     const dispatch = useDispatch();    
@@ -101,28 +103,24 @@ const ProjectDetails = () => {
                         </nav>
         
                         <div className="projectImagesContainer">
-                            {Array.isArray(project.projectImages) && project.projectImages.map(image => {
+                            {Array.isArray(project.projectImages) && project.projectImages.map((image, index) => {
                                 return (
                                     <>
-                                        <div>
-                                            <div key={image.id} className="project-image-card">
-                                                <img src={image.url} alt={project.name} className="project-image" />
-                                                {/* <div className="project-image-details">
-                                                    <h2 className="project-image-title">Project Image Title</h2>
-                                                    <p className="project-image-description">This is a description of the project image.</p>
-                                                </div> */}
-                                                <div className="project-image-actions">
-                                                <button className="edit-btn">
-                                                        <LuPencilRuler />
-                                                    </button>
-                                                    <button className="delete-btn">
-                                                    <CiSquareRemove />
-                                                    </button>
-                                                </div>
+                                        <div key={image.id} className="project-image-card">
+                                            <img key={image.id || index} src={image.url} alt={`Project image ${index}`}className="project-image" />
+                                            {/* <div className="project-image-details">
+                                                <h2 className="project-image-title">Project Image Title</h2>
+                                                <p className="project-image-description">This is a description of the project image.</p>
+                                            </div> */}
+                                            <div className="project-image-actions">
+                                            <button className="edit-btn">
+                                                    <LuPencilRuler />
+                                                </button>
+                                                <button className="delete-btn">
+                                                <CiSquareRemove />
+                                                </button>
                                             </div>
-
-                                        </div>
-                                        
+                                        </div> 
                                     </>
                                 )
                             })}
@@ -150,9 +148,13 @@ const ProjectDetails = () => {
                                                     <p className="employee-salary">Salary: {formatCurrency(employee.salary)}</p>
                                                 </div>
                                                 <div className="employee-actions">
-                                                    <button className="edit-btn">
-                                                        <LuPencilRuler />
-                                                    </button>
+                                                   
+                                                        
+                                                        <OpenModalButton 
+                                                            buttonText = {<LuPencilRuler />}
+                                                            modalComponent = {<EditEmployee employee={employee} />}
+                                                        /> 
+                                                   
                                                     <button className="delete-btn">
                                                     <CiSquareRemove />
                                                     </button>
