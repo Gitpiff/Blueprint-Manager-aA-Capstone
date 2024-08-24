@@ -5,6 +5,7 @@ import { employeeUpdate, getEmployee } from "../../store/employee";
 import './EditEmployee.css';
 
 const EditEmployee = ({ employee }) => {
+    const employeeId = employee?.id;
     const dispatch = useDispatch();
     const { closeModal } = useModal();
 
@@ -97,7 +98,7 @@ const EditEmployee = ({ employee }) => {
 
     useEffect(() => {
         if (!employee) {
-            dispatch(getEmployee(employee.id));
+            dispatch(getEmployee(employeeId));
         } else {
             setFirstName(employee.firstName || '');
             setLastName(employee.lastName || '');
@@ -109,14 +110,13 @@ const EditEmployee = ({ employee }) => {
             setPicture(employee.picture || '');
             setProjectId(employee.projectId || 0);
         }
-    }, [dispatch, employee]);
+    }, [dispatch, employee, employeeId]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors({});
-        const validationErrors = validateEmployeeForm();
 
-        if(Object.keys(validationErrors).length === 0) {
+        if(validateEmployeeForm()) {
             const updatedEmployee = {
                 id: employee.id, // include ID to identify which employee to update
                 firstName,
@@ -132,7 +132,7 @@ const EditEmployee = ({ employee }) => {
 
             dispatch(employeeUpdate(updatedEmployee))
                 .then(() => {
-                    dispatch(getEmployee(employee.id));
+                    dispatch(getEmployee(updatedEmployee, employeeId));
                     closeModal();
                 })
                 .catch((err) => {
@@ -140,9 +140,7 @@ const EditEmployee = ({ employee }) => {
                     setErrors({ submit: "Failed to update employee" });
                 });
 
-        } else {
-            setErrors(validationErrors);
-        }
+        } 
     }
 
     return (

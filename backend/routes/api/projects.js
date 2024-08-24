@@ -52,7 +52,7 @@ router.get('/', async (req, res, next) => {
             {
                 model: Employee,
                 as: 'employees',
-                attributes: ['firstName', 'lastName', 'jobTitle', 'hireDate', 'contactNumber', 'email', 'salary', 'picture', 'projectId']
+                attributes: ['id', 'firstName', 'lastName', 'jobTitle', 'hireDate', 'contactNumber', 'email', 'salary', 'picture', 'projectId']
             }
         ],
         where: {
@@ -158,7 +158,7 @@ router.get('/:projectId', async (req, res, next) => {
                 {
                     model: Employee,
                     as: 'employees',
-                    attributes: ['firstName', 'lastName', 'jobTitle', 'hireDate', 'contactNumber', 'email', 'salary', 'picture', 'projectId']
+                    attributes: ['id', 'firstName', 'lastName', 'jobTitle', 'hireDate', 'contactNumber', 'email', 'salary', 'picture', 'projectId']
                 }
             ]
         });

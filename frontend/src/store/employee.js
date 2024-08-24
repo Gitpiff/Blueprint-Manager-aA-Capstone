@@ -14,10 +14,10 @@ const getAllEmployees = (employees) => {
     };
 };
 
-const getSingleEmployee = (employee) => {
+const getSingleEmployee = (employeeId) => {
     return {
         type: GET_EMPLOYEE_DETAILS,
-        employee
+        employeeId
     }
 };
 
@@ -67,10 +67,12 @@ export const getEmployee = (employeeId) => async (dispatch) => {
 };
 
 export const employeeUpdate = (employee) => async (dispatch) => {
+    console.log("Store Employee Id: ", employee.id)
     const response = await csrfFetch(`/api/employees/${employee.id}`, {
         method: 'PUT',
         body: JSON.stringify(employee)
     })
+    console.log(response);
 
     if (response.ok) {
         const updatedEmployee = await response.json();
