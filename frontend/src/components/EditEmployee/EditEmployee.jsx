@@ -132,7 +132,7 @@ const EditEmployee = ({ employee }) => {
 
             dispatch(employeeUpdate(updatedEmployee))
                 .then(() => {
-                    dispatch(getEmployee(updatedEmployee, employeeId));
+                    dispatch(getEmployee(employeeId));
                     closeModal();
                 })
                 .catch((err) => {

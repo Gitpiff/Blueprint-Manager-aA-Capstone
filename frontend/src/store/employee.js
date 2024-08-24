@@ -14,10 +14,10 @@ const getAllEmployees = (employees) => {
     };
 };
 
-const getSingleEmployee = (employeeId) => {
+const getSingleEmployee = (employee) => {
     return {
         type: GET_EMPLOYEE_DETAILS,
-        employeeId
+        employee
     }
 };
 

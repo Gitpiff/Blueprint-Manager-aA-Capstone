@@ -85,6 +85,7 @@ router.get('/:id', async (req, res) => {
           include: [
               {
                   model: Project,
+                  as: 'project',
                   attributes: ['id', 'name'] 
               }
           ]
