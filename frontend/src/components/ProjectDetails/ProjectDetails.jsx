@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { getProject } from "../../store/project";
 import Footer from '../Footer/Footer';
 import { LuPencilRuler } from "react-icons/lu";
-import { CiSquareRemove } from "react-icons/ci";
+import { RiDeleteBin5Fill } from "react-icons/ri";
 import './ProjectDetails.css'
 import EditEmployee from "../EditEmployee/EditEmployee";
 import OpenModalButton from '../OpenModalButton';
@@ -106,23 +106,27 @@ const ProjectDetails = () => {
                                                 <LuPencilRuler />
                                             </button>
                                             <button className="delete-btn">
-                                                <CiSquareRemove />
+                                                <RiDeleteBin5Fill />
                                             </button>
                                         </div>
                                     </div> 
                                 )
                             })}
                         </div>
-                        <h1 className="staff-title">Project Description</h1>
+                        <div className="staff-title">
+                            <h1>Description</h1>
+                        </div>
                         <div className="projectDescription">
                             <p>{project.description}</p>
                         </div>
                         
-                        <h1 className="staff-title">{'Project\'s Staff'}</h1>
-                        <OpenModalButton
-                        buttonText="Add Employee"
-                        modalComponent={<AddEmployee projectId={project.id} />}
-                        />
+                        <div className="project-staff">
+                            <h1>Current Staff</h1>
+                                <OpenModalButton
+                                    buttonText="Add Employee"
+                                    modalComponent={<AddEmployee projectId={project.id} />}
+                                />
+                        </div>
                         <div className="employee-card-container">
                             {Array.isArray(project.employees) && project.employees.map((employee) => {
                                 return (
@@ -137,17 +141,18 @@ const ProjectDetails = () => {
                                             <p className="employee-salary">Salary: {formatCurrency(employee.salary)}</p>
                                         </div>
                                         <div className="employee-actions">
-                                            <OpenModalButton 
-                                                buttonText={<LuPencilRuler />}
-                                                modalComponent={<EditEmployee employee={employee} />}
-                                            /> 
-                                            <OpenModalButton
-                                                buttonText={<CiSquareRemove />}
-                                                modalComponent={<DeleteEmployee employee={employee} />}
-                                            />
-                                            <button className="delete-btn">
-                                                
-                                            </button>
+                                            <div className="edit-button">
+                                                <OpenModalButton 
+                                                    buttonText={<LuPencilRuler />}
+                                                    modalComponent={<EditEmployee employee={employee} />}
+                                                /> 
+                                            </div>
+                                            <div className="remove-buton">
+                                                <OpenModalButton
+                                                    buttonText={<RiDeleteBin5Fill />}
+                                                    modalComponent={<DeleteEmployee employee={employee} />}
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 )

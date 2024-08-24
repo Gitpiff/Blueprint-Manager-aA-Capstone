@@ -117,16 +117,6 @@
     opacity: 1; /* Show the icons on hover */
 }
 
-.employee-actions button {
-    background-color: rgba(0, 0, 0, 0.7);
-    border: none;
-    border-radius: 50%;
-    padding: 10px;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
 /* .employee-actions button:hover {
     background-color: rgba(0, 0, 0, 0.9);
 } */
@@ -215,13 +205,64 @@
     font-size: 1.5em;
 }
 
-.staff-title {
-    margin-left: 43%;
-    background: center;
-    margin-right: 40%;
-    color: currentColor;
-    background-color: #f9f9f9;
-    width: 13%;
-    border-radius: 10%;
+.staff-title > h1{
+    margin: auto;
+    background: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.edit-button > button:hover {
+    background-color: blue;
+    font-size: larger;
+}
+
+.remove-buton > button:hover {
+    background-color: red;
+    font-size: larger;
+}
+
+.employee-actions button {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: larger;
+}
+
+.add-employee > button {
+    font-size: larger;
+    margin: auto;
+    background-color: darkgreen;
+    color: white;
+    padding: 10px;
+}
+
+.project-staff> button:hover {
+    background-color: green;
+    cursor: pointer;
+}
+
+.project-staff , .staff-title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.project-staff > h1 {
+    margin: auto;
+    background: white;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.project-staff > button {
+    font-size: larger;
+    margin: auto;
+    background-color: darkgreen;
+    color: white;
     padding: 10px;
 }
