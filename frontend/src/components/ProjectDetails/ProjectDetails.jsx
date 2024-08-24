@@ -10,6 +10,7 @@ import './ProjectDetails.css'
 import EditEmployee from "../EditEmployee/EditEmployee";
 import OpenModalButton from '../OpenModalButton';
 import DeleteEmployee from "../DeleteEmployee/DeleteEmployee";
+import AddEmployee from "../AddEmployee/AddEmployee";
 
 const ProjectDetails = () => {
     const dispatch = useDispatch();    
@@ -118,6 +119,10 @@ const ProjectDetails = () => {
                         </div>
                         
                         <h1 className="staff-title">{'Project\'s Staff'}</h1>
+                        <OpenModalButton
+                        buttonText="Add Employee"
+                        modalComponent={<AddEmployee projectId={project.id} />}
+                        />
                         <div className="employee-card-container">
                             {Array.isArray(project.employees) && project.employees.map((employee) => {
                                 return (

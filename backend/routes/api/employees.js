@@ -117,4 +117,17 @@ router.delete('/:id', async (req, res, next) => {
   }
 });
 
+// POST create new Employee
+router.post('/new', async (req, res, next) => {
+  try {
+      const { firstName, lastName, jobTitle, hireDate, contactNumber, email, salary, picture, projectId } = req.body;
+      const newEmployee = await Employee.create({ firstName, lastName, jobTitle, hireDate, contactNumber, email, salary, picture, projectId });
+      res.status(201).json(newEmployee);
+  } catch (error) {
+      error.message = "Bad Request"
+      error.status = 400
+      next(error)
+  }
+});
+
 module.exports = router;

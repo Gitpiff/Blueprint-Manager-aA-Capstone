@@ -92,6 +92,7 @@ export const deleteEmployee = (employeeId) => async (dispatch) => {
 };
 
 export const createEmployee = (employeeData) => async (dispatch) => {
+    console.log("Employee Data ", employeeData)
     const response = await csrfFetch('/api/employees/new', {
         method: 'POST',
         headers: {
