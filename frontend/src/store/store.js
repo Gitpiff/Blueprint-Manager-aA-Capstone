@@ -10,7 +10,6 @@ const rootReducer = combineReducers({
     session: sessionReducer,
     projects: projectReducer,
     employees: employeeReducer
-    // reviews: reviewsReducer
 });
 
 let enhancer;

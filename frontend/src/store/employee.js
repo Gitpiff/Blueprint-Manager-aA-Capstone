@@ -67,10 +67,12 @@ export const getEmployee = (employeeId) => async (dispatch) => {
 };
 
 export const employeeUpdate = (employee) => async (dispatch) => {
+    console.log("Store Employee Id: ", employee.id)
     const response = await csrfFetch(`/api/employees/${employee.id}`, {
         method: 'PUT',
         body: JSON.stringify(employee)
     })
+    console.log(response);
 
     if (response.ok) {
         const updatedEmployee = await response.json();
@@ -90,6 +92,7 @@ export const deleteEmployee = (employeeId) => async (dispatch) => {
 };
 
 export const createEmployee = (employeeData) => async (dispatch) => {
+    console.log("Employee Data ", employeeData)
     const response = await csrfFetch('/api/employees/new', {
         method: 'POST',
         headers: {

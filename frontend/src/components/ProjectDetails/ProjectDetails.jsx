@@ -6,8 +6,11 @@ import { getProject } from "../../store/project";
 import Footer from '../Footer/Footer';
 import { LuPencilRuler } from "react-icons/lu";
 import { CiSquareRemove } from "react-icons/ci";
-//import OpenModalButton from '../OpenModalButton';
 import './ProjectDetails.css'
+import EditEmployee from "../EditEmployee/EditEmployee";
+import OpenModalButton from '../OpenModalButton';
+import DeleteEmployee from "../DeleteEmployee/DeleteEmployee";
+import AddEmployee from "../AddEmployee/AddEmployee";
 
 const ProjectDetails = () => {
     const dispatch = useDispatch();    
@@ -15,11 +18,6 @@ const ProjectDetails = () => {
     const { projectId } = useParams();
 
     const project = useSelector(state => state.projects ? state.projects[projectId] : null);
-    // console.log(project.employees)
-
-    // const employees = Object.values(useSelector(state => state.employees));
-    // console.log("Employees: ",employees);
-
 
     useEffect(() => {
         if (projectId) {
@@ -39,16 +37,14 @@ const ProjectDetails = () => {
         const startDate = new Date(commencementDate);
         const endDate = new Date(completionDate);
         const timeDifference = endDate - startDate;
-        const totalDays = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-        return totalDays;
+        return Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
     }
 
     const daysLeft = (completionDate) => {
         const endDate = new Date(completionDate);
         const now = new Date();
         const timeDifference = endDate - now;
-        const daysLeft = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-        return daysLeft;
+        return Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
     }
 
     const formatCurrency = (num, locale = 'en-US', currency = 'USD') => {
@@ -83,7 +79,7 @@ const ProjectDetails = () => {
                             </div>
         
                             <div>
-                                <h2>Project </h2>
+                                <h2>Project</h2>
                                 <h2>{project.name}</h2>
                                 <h3>Start Date: {getYearMonthDay(project.startDate)}</h3>
                             </div>
@@ -101,29 +97,19 @@ const ProjectDetails = () => {
                         </nav>
         
                         <div className="projectImagesContainer">
-                            {Array.isArray(project.projectImages) && project.projectImages.map(image => {
+                            {Array.isArray(project.projectImages) && project.projectImages.map((image, index) => {
                                 return (
-                                    <>
-                                        <div>
-                                            <div key={image.id} className="project-image-card">
-                                                <img src={image.url} alt={project.name} className="project-image" />
-                                                {/* <div className="project-image-details">
-                                                    <h2 className="project-image-title">Project Image Title</h2>
-                                                    <p className="project-image-description">This is a description of the project image.</p>
-                                                </div> */}
-                                                <div className="project-image-actions">
-                                                <button className="edit-btn">
-                                                        <LuPencilRuler />
-                                                    </button>
-                                                    <button className="delete-btn">
-                                                    <CiSquareRemove />
-                                                    </button>
-                                                </div>
-                                            </div>
-
+                                    <div key={image.id || index} className="project-image-card">
+                                        <img src={image.url} alt={`Project image ${index}`} className="project-image" />
+                                        <div className="project-image-actions">
+                                            <button className="edit-btn">
+                                                <LuPencilRuler />
+                                            </button>
+                                            <button className="delete-btn">
+                                                <CiSquareRemove />
+                                            </button>
                                         </div>
-                                        
-                                    </>
+                                    </div> 
                                 )
                             })}
                         </div>
@@ -133,33 +119,37 @@ const ProjectDetails = () => {
                         </div>
                         
                         <h1 className="staff-title">{'Project\'s Staff'}</h1>
+                        <OpenModalButton
+                        buttonText="Add Employee"
+                        modalComponent={<AddEmployee projectId={project.id} />}
+                        />
                         <div className="employee-card-container">
-                            {Array.isArray(project.employees) && project.employees.map(employee => {
+                            {Array.isArray(project.employees) && project.employees.map((employee) => {
                                 return (
-                                    <>
-                                        <div>
-                                            <div key={employee.id} className="employee-card">
-                                                <img src={employee.picture} alt="Employee Picture" className="employee-picture" />
-                                                <div className="employee-details">
-                                                    <h2 className="employee-name">{employee.firstName}</h2>
-                                                    <p className="employee-job-title">{employee.lastName}</p>
-                                                    <p>Job Title: {employee.jobTitle}</p>
-                                                    <p className="employee-hire-date">Hired: {employee.hireDate}</p>
-                                                    <p className="employee-contact-number">Phone: {employee.contactNumber}</p>
-                                                    <p className="employee-email">Email: {employee.email}</p>
-                                                    <p className="employee-salary">Salary: {formatCurrency(employee.salary)}</p>
-                                                </div>
-                                                <div className="employee-actions">
-                                                    <button className="edit-btn">
-                                                        <LuPencilRuler />
-                                                    </button>
-                                                    <button className="delete-btn">
-                                                    <CiSquareRemove />
-                                                    </button>
-                                                </div>
-                                            </div>
+                                    <div key={employee.id} className="employee-card">
+                                        <img src={employee.picture} alt="Employee Picture" className="employee-picture" />
+                                        <div className="employee-details">
+                                            <h2 className="employee-name">{employee.firstName} {employee.lastName}</h2>
+                                            <p className="employee-job-title">Job Title: {employee.jobTitle}</p>
+                                            <p className="employee-hire-date">Hired: {getYearMonthDay(employee.hireDate)}</p>
+                                            <p className="employee-contact-number">Phone: {employee.contactNumber}</p>
+                                            <p className="employee-email">Email: {employee.email}</p>
+                                            <p className="employee-salary">Salary: {formatCurrency(employee.salary)}</p>
                                         </div>
-                                    </>
+                                        <div className="employee-actions">
+                                            <OpenModalButton 
+                                                buttonText={<LuPencilRuler />}
+                                                modalComponent={<EditEmployee employee={employee} />}
+                                            /> 
+                                            <OpenModalButton
+                                                buttonText={<CiSquareRemove />}
+                                                modalComponent={<DeleteEmployee employee={employee} />}
+                                            />
+                                            <button className="delete-btn">
+                                                
+                                            </button>
+                                        </div>
+                                    </div>
                                 )
                             })}
                         </div>
@@ -167,10 +157,8 @@ const ProjectDetails = () => {
                 </div>
                 <Footer />
             </>
-        
         )
     )
-
 }
 
 export default ProjectDetails;
