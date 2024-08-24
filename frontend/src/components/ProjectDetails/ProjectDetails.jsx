@@ -9,6 +9,7 @@ import { CiSquareRemove } from "react-icons/ci";
 import './ProjectDetails.css'
 import EditEmployee from "../EditEmployee/EditEmployee";
 import OpenModalButton from '../OpenModalButton';
+import DeleteEmployee from "../DeleteEmployee/DeleteEmployee";
 
 const ProjectDetails = () => {
     const dispatch = useDispatch();    
@@ -135,8 +136,12 @@ const ProjectDetails = () => {
                                                 buttonText={<LuPencilRuler />}
                                                 modalComponent={<EditEmployee employee={employee} />}
                                             /> 
+                                            <OpenModalButton
+                                                buttonText={<CiSquareRemove />}
+                                                modalComponent={<DeleteEmployee employee={employee} />}
+                                            />
                                             <button className="delete-btn">
-                                                <CiSquareRemove />
+                                                
                                             </button>
                                         </div>
                                     </div>

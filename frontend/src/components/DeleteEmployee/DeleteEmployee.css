@@ -1,0 +1,30 @@
+.delete {
+    background-color: #001f3f;
+    color: azure;
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+    flex-direction: column;
+    padding: 15px;
+    justify-content: center;
+}
+
+.delete > p {
+    margin: auto;
+    padding: 2rem;
+    font-size: larger;
+}
+
+.confirm-delete {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+
+.confirm-delete > button:hover {
+    cursor: pointer;
+}

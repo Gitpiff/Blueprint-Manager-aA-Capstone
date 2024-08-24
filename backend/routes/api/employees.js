@@ -102,4 +102,19 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// DELETE Employee
+router.delete('/:id', async (req, res, next) => {
+  try {
+      const employee = await Employee.findByPk(req.params.id);
+      if (employee) {
+          await employee.destroy();
+          res.status(200).json({ message: "Employee Successfully Removed from Project" });
+      } else {
+          res.status(404).json({ message: 'Employee not found' });
+      }
+  } catch (error) {
+      next(error);
+  }
+});
+
 module.exports = router;

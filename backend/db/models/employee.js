@@ -14,8 +14,6 @@ module.exports = (sequelize, DataTypes) => {
       Employee.belongsTo(models.Project, {
         foreignKey: 'projectId',
         as: 'project',
-        onDelete: 'CASCADE',
-        hooks: true
       });
     }
   }
