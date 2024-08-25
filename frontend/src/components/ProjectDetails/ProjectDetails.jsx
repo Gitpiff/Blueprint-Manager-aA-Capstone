@@ -12,6 +12,7 @@ import OpenModalButton from '../OpenModalButton';
 import DeleteEmployee from "../DeleteEmployee/DeleteEmployee";
 import AddEmployee from "../AddEmployee/AddEmployee";
 import EditImage from "../EditImage/EditImage";
+import DeleteImage from "../DeleteImage/DeleteImage";
 
 const ProjectDetails = () => {
     const dispatch = useDispatch();    
@@ -107,10 +108,13 @@ const ProjectDetails = () => {
                                                 buttonText={<LuPencilRuler/>}
                                                 modalComponent={<EditImage projectImage={image}/>}
                                             />
+
+                                            <OpenModalButton
+                                                buttonText={<RiDeleteBin5Fill />}
+                                                modalComponent={<DeleteImage projectImage={image} />}
+                                            />
                                        
-                                            <button className="delete-btn">
-                                                <RiDeleteBin5Fill />
-                                            </button>
+                                    
                                         </div>
                                     </div> 
                                 )
