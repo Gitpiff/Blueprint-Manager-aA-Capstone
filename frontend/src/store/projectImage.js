@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const UPDATE_IMAGE = 'images/UPDATE_IMAGE';
 const GET_IMAGE = 'images/GET_IMAGE';
+const DELETE_IMAGE = 'images/DELETE_IMAGE';
 
 // Action Creator
 const replaceUrl = (image) => {
@@ -14,6 +15,13 @@ const replaceUrl = (image) => {
 const getImage = (imageId) => {
     return {
         type: GET_IMAGE,
+        imageId
+    }
+}
+
+const removeImage = (imageId) => {
+    return {
+        type: DELETE_IMAGE,
         imageId
     }
 }
@@ -55,6 +63,20 @@ export const getCurrentImage = (imageId) => async (dispatch) => {
     }
 }
 
+export const deleteImage = (imageId) =>  async (dispatch) => {
+    try {
+        const response = await csrfFetch(`/api/images/${imageId}`, {
+            method: 'DELETE'
+        })
+
+        if (response.ok) {
+            dispatch(removeImage(imageId))
+        }
+    } catch(error) {
+        console.error("Failed to delete image:", error);
+        throw error;
+    }
+}
 
 // Reducer
 const imagesReducer = (state = {}, action) => {
@@ -64,6 +86,11 @@ const imagesReducer = (state = {}, action) => {
         }
         case GET_IMAGE: {
             return { ...state, [action.image]: action.image }
+        }
+        case DELETE_IMAGE: {
+            const newState = { ...state };
+            delete newState[action.imageId];
+            return newState;
         }
         default:
             return state;

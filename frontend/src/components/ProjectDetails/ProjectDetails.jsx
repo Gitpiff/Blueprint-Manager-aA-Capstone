@@ -107,9 +107,7 @@ const ProjectDetails = () => {
                                                 buttonText={<LuPencilRuler/>}
                                                 modalComponent={<EditImage projectImage={image}/>}
                                             />
-                                            <button className="edit-btn">
-                                                
-                                            </button>
+                                       
                                             <button className="delete-btn">
                                                 <RiDeleteBin5Fill />
                                             </button>

@@ -44,4 +44,23 @@ router.get('/:id', async (req, res) => {
     }
 })
 
+
+//Delete Image
+router.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const image = await ProjectImage.findByPk(id);
+
+        if (!image) {
+            return res.status(404).json({ message: "Image not found" });
+        }
+
+        await image.destroy();
+        res.status(200).json({ message: "Image Successfully Deleted" });
+    } catch(error) {
+        next(error)
+    }
+})
+
 module.exports = router;
