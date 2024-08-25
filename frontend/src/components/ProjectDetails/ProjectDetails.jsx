@@ -103,18 +103,19 @@ const ProjectDetails = () => {
                                 return (
                                     <div key={image.id || index} className="project-image-card">
                                         <img src={image.url} alt={`Project image ${index}`} className="project-image" />
-                                        <div className="project-image-actions">
-                                            <OpenModalButton
-                                                buttonText={<LuPencilRuler/>}
-                                                modalComponent={<EditImage projectImage={image}/>}
-                                            />
-
-                                            <OpenModalButton
-                                                buttonText={<RiDeleteBin5Fill />}
-                                                modalComponent={<DeleteImage projectImage={image} />}
-                                            />
-                                       
-                                    
+                                        <div className="project-image-actions">      
+                                            <div className="edit-button">
+                                                <OpenModalButton 
+                                                    buttonText={<LuPencilRuler />}
+                                                    modalComponent={<EditImage  projectImage={image}/>}
+                                                /> 
+                                            </div>
+                                            <div className="remove-buton">
+                                                <OpenModalButton
+                                                    buttonText={<RiDeleteBin5Fill />}
+                                                    modalComponent={<DeleteImage projectImage={image}/>}
+                                                />
+                                            </div>
                                         </div>
                                     </div> 
                                 )

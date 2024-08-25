@@ -53,7 +53,7 @@ const EditImage = ({ projectImage }) => {
     }
 
     return (
-        <div>
+        <div className="edit-image">
             <h2>Edit Image</h2>
             <form className="form" onSubmit={handleSubmit}>
                 <label>

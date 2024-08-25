@@ -1,0 +1,14 @@
+.edit-image {
+    background-color: #001f3f;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: space-evenly;
+    background-color: '#001f3f';
+    color: white;
+    align-items: center;
+    height: auto;
+    width: 20rem;
+    margin-top: -35%;
+}
