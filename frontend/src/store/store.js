@@ -3,13 +3,13 @@ import thunk  from 'redux-thunk';
 import sessionReducer from './session';
 import projectReducer from './project';
 import employeeReducer from './employee';
-// import spotsReducer from './spots';
-// import reviewsReducer from './reviews';
+import imagesReducer from './projectImage';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     projects: projectReducer,
-    employees: employeeReducer
+    employees: employeeReducer,
+    images: imagesReducer
 });
 
 let enhancer;

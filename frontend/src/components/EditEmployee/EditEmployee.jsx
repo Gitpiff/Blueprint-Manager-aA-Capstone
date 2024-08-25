@@ -92,7 +92,8 @@ const EditEmployee = ({ employee }) => {
             errors.projectId = "Project ID must be a number";
         }
       
-        return errors;
+        setErrors(errors);
+        return Object.keys(errors).length === 0;
     };
       
 

@@ -11,6 +11,7 @@ import EditEmployee from "../EditEmployee/EditEmployee";
 import OpenModalButton from '../OpenModalButton';
 import DeleteEmployee from "../DeleteEmployee/DeleteEmployee";
 import AddEmployee from "../AddEmployee/AddEmployee";
+import EditImage from "../EditImage/EditImage";
 
 const ProjectDetails = () => {
     const dispatch = useDispatch();    
@@ -102,8 +103,12 @@ const ProjectDetails = () => {
                                     <div key={image.id || index} className="project-image-card">
                                         <img src={image.url} alt={`Project image ${index}`} className="project-image" />
                                         <div className="project-image-actions">
+                                            <OpenModalButton
+                                                buttonText={<LuPencilRuler/>}
+                                                modalComponent={<EditImage projectImage={image}/>}
+                                            />
                                             <button className="edit-btn">
-                                                <LuPencilRuler projectImage={project.projectImages.id}/>
+                                                
                                             </button>
                                             <button className="delete-btn">
                                                 <RiDeleteBin5Fill />
