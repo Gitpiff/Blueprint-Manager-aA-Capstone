@@ -75,7 +75,7 @@ router.post('/', validateSignup, async(req, res) => {
 });
 
 
-// Update User
+// // Update User
 // router.put('/:id', requireAuth, validateUpdate, async (req, res) => {
 //     const userId = req.params.id;
 //     const user = await User.findByPk(userId);

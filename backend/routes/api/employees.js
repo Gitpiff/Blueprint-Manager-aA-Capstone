@@ -1,5 +1,4 @@
 const express = require('express');
-const { check } = require('express-validator');
 const { Employee, Project } = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 

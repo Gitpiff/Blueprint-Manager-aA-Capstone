@@ -103,7 +103,7 @@ const ProjectDetails = () => {
                                         <img src={image.url} alt={`Project image ${index}`} className="project-image" />
                                         <div className="project-image-actions">
                                             <button className="edit-btn">
-                                                <LuPencilRuler />
+                                                <LuPencilRuler projectImage={project.projectImages.id}/>
                                             </button>
                                             <button className="delete-btn">
                                                 <RiDeleteBin5Fill />
