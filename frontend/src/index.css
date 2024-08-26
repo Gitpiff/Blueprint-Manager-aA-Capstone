@@ -101,6 +101,10 @@ button:hover {
     background-color: firebrick;
 }
 
+.subnavbar > button:hover {
+    cursor: pointer;
+}
+
 .projectNav {
     display: flex;
     flex-direction: row;

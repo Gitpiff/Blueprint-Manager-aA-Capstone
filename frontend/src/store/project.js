@@ -5,6 +5,7 @@ const GET_PROJECT_DETAILS = 'projects/GET_PROJECT_DETAILS';
 const CREATE_PROJECT = 'projects/CREATE_PROJECT';
 const DELETE_PROJECT = 'projects/DELETE_PROJECT';
 const UPDATE_PROJECT = 'projects/UPDATE_PROJECT';
+const ADD_PROJECT_IMAGE = 'project/ADD_PROJECT_IMAGE';
 
 // Action Creator
 const getAllProjects = (projects) => {
@@ -41,6 +42,12 @@ const updateProject = (project) => {
         project
     }
 };
+
+const addProjectImage = (projectId, image) => ({
+    type: ADD_PROJECT_IMAGE,
+    projectId,
+    image,
+});
 
 
 // Thunks
@@ -116,7 +123,28 @@ export const projectUpdate = (project) => async (dispatch) => {
     }
 };
 
+export const addImageToProject = (projectId, imageUrl) => async (dispatch) => {
+    try {
+        const response = await fetch(`/api/projects/${projectId}/images`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ url: imageUrl }),
+        });
 
+        if (response.ok) {
+            const image = await response.json();
+            dispatch(addProjectImage(projectId, image));
+            return image;
+        } else {
+            const errorData = await response.json();
+            return Promise.reject(errorData);
+        }
+    } catch (err) {
+        return Promise.reject(err);
+    }
+};
 
 // Reducer
 const projectsReducer = (state = {}, action) => {
@@ -141,6 +169,22 @@ const projectsReducer = (state = {}, action) => {
             const newState = {...state};
             delete newState[action.projectId];
             return newState;
+        }
+        case ADD_PROJECT_IMAGE: {
+            const { projectId, image } = action;
+            const project = state[projectId];
+
+            if (project) {
+                return {
+                    ...state,
+                    [projectId]: {
+                        ...project,
+                        projectImages: [...project.projectImages, image],
+                    },
+                };
+            }
+
+            return state;
         }
         default:
             return state;

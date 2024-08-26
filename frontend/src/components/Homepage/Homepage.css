@@ -13,16 +13,19 @@
 }
 
 .newProject {
-    height: 35rem;
+    height: 25rem;
 }
 
 .newProject > button {
+    background-color: #28a745; 
+    color: white;
     height: 15%;
     width: 20rem;
     font-size: large;
 }
 
 .newProject > button:hover {
+    background-color: #218838; 
     cursor: pointer;
 }
 
@@ -62,3 +65,48 @@
     border-radius: 20%;
 }
 
+.no-underline {
+    text-decoration: none;
+}
+
+.cardContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardContainer > button:hover {
+    cursor: pointer;
+}
+
+.delete-project > button {
+    background-color: #dc3545; 
+    color: white;
+    font-size: larger;
+    border: solid 1px white;
+    padding: 1rem;
+    margin: 0 1rem;
+    cursor: pointer;
+}
+
+.delete-project > button:hover {
+    background-color: firebrick;
+}
+
+.edit-project > button {
+    background-color: #007bff; 
+    color: white;
+    font-size: larger;
+    border: solid 1px white;
+    padding: 1rem;
+    margin: 0 1rem;
+    cursor: pointer;
+}
+
+.edit-project > button:hover {
+    background-color: #0056d2;
+}
+
+.card-buttons {
+    display: flex;
+}

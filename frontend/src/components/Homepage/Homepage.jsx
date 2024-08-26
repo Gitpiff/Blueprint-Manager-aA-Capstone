@@ -28,6 +28,17 @@ const Homepage = () => {
         return <Navigate to="/" />;
     }
 
+    const getYearMonthDay = (dateString) => {
+        if (!dateString) return 'N/A';
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        const formattedMonth = month.toString().padStart(2, '0');
+        const formattedDay = day.toString().padStart(2, '0');
+        return `${formattedMonth}-${formattedDay}-${year}`;
+    }
+
     return (
         <div className="mainContainer">
             <div className='newProject'>
@@ -38,27 +49,34 @@ const Homepage = () => {
             </div>
             {projects?.map((project) => (
                 <div className='cardContainer' key={project.id}>
-                    <Link to={`/projects/${project.id}`} >
+                    <Link className='no-underline' to={`/projects/${project.id}`} >
                         <div className='card'>
                             <h2>Project Name: {project.name}</h2>
                             <h2>Client: {project.clientName}</h2>
-                            <h3>Start Date: {project.startDate}</h3>
-                            <h3>Completion Date: {project.completionDate}</h3>
+                            <h3>Start Date: {getYearMonthDay(project.startDate)}</h3>
+                            <h3>Completion Date: {getYearMonthDay(project.completionDate)}</h3>
                             <div className='imageContainer'>
                                 <img className='projectImage' src={project.coverImage} alt="Project cover image" />
                             </div>
                         </div>
                     </Link>
-                    <OpenModalButton
-                        buttonText="Delete Project"
-                        modalComponent={<DeleteProject projectId={project.id} />}
-                    />
-                    <OpenModalButton
-                        buttonText="Edit Project"
-                        modalComponent={<UpdateProject project={project}/>}
-                    />
+                    <div className='card-buttons'>
+                        <div className='delete-project'>
+                            <OpenModalButton
+                                buttonText="Delete Project"
+                                modalComponent={<DeleteProject projectId={project.id} />}
+                            />
+                        </div>
+                        <div className='edit-project'>
+                            <OpenModalButton
+                                buttonText="Edit Project"
+                                modalComponent={<UpdateProject project={project} />}
+                            />
+                        </div>
+                    </div>
                 </div>
             ))}
+
             <Footer />
         </div>
     );

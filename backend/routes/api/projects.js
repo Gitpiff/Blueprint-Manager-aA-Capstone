@@ -280,4 +280,41 @@ router.delete('/:projectId', requireAuth, async (req, res, next) => {
     }
 });
 
+
+// Route to add a new project image
+router.post('/:projectId/images', async (req, res, next) => {
+    const { projectId } = req.params;
+    const { url } = req.body;  // Assuming the image URL is sent in the request body
+
+    try {
+        // Find the project to which the image is being added
+        const project = await Project.findByPk(projectId);
+
+        if (!project) {
+            return res.status(404).json({ message: "Project not found" });
+        }
+
+        // Check if the user is authorized to add an image to the project
+        if (project.projectManagerId !== req.user.id) {
+            return res.status(403).json({ message: "Unauthorized to add an image to this project" });
+        }
+
+        // Create a new ProjectImage record
+        const newImage = await ProjectImage.create({
+            projectId,
+            url,
+        });
+
+        // Return the newly created image
+        res.status(201).json(newImage);
+    } catch (error) {
+        next({
+            message: "Failed to add image",
+            status: 400,
+            stack: error.stack
+        });
+    }
+});
+
+
 module.exports = router;

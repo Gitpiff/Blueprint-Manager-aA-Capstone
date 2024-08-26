@@ -8,3 +8,7 @@
 .logo:hover {
     cursor: pointer;
 }
+
+.subnavbar > button:hover {
+    cursor: pointer;
+}

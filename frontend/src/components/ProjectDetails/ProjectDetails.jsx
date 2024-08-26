@@ -13,6 +13,7 @@ import DeleteEmployee from "../DeleteEmployee/DeleteEmployee";
 import AddEmployee from "../AddEmployee/AddEmployee";
 import EditImage from "../EditImage/EditImage";
 import DeleteImage from "../DeleteImage/DeleteImage";
+import AddProjectImage from "../AddProjectImage/AddProjectImage";
 
 const ProjectDetails = () => {
     const dispatch = useDispatch();    
@@ -120,6 +121,12 @@ const ProjectDetails = () => {
                                     </div> 
                                 )
                             })}
+                        </div>
+                        <div className="add-image">
+                            <OpenModalButton
+                                buttonText="Add Image"
+                                modalComponent={<AddProjectImage projectId={project.id}/>}
+                            />
                         </div>
                         <div className="staff-title">
                             <h1>Description</h1>
