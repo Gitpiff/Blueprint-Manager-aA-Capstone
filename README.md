@@ -948,3 +948,93 @@ Removes Employee from existing Project
     ```
 
 
+## Project Images
+
+### Create New Project Image
+
+Creates and returns a new Project Image
+
+* Require Authentication: true
+* Request
+  * Method: POST
+  * URL: /api/employees
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+  
+  ```json
+    {
+         "url": "https://goldcoastschools.com/wp-content/uploads/2023/07/blog_image_how-to-become-a-certified-building-inspector-in-florida@2x.jpg"
+    }
+    ```
+
+* Successful Response
+  * Status Code: 201
+  * Headers:
+    * Content-Type: application/json
+  * Body:   
+   ```json
+    {
+        "url": "https://goldcoastschools.com/wp-content/uploads/2023/07/blog_image_how-to-become-a-certified-building-inspector-in-florida@2x.jpg"
+    }
+    ```
+
+* Error Response: Body validation error
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+   ```json
+    {
+      "url": "Project Image URL is required",
+    }
+    ```
+
+### Edit Project Image
+
+* Require Authentication: true
+* Request
+  * Method: PUT
+  * URL: /api/projectImages/:id
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+   ```json
+    {
+      "url": "https://goldcoastschools.com/wp-content/uploads/2023/07/blog_image_how-to-become-a-certified-building-inspector-in-florida@2x.jpg",
+    }
+    ```
+
+### Delete Project Image
+
+Removes Project Image from existing Project
+
+* Require Authentication: true
+* Request
+  * Method: DELETE
+  * URL: /api/projectImages/:id
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Project Image Removed from current project"
+    }
+    ```
+
+* Error response: Couldn't find a Project with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Project Image couldn't be found"
+    }
+    ```
