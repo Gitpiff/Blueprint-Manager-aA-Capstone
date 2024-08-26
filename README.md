@@ -247,3 +247,575 @@ user's information.
       }
     }
     ```
+
+
+## Project
+
+### Get Current User Projects
+
+When User successfully Logs in,  it should display all active project cards
+
+* Require Authentication: true
+* Request
+  * Method: GET
+  * URL: /api/projects/
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "ActiveProjects": [
+        {
+        "id": 3,
+        "projectManagerId": 1,
+        "coverImage": "https://theironoffice.com/cdn/shop/files/Gym_12.23-19.jpg?v=1701994187&width=3840",
+        "name": "Oscar's Gym",
+        "clientName": "Oscar Robles",
+        "description": "Oscar's Gym focuses on creating a state-of-the-art gym facility designed to meet the fitness and wellness needs of the community. This modern gym will feature a spacious and open layout, equipped with the latest exercise machines and free weights to cater to all fitness levels. The facility will include dedicated areas for cardio workouts, strength training, group fitness classes, and functional training. Additionally, we will incorporate specialized zones such as a yoga studio, a spin class room, and a recovery area with saunas and massage rooms. The design emphasizes natural light and ventilation to create an inviting and energizing atmosphere, complemented by eco-friendly materials and energy-efficient systems. This gym aims to provide a comprehensive and motivating environment for individuals to achieve their fitness goals and promote a healthy lifestyle.",
+        "budget": 80000,
+        "startDate": "2025-02-13T00:00:00.000Z",
+        "completionDate": "2025-05-01T00:00:00.000Z",
+        "createdAt": "2024-08-23T21:59:28.000Z",
+        "updatedAt": "2024-08-23T21:59:28.000Z",
+        "projectImages": [
+            {
+                "url": "https://goldcoastschools.com/wp-content/uploads/2023/07/blog_image_how-to-become-a-certified-building-inspector-in-florida@2x.jpg"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1514994444123-10094655bdb5?q=80&w=2651&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=4740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1558611848-73f7eb4001a1?q=80&w=3500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1577992805669-c80be3285f36?q=80&w=4032&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            }
+        ],
+        "employees": [
+            {
+                "id": 3,
+                "firstName": "Alice",
+                "lastName": "Johnson",
+                "jobTitle": "Site Engineer",
+                "hireDate": "2024-06-01T00:00:00.000Z",
+                "contactNumber": 12345678903,
+                "email": "alice.johnson@example.com",
+                "salary": 90000,
+                "picture": "https://static.probuildermag.co.uk/professional-builder/uploads/Shutterstock-LO2-scaled.jpg",
+                "projectId": 3
+            },
+            {
+                "id": 9,
+                "firstName": "Grace",
+                "lastName": "Taylor",
+                "jobTitle": "Carpenter",
+                "hireDate": "2024-03-01T00:00:00.000Z",
+                "contactNumber": 12345678909,
+                "email": "grace.taylor@example.com",
+                "salary": 66000,
+                "picture": "https://www.checkatrade.com/blog/wp-content/uploads/2023/10/carpentry-for-women.jpg",
+                "projectId": 3
+            },
+            {
+                "id": 11,
+                "firstName": "Victor",
+                "lastName": "Navarro",
+                "jobTitle": "Junior Front End Developer",
+                "hireDate": "2024-08-23T00:00:00.000Z",
+                "contactNumber": 8318878991,
+                "email": "viknavarro@gmail.com",
+                "salary": 23000,
+                "picture": "https://images.pexels.com/photos/3609139/pexels-photo-3609139.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                "projectId": 3
+            }
+        ]
+    }
+      ]
+    }
+
+    ```
+
+### Get A Project by Id
+
+Returns the details of a Project specified by its id.
+
+* Require Authentication: true
+* Request
+  * Method: GET
+  * URL: /api/projects/:projectId
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+        "id": 3,
+        "projectManagerId": 1,
+        "coverImage": "https://theironoffice.com/cdn/shop/files/Gym_12.23-19.jpg?v=1701994187&width=3840",
+        "name": "Oscar's Gym",
+        "clientName": "Oscar Robles",
+        "description": "Oscar's Gym focuses on creating a state-of-the-art gym facility designed to meet the fitness and wellness needs of the community. This modern gym will feature a spacious and open layout, equipped with the latest exercise machines and free weights to cater to all fitness levels. The facility will include dedicated areas for cardio workouts, strength training, group fitness classes, and functional training. Additionally, we will incorporate specialized zones such as a yoga studio, a spin class room, and a recovery area with saunas and massage rooms. The design emphasizes natural light and ventilation to create an inviting and energizing atmosphere, complemented by eco-friendly materials and energy-efficient systems. This gym aims to provide a comprehensive and motivating environment for individuals to achieve their fitness goals and promote a healthy lifestyle.",
+        "budget": 80000,
+        "startDate": "2025-02-13T00:00:00.000Z",
+        "completionDate": "2025-05-01T00:00:00.000Z",
+        "createdAt": "2024-08-23T21:59:28.000Z",
+        "updatedAt": "2024-08-23T21:59:28.000Z",
+        "projectImages": [
+            {
+                "url": "https://goldcoastschools.com/wp-content/uploads/2023/07/blog_image_how-to-become-a-certified-building-inspector-in-florida@2x.jpg"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1514994444123-10094655bdb5?q=80&w=2651&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=4740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1558611848-73f7eb4001a1?q=80&w=3500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1577992805669-c80be3285f36?q=80&w=4032&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            }
+        ],
+        "employees": [
+            {
+                "id": 3,
+                "firstName": "Alice",
+                "lastName": "Johnson",
+                "jobTitle": "Site Engineer",
+                "hireDate": "2024-06-01T00:00:00.000Z",
+                "contactNumber": 12345678903,
+                "email": "alice.johnson@example.com",
+                "salary": 90000,
+                "picture": "https://static.probuildermag.co.uk/professional-builder/uploads/Shutterstock-LO2-scaled.jpg",
+                "projectId": 3
+            },
+            {
+                "id": 9,
+                "firstName": "Grace",
+                "lastName": "Taylor",
+                "jobTitle": "Carpenter",
+                "hireDate": "2024-03-01T00:00:00.000Z",
+                "contactNumber": 12345678909,
+                "email": "grace.taylor@example.com",
+                "salary": 66000,
+                "picture": "https://www.checkatrade.com/blog/wp-content/uploads/2023/10/carpentry-for-women.jpg",
+                "projectId": 3
+            },
+            {
+                "id": 11,
+                "firstName": "Victor",
+                "lastName": "Navarro",
+                "jobTitle": "Junior Front End Developer",
+                "hireDate": "2024-08-23T00:00:00.000Z",
+                "contactNumber": 8318878991,
+                "email": "viknavarro@gmail.com",
+                "salary": 23000,
+                "picture": "https://images.pexels.com/photos/3609139/pexels-photo-3609139.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                "projectId": 3
+            }
+        ]
+    }
+    ```
+
+* Error response: Couldn't find a Project with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Project couldn't be found"
+    }
+    ```
+
+
+### Create a Project
+
+Creates and returns a new project.
+
+* Require Authentication: true
+* Request
+  * Method: POST
+  * URL: /api/projects/new
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+  ```json
+     {
+        "id": 3,
+        "projectManagerId": 1,
+        "coverImage": "https://theironoffice.com/cdn/shop/files/Gym_12.23-19.jpg?v=1701994187&width=3840",
+        "name": "Oscar's Gym",
+        "clientName": "Oscar Robles",
+        "description": "Oscar's Gym focuses on creating a state-of-the-art gym facility designed to meet the fitness and wellness needs of the community. This modern gym will feature a spacious and open layout, equipped with the latest exercise machines and free weights to cater to all fitness levels. The facility will include dedicated areas for cardio workouts, strength training, group fitness classes, and functional training. Additionally, we will incorporate specialized zones such as a yoga studio, a spin class room, and a recovery area with saunas and massage rooms. The design emphasizes natural light and ventilation to create an inviting and energizing atmosphere, complemented by eco-friendly materials and energy-efficient systems. This gym aims to provide a comprehensive and motivating environment for individuals to achieve their fitness goals and promote a healthy lifestyle.",
+        "budget": 80000,
+        "startDate": "2025-02-13T00:00:00.000Z",
+        "completionDate": "2025-05-01T00:00:00.000Z",
+        "createdAt": "2024-08-23T21:59:28.000Z",
+        "updatedAt": "2024-08-23T21:59:28.000Z",
+        "projectImages": [
+            {
+                "url": "https://goldcoastschools.com/wp-content/uploads/2023/07/blog_image_how-to-become-a-certified-building-inspector-in-florida@2x.jpg"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1514994444123-10094655bdb5?q=80&w=2651&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=4740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1558611848-73f7eb4001a1?q=80&w=3500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1577992805669-c80be3285f36?q=80&w=4032&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            }
+        ],
+        "employees": [
+            {
+                "id": 3,
+                "firstName": "Alice",
+                "lastName": "Johnson",
+                "jobTitle": "Site Engineer",
+                "hireDate": "2024-06-01T00:00:00.000Z",
+                "contactNumber": 12345678903,
+                "email": "alice.johnson@example.com",
+                "salary": 90000,
+                "picture": "https://static.probuildermag.co.uk/professional-builder/uploads/Shutterstock-LO2-scaled.jpg",
+                "projectId": 3
+            },
+            {
+                "id": 9,
+                "firstName": "Grace",
+                "lastName": "Taylor",
+                "jobTitle": "Carpenter",
+                "hireDate": "2024-03-01T00:00:00.000Z",
+                "contactNumber": 12345678909,
+                "email": "grace.taylor@example.com",
+                "salary": 66000,
+                "picture": "https://www.checkatrade.com/blog/wp-content/uploads/2023/10/carpentry-for-women.jpg",
+                "projectId": 3
+            },
+            {
+                "id": 11,
+                "firstName": "Victor",
+                "lastName": "Navarro",
+                "jobTitle": "Junior Front End Developer",
+                "hireDate": "2024-08-23T00:00:00.000Z",
+                "contactNumber": 8318878991,
+                "email": "viknavarro@gmail.com",
+                "salary": 23000,
+                "picture": "https://images.pexels.com/photos/3609139/pexels-photo-3609139.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                "projectId": 3
+            }
+        ]
+    }
+    ```
+
+* Successful Response
+  * Status Code: 201
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+     ```json
+    {
+        "id": 3,
+        "projectManagerId": 1,
+        "coverImage": "https://theironoffice.com/cdn/shop/files/Gym_12.23-19.jpg?v=1701994187&width=3840",
+        "name": "Oscar's Gym",
+        "clientName": "Oscar Robles",
+        "description": "Oscar's Gym focuses on creating a state-of-the-art gym facility designed to meet the fitness and wellness needs of the community. This modern gym will feature a spacious and open layout, equipped with the latest exercise machines and free weights to cater to all fitness levels. The facility will include dedicated areas for cardio workouts, strength training, group fitness classes, and functional training. Additionally, we will incorporate specialized zones such as a yoga studio, a spin class room, and a recovery area with saunas and massage rooms. The design emphasizes natural light and ventilation to create an inviting and energizing atmosphere, complemented by eco-friendly materials and energy-efficient systems. This gym aims to provide a comprehensive and motivating environment for individuals to achieve their fitness goals and promote a healthy lifestyle.",
+        "budget": 80000,
+        "startDate": "2025-02-13T00:00:00.000Z",
+        "completionDate": "2025-05-01T00:00:00.000Z",
+        "createdAt": "2024-08-23T21:59:28.000Z",
+        "updatedAt": "2024-08-23T21:59:28.000Z",
+        "projectImages": [
+            {
+                "url": "https://goldcoastschools.com/wp-content/uploads/2023/07/blog_image_how-to-become-a-certified-building-inspector-in-florida@2x.jpg"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1514994444123-10094655bdb5?q=80&w=2651&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=4740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1558611848-73f7eb4001a1?q=80&w=3500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1577992805669-c80be3285f36?q=80&w=4032&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            }
+        ],
+        "employees": [
+            {
+                "id": 3,
+                "firstName": "Alice",
+                "lastName": "Johnson",
+                "jobTitle": "Site Engineer",
+                "hireDate": "2024-06-01T00:00:00.000Z",
+                "contactNumber": 12345678903,
+                "email": "alice.johnson@example.com",
+                "salary": 90000,
+                "picture": "https://static.probuildermag.co.uk/professional-builder/uploads/Shutterstock-LO2-scaled.jpg",
+                "projectId": 3
+            },
+            {
+                "id": 9,
+                "firstName": "Grace",
+                "lastName": "Taylor",
+                "jobTitle": "Carpenter",
+                "hireDate": "2024-03-01T00:00:00.000Z",
+                "contactNumber": 12345678909,
+                "email": "grace.taylor@example.com",
+                "salary": 66000,
+                "picture": "https://www.checkatrade.com/blog/wp-content/uploads/2023/10/carpentry-for-women.jpg",
+                "projectId": 3
+            },
+            {
+                "id": 11,
+                "firstName": "Victor",
+                "lastName": "Navarro",
+                "jobTitle": "Junior Front End Developer",
+                "hireDate": "2024-08-23T00:00:00.000Z",
+                "contactNumber": 8318878991,
+                "email": "viknavarro@gmail.com",
+                "salary": 23000,
+                "picture": "https://images.pexels.com/photos/3609139/pexels-photo-3609139.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                "projectId": 3
+            }
+        ]
+    }
+    ```
+
+* Error Response: Body validation error
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Bad Request", 
+      "errors": {
+        "coverImage": "A valid Cover Image URL is required",
+        "name": "Project Name must be between 7 and 30 characters",
+        "clientName": "Client Name must be between 7 and 30 characters",
+        "description": "Project Description must be between 30 and 2000 characters",
+        "budget": "Budget must be greater than 500",
+        "startDate": "Start Date cannot be in the past",
+        "completionDate": "Completion Date is required",
+        "projectImages": "You Need At least Another Image"
+      }
+    }
+    ```
+
+
+### Edit a Project
+
+* Require Authentication: true
+* Require proper authorization: Project must belong to the current PM and must be an active project
+* Request
+  * Method: PUT
+  * URL: /api/projects/:projectId
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+     {
+        "id": 3,
+        "projectManagerId": 1,
+        "coverImage": "https://theironoffice.com/cdn/shop/files/Gym_12.23-19.jpg?v=1701994187&width=3840",
+        "name": "Oscar's Gym",
+        "clientName": "Oscar Robles",
+        "description": "Oscar's Gym focuses on creating a state-of-the-art gym facility designed to meet the fitness and wellness needs of the community. This modern gym will feature a spacious and open layout, equipped with the latest exercise machines and free weights to cater to all fitness levels. The facility will include dedicated areas for cardio workouts, strength training, group fitness classes, and functional training. Additionally, we will incorporate specialized zones such as a yoga studio, a spin class room, and a recovery area with saunas and massage rooms. The design emphasizes natural light and ventilation to create an inviting and energizing atmosphere, complemented by eco-friendly materials and energy-efficient systems. This gym aims to provide a comprehensive and motivating environment for individuals to achieve their fitness goals and promote a healthy lifestyle.",
+        "budget": 80000,
+        "startDate": "2025-02-13T00:00:00.000Z",
+        "completionDate": "2025-05-01T00:00:00.000Z",
+        "createdAt": "2024-08-23T21:59:28.000Z",
+        "updatedAt": "2024-08-23T21:59:28.000Z",
+        "projectImages": [
+            {
+                "url": "https://goldcoastschools.com/wp-content/uploads/2023/07/blog_image_how-to-become-a-certified-building-inspector-in-florida@2x.jpg"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1514994444123-10094655bdb5?q=80&w=2651&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=4740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1558611848-73f7eb4001a1?q=80&w=3500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1577992805669-c80be3285f36?q=80&w=4032&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            }
+        ],
+        "employees": [
+            {
+                "id": 3,
+                "firstName": "Alice",
+                "lastName": "Johnson",
+                "jobTitle": "Site Engineer",
+                "hireDate": "2024-06-01T00:00:00.000Z",
+                "contactNumber": 12345678903,
+                "email": "alice.johnson@example.com",
+                "salary": 90000,
+                "picture": "https://static.probuildermag.co.uk/professional-builder/uploads/Shutterstock-LO2-scaled.jpg",
+                "projectId": 3
+            },
+            {
+                "id": 9,
+                "firstName": "Grace",
+                "lastName": "Taylor",
+                "jobTitle": "Carpenter",
+                "hireDate": "2024-03-01T00:00:00.000Z",
+                "contactNumber": 12345678909,
+                "email": "grace.taylor@example.com",
+                "salary": 66000,
+                "picture": "https://www.checkatrade.com/blog/wp-content/uploads/2023/10/carpentry-for-women.jpg",
+                "projectId": 3
+            },
+            {
+                "id": 11,
+                "firstName": "Victor",
+                "lastName": "Navarro",
+                "jobTitle": "Junior Front End Developer",
+                "hireDate": "2024-08-23T00:00:00.000Z",
+                "contactNumber": 8318878991,
+                "email": "viknavarro@gmail.com",
+                "salary": 23000,
+                "picture": "https://images.pexels.com/photos/3609139/pexels-photo-3609139.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                "projectId": 3
+            }
+        ]
+    }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+     ```json
+     {
+        "id": 3,
+        "projectManagerId": 1,
+        "coverImage": "https://theironoffice.com/cdn/shop/files/Gym_12.23-19.jpg?v=1701994187&width=3840",
+        "name": "Oscar's Gym",
+        "clientName": "Oscar Robles",
+        "description": "Oscar's Gym focuses on creating a state-of-the-art gym facility designed to meet the fitness and wellness needs of the community. This modern gym will feature a spacious and open layout, equipped with the latest exercise machines and free weights to cater to all fitness levels. The facility will include dedicated areas for cardio workouts, strength training, group fitness classes, and functional training. Additionally, we will incorporate specialized zones such as a yoga studio, a spin class room, and a recovery area with saunas and massage rooms. The design emphasizes natural light and ventilation to create an inviting and energizing atmosphere, complemented by eco-friendly materials and energy-efficient systems. This gym aims to provide a comprehensive and motivating environment for individuals to achieve their fitness goals and promote a healthy lifestyle.",
+        "budget": 80000,
+        "startDate": "2025-02-13T00:00:00.000Z",
+        "completionDate": "2025-05-01T00:00:00.000Z",
+        "createdAt": "2024-08-23T21:59:28.000Z",
+        "updatedAt": "2024-08-23T21:59:28.000Z",
+        "projectImages": [
+            {
+                "url": "https://goldcoastschools.com/wp-content/uploads/2023/07/blog_image_how-to-become-a-certified-building-inspector-in-florida@2x.jpg"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1514994444123-10094655bdb5?q=80&w=2651&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=4740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1558611848-73f7eb4001a1?q=80&w=3500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+                "url": "https://images.unsplash.com/photo-1577992805669-c80be3285f36?q=80&w=4032&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            }
+        ],
+        "employees": [
+            {
+                "id": 3,
+                "firstName": "Alice",
+                "lastName": "Johnson",
+                "jobTitle": "Site Engineer",
+                "hireDate": "2024-06-01T00:00:00.000Z",
+                "contactNumber": 12345678903,
+                "email": "alice.johnson@example.com",
+                "salary": 90000,
+                "picture": "https://static.probuildermag.co.uk/professional-builder/uploads/Shutterstock-LO2-scaled.jpg",
+                "projectId": 3
+            },
+            {
+                "id": 9,
+                "firstName": "Grace",
+                "lastName": "Taylor",
+                "jobTitle": "Carpenter",
+                "hireDate": "2024-03-01T00:00:00.000Z",
+                "contactNumber": 12345678909,
+                "email": "grace.taylor@example.com",
+                "salary": 66000,
+                "picture": "https://www.checkatrade.com/blog/wp-content/uploads/2023/10/carpentry-for-women.jpg",
+                "projectId": 3
+            },
+            {
+                "id": 11,
+                "firstName": "Victor",
+                "lastName": "Navarro",
+                "jobTitle": "Junior Front End Developer",
+                "hireDate": "2024-08-23T00:00:00.000Z",
+                "contactNumber": 8318878991,
+                "email": "viknavarro@gmail.com",
+                "salary": 23000,
+                "picture": "https://images.pexels.com/photos/3609139/pexels-photo-3609139.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+                "projectId": 3
+            }
+        ]
+    }
+    ```
+
+
+## Delete a Project
+
+Deletes existing Project
+
+* Require Authentication: true
+* Require proper authorization: Project must belong to the current PM
+* Request
+  * Method: DELETE
+  * URL: /api/projects/:projectId
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Project Successfully deleted"
+    }
+    ```
+
+* Error response: Couldn't find a Project with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Project couldn't be found"
+    }
+    ```
