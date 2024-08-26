@@ -2,7 +2,7 @@
 
 ### Render Link
 
-[Mi casa es su casa](https://blueprint-manager-aa-capstone.onrender.com/)
+[Blueprint Manager](https://blueprint-manager-aa-capstone.onrender.com/)
 
 ## DB Diagram
 ![database schema design here!](/dbDiagram.png)

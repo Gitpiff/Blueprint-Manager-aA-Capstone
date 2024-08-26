@@ -32,7 +32,7 @@ const ProjectDetails = () => {
     }
 
     if (!project) {
-        return <div>Loading project details...</div>;  // Show a loading message while the project data is being fetched
+        return <div>Loading project details...</div>; 
     }
 
     const totalDays = (commencementDate, completionDate) => {
