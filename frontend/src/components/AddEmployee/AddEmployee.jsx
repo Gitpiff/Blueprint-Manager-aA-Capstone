@@ -89,10 +89,10 @@ const AddEmployee = ({ projectId }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors({});
-
-        if(validateEmployeeForm()) {
+    
+        if (validateEmployeeForm()) {
             const newEmployee = {
-                projectId: projectId,
+                projectId,
                 firstName,
                 lastName,
                 jobTitle,
@@ -102,7 +102,7 @@ const AddEmployee = ({ projectId }) => {
                 salary,
                 picture,
             };
-
+    
             dispatch(createEmployee(newEmployee))
                 .then(() => {
                     closeModal();
@@ -111,9 +111,9 @@ const AddEmployee = ({ projectId }) => {
                     console.error("Failed to create employee:", err);
                     setErrors({ submit: "Failed to create employee" });
                 });
-
         } 
-    }
+    };
+    
 
     return (
         <div className='edit-employee'>
