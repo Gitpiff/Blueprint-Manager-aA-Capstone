@@ -43,11 +43,13 @@ const updateProject = (project) => {
     }
 };
 
-const addProjectImage = (projectId, image) => ({
-    type: ADD_PROJECT_IMAGE,
-    projectId,
-    image,
-});
+const addProjectImage = (projectId, image) => {
+    return {
+        type: ADD_PROJECT_IMAGE,
+        projectId,
+        image
+    }
+};
 
 
 // Thunks
@@ -124,8 +126,9 @@ export const projectUpdate = (project) => async (dispatch) => {
 };
 
 export const addImageToProject = (projectId, imageUrl) => async (dispatch) => {
+    console.log(projectId, imageUrl);
     try {
-        const response = await fetch(`/api/projects/${projectId}/images`, {
+        const response = await csrfFetch(`/api/projects/${projectId}/images`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -138,11 +141,12 @@ export const addImageToProject = (projectId, imageUrl) => async (dispatch) => {
             dispatch(addProjectImage(projectId, image));
             return image;
         } else {
-            const errorData = await response.json();
-            return Promise.reject(errorData);
+            const errors = await response.json();
+            throw new Error(errors);
         }
-    } catch (err) {
-        return Promise.reject(err);
+    } catch (error) {
+        console.error("Failed to fetch project:", error);
+        throw error; 
     }
 };
 
@@ -173,7 +177,7 @@ const projectsReducer = (state = {}, action) => {
         case ADD_PROJECT_IMAGE: {
             const { projectId, image } = action;
             const project = state[projectId];
-
+        
             if (project) {
                 return {
                     ...state,
@@ -183,9 +187,9 @@ const projectsReducer = (state = {}, action) => {
                     },
                 };
             }
-
+        
             return state;
-        }
+        }        
         default:
             return state;
     }

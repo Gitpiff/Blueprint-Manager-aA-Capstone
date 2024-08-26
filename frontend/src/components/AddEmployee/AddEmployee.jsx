@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useModal } from "../../context/Modal";
 import { createEmployee } from "../../store/employee";
 
+
 const AddEmployee = ({ projectId }) => {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
@@ -116,7 +117,7 @@ const AddEmployee = ({ projectId }) => {
 
     return (
         <div className='edit-employee'>
-            <h2>Edit Employee</h2>
+            <h2>Add Employee</h2>
             <form className="form" onSubmit={handleSubmit}>
                 <label>
                     First Name:
@@ -215,7 +216,7 @@ const AddEmployee = ({ projectId }) => {
                 {errors.picture && <p className='errors'>{errors.picture}</p>}
                 
                 
-                <button type="submit">Add Employee</button>
+                <button className="add-button" type="submit">Add Employee</button>
                 {errors.submit && <p className='errors'>{errors.submit}</p>}
             </form>
         </div>

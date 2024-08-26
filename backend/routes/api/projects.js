@@ -281,10 +281,10 @@ router.delete('/:projectId', requireAuth, async (req, res, next) => {
 });
 
 
-// Route to add a new project image
+// New project image
 router.post('/:projectId/images', async (req, res, next) => {
     const { projectId } = req.params;
-    const { url } = req.body;  // Assuming the image URL is sent in the request body
+    const { url } = req.body; 
 
     try {
         // Find the project to which the image is being added

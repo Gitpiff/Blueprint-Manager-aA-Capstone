@@ -123,6 +123,18 @@ button:hover {
     width: -webkit-fill-available;
 }
 
+.add-button {
+    background-color: #28a745; 
+    color: white;
+    height: 15%;
+    width: 20rem;
+    font-size: large;
+}
+
+.add-button:hover {
+    background-color: #218838; 
+    cursor: pointer;
+}
 
 
 

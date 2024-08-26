@@ -2,8 +2,10 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useModal } from "../../context/Modal";
 import { addImageToProject } from "../../store/project";
+import './AddProjectImage.css';
 
 const AddProjectImage = ({ projectId }) => {
+    console.log(projectId);
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const [errors, setErrors] = useState({});
@@ -25,15 +27,16 @@ const AddProjectImage = ({ projectId }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors({});
-
-        if(validateUrlForm()) {
+    
+        if (validateUrlForm()) {
             const newImage = {
                 projectId: projectId,
                 url
-            }
-            console.log(newImage)
-
-            dispatch(addImageToProject(newImage))
+            };
+    
+            console.log(newImage);
+    
+            dispatch(addImageToProject(projectId, url)) // Passing projectId and url separately
                 .then(() => {
                     closeModal();
                 })
@@ -42,11 +45,12 @@ const AddProjectImage = ({ projectId }) => {
                     setErrors({ submit: "Failed to add image" });
                 });
         }
-    }
+    };
+    
 
     return (
-        <div>
-            <h2>Add Image</h2>
+        <div className="add-imageModal">
+            <h1>Add Image</h1>
             <form className="form" onSubmit={handleSubmit}>
                 <label>
                     Image URL:
@@ -58,7 +62,7 @@ const AddProjectImage = ({ projectId }) => {
                 </label>
                 {errors.url && <p className="error">{errors.url}</p>}
                 
-                <button type="submit">Add Image</button>
+                <button className="add-btn" type="submit">Add Image</button>
                 {errors.submit && <p className="error">{errors.submit}</p>}
             </form>
         </div>

@@ -121,12 +121,12 @@ const ProjectDetails = () => {
                                     </div> 
                                 )
                             })}
-                        </div>
-                        <div className="add-image">
-                            <OpenModalButton
-                                buttonText="Add Image"
-                                modalComponent={<AddProjectImage projectId={project.id}/>}
-                            />
+                            <div className="add-image">
+                                <OpenModalButton
+                                    buttonText="Add Image"
+                                    modalComponent={<AddProjectImage projectId={project.id}/>}
+                                />
+                            </div>
                         </div>
                         <div className="staff-title">
                             <h1>Description</h1>
@@ -137,10 +137,6 @@ const ProjectDetails = () => {
                         
                         <div className="project-staff">
                             <h1>Current Staff</h1>
-                                <OpenModalButton
-                                    buttonText="Add Employee"
-                                    modalComponent={<AddEmployee projectId={project.id} />}
-                                />
                         </div>
                         <div className="employee-card-container">
                             {Array.isArray(project.employees) && project.employees.map((employee) => {
@@ -172,6 +168,12 @@ const ProjectDetails = () => {
                                     </div>
                                 )
                             })}
+                            <div className="add-employee">
+                                <OpenModalButton
+                                        buttonText="Add Employee"
+                                        modalComponent={<AddEmployee projectId={project.id} />}
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

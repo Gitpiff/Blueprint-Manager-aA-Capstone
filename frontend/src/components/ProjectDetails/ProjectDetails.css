@@ -233,12 +233,37 @@
     font-size: larger;
 }
 
+.add-employee, .add-image {
+    display: flex;
+    align-items: center;
+}
+
 .add-employee > button {
-    font-size: larger;
-    margin: auto;
-    background-color: darkgreen;
+    background-color: #28a745; 
     color: white;
-    padding: 10px;
+    height: 15%;
+    width: 10rem;
+    font-size: large;
+    border-radius: 20%;
+}
+
+.add-employee > button:hover {
+    background-color: #218838; 
+    cursor: pointer;
+}
+
+.add-image > button {
+    background-color: #28a745; 
+    color: white;
+    height: 15%;
+    width: 10rem;
+    font-size: large;
+    border-radius: 20%;
+}
+
+.add-image > button:hover {
+    background-color: #218838; 
+    cursor: pointer;
 }
 
 .project-staff> button:hover {

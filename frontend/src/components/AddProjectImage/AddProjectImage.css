@@ -1,0 +1,27 @@
+.add-imageModal {
+    background-color: #001f3f;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: space-evenly;
+    background-color: '#001f3f';
+    color: white;
+    align-items: center;
+    height: auto;
+    width: 30rem;
+    margin-top: -35%;
+}
+
+.add-btn {
+    background-color: #28a745; 
+    color: white;
+    height: 15%;
+    width: 20rem;
+    font-size: large;
+}
+
+.add-btn:hover {
+    background-color: #218838; 
+    cursor: pointer;
+}
