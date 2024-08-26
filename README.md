@@ -819,3 +819,132 @@ Deletes existing Project
       "message": "Project couldn't be found"
     }
     ```
+
+
+## Employees
+
+### Create new Employee
+Creates and returns a new employee.
+
+* Require Authentication: true
+* Request
+  * Method: POST
+  * URL: /api/employees/new
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+  ```json
+    {
+         "id": 3,
+        "firstName": "Alice",
+        "lastName": "Johnson",
+        "jobTitle": "Site Engineer",
+        "hireDate": "2024-06-01T00:00:00.000Z",
+        "contactNumber": 12345678903,
+        "email": "alice.johnson@example.com",
+        "salary": 90000,
+        "picture": "https://static.probuildermag.co.uk/professional-builder/uploads/Shutterstock-LO2-scaled.jpg",
+    }
+    ```
+
+* Successful Response
+  * Status Code: 201
+  * Headers:
+    * Content-Type: application/json
+  * Body:   
+   ```json
+    {
+        "id": 3,
+        "firstName": "Alice",
+        "lastName": "Johnson",
+        "jobTitle": "Site Engineer",
+        "hireDate": "2024-06-01T00:00:00.000Z",
+        "contactNumber": 12345678903,
+        "email": "alice.johnson@example.com",
+        "salary": 90000,
+        "picture": "https://static.probuildermag.co.uk/professional-builder/uploads/Shutterstock-LO2-scaled.jpg",
+    }
+    ```
+
+* Error Response: Body validation error
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+   ```json
+    {
+       "firstName": "First Name is required",
+        "lastName": "Last Name is required",
+        "jobTitle": "Job Title is required",
+        "hireDate": "Hire Date is required",
+        "contactNumber": "Phone number is required",
+        "email": "Email must have between 4 and 30 characters",
+        "salary": "Salary must be a positive number",
+        "picture": "Picture is required",
+    }
+    ```
+
+
+### Edit an Employee
+
+* Require Authentication: true
+* Require proper authorization: Employee must be part of the PM's project and the project must be active
+* Request
+  * Method: PUT
+  * URL: /api/employees/:id
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+   ```json
+    {
+        "id": 3,
+        "firstName": "Alice",
+        "lastName": "Johnson",
+        "jobTitle": "Site Engineer",
+        "hireDate": "2024-06-01T00:00:00.000Z",
+        "contactNumber": 12345678903,
+        "email": "alice.johnson@example.com",
+        "salary": 90000,
+        "picture": "https://static.probuildermag.co.uk/professional-builder/uploads/Shutterstock-LO2-scaled.jpg",
+        "projectId": 3
+    }
+    ```
+
+
+### Delete an Employee
+
+Removes Employee from existing Project
+
+* Require Authentication: true
+* Require proper authorization: Employee must be part of the PM's project and the project must be active
+* Request
+  * Method: DELETE
+  * URL: /api/employees/:id
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Employee Removed from current project"
+    }
+    ```
+
+* Error response: Couldn't find a Project with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Employee couldn't be found"
+    }
+    ```
+
+
