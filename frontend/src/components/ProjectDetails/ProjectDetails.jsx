@@ -73,7 +73,6 @@ const ProjectDetails = () => {
         project && (
             <>
                 <div className="projectDetailsContainer">
-                    <div className="projectDetails">
                         <nav className="projectNav">
                             <div>
                                 <h2>Timeline</h2>
@@ -98,7 +97,8 @@ const ProjectDetails = () => {
                                 <h2>{formatCurrency(project.budget)}</h2>
                             </div>
                         </nav>
-        
+
+                    <div className="projectDetails">
                         <div className="projectImagesContainer">
                             {Array.isArray(project.projectImages) && project.projectImages.map((image, index) => {
                                 return (

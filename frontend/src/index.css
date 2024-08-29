@@ -115,11 +115,14 @@ button:hover {
     justify-content: space-evenly;
     align-items: center;
     background-color: white;
+    position: fixed;
+    width: -webkit-fill-available;
+    margin-top: -4rem;
 }
 
 
 .projectDetails {
-    margin-top: -3%;
+    margin-top: 5%;
     width: -webkit-fill-available;
 }
 

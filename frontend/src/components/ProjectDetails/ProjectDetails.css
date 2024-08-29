@@ -145,7 +145,8 @@
     width: 300px;
     margin: 20px;
     overflow: hidden;
-    position: relative; /* To position the action icons */
+    background-color: #001f3f;
+    /* position: relative; To position the action icons */
 }
 
 .project-image {
@@ -174,7 +175,7 @@
 
 /* Styles for the action icons */
 .project-image-actions {
-    position: absolute;
+    position: relative;
     top: 10px;
     right: 10px;
     display: flex;
@@ -188,13 +189,14 @@
 }
 
 .project-image-actions button {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: white;
     border: none;
     border-radius: 50%;
     padding: 10px;
-    color: white;
+    color: black;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-size: larger;
 }
 
 /* .project-image-actions button:hover {
