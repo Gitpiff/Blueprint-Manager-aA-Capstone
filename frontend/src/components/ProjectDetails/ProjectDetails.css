@@ -143,10 +143,11 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 300px;
+    height: 370px;
     margin: 20px;
     overflow: hidden;
-    background-color: #001f3f;
-    /* position: relative; To position the action icons */
+    background-color: rgb(241, 241, 241);
+    /*position: relative; /* To position the action icons */
 }
 
 .project-image {
