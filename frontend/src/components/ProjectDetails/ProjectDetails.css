@@ -5,12 +5,12 @@
     background-attachment: fixed; 
     height: auto; 
     padding-top: 12%;
+    padding-bottom: 5%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
     flex-direction: row;
-    margin-bottom: 7%;
 }
 
 .projectImagesContainer {
