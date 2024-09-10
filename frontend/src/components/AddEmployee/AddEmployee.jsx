@@ -86,33 +86,45 @@ const AddEmployee = ({ projectId }) => {
         return errors;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors({});
     
-        if (validateEmployeeForm()) {
-            const newEmployee = {
-                projectId,
-                firstName,
-                lastName,
-                jobTitle,
-                hireDate,
-                contactNumber,
-                email,
-                salary,
-                picture,
-            };
+        const validationErrors = validateEmployeeForm(); // Call the validation function
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors); // If validation fails, set the errors and stop the form from submitting
+            return;
+        }
     
-            dispatch(createEmployee(projectId, newEmployee))
+        const newEmployee = {
+            projectId,
+            firstName,
+            lastName,
+            jobTitle,
+            hireDate,
+            contactNumber,
+            email,
+            salary,
+            picture,
+        };
+    
+        try {
+            await dispatch(createEmployee(projectId, newEmployee))
                 .then(() => {
-                    closeModal();
-                })
-                .catch((err) => {
-                    console.error("Failed to create employee:", err);
-                    setErrors({ submit: "Failed to create employee" });
+                    closeModal(); // Close modal on success
                 });
-        } 
+        } catch (err) {
+            if (err.response) {
+                const data = await err.response.json();
+                if (data && data.errors) {
+                    setErrors(data.errors); // Set API errors
+                }
+            } else {
+                setErrors({ submit: "Failed to add employee. Please try again." });
+            }
+        }
     };
+    
     
 
     return (
