@@ -9,6 +9,7 @@ const ADD_PROJECT_IMAGE = 'project/ADD_PROJECT_IMAGE';
 const CREATE_EMPLOYEE = 'project/CREATE_EMPLOYEE';
 const UPDATE_EMPLOYEE = 'project/UPDATE_EMPLOYEE';
 const GET_EMPLOYEE_DETAILS = 'employees/GET_EMPLOYEE_DETAILS';
+//const DELETE_EMPLOYEE = 'project/DELETE_EMPLOYEE';
 
 
 // Action Creator
@@ -18,6 +19,14 @@ const updateEmployee = (employee) => {
         employee
     }
 };
+
+// const deleteEmployee = (projectId, employeeId) => {
+//     return {
+//         type: DELETE_EMPLOYEE,
+//         projectId,
+//         employeeId
+//     };
+// };
 
 
 const getAllProjects = (projects) => {
@@ -198,17 +207,26 @@ export const createEmployee = (projectId, employeeData) => async (dispatch) => {
 };
 
 export const employeeUpdate = (employee) => async (dispatch) => {
-    console.log("Store Employee Id: ", employee.id)
-    const response = await csrfFetch(`/api/employees/${employee.id}`, {
-        method: 'PUT',
-        body: JSON.stringify(employee)
-    })
-    console.log(response);
+    try {
+        const response = await csrfFetch(`/api/employees/${employee.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(employee)
+        });
 
-    if (response.ok) {
-        const updatedEmployee = await response.json();
-        dispatch(updateEmployee(updatedEmployee));
-        return updatedEmployee;
+        if (response.ok) {
+            const updatedEmployee = await response.json();
+            dispatch(updateEmployee(updatedEmployee));
+            return updatedEmployee;
+        } else {
+            const errors = await response.json();
+            throw new Error(errors);
+        }
+    } catch (error) {
+        console.error("Failed to update employee:", error);
+        throw error;
     }
 };
 
@@ -236,20 +254,25 @@ const projectsReducer = (state = {}, action) => {
             });
             return projectState;
         }
+        
         case GET_PROJECT_DETAILS: {
             return { ...state, [action.project.id]: action.project}
         }
+
         case CREATE_PROJECT: {
             return { ...state, [action.project.id]: action.project}
         }
+
         case UPDATE_PROJECT: {
             return { ...state, [action.project.id]: action.project}
         }
+
         case DELETE_PROJECT: {
             const newState = {...state};
             delete newState[action.projectId];
             return newState;
         }  
+
         case CREATE_EMPLOYEE: {
             // return { ...state, [action.employee.id]: action.employee}
             const { projectId, employee } = action;
@@ -266,7 +289,29 @@ const projectsReducer = (state = {}, action) => {
             }
         
             return state;
-        }   
+        }  
+
+        case UPDATE_EMPLOYEE: {
+            const { id: employeeId, projectId } = action.employee;
+            const project = state[projectId];
+
+            if (project) {
+                const updatedEmployees = project.employees.map(emp =>
+                    emp.id === employeeId ? action.employee : emp
+                );
+
+                return {
+                    ...state,
+                    [projectId]: {
+                        ...project,
+                        employees: updatedEmployees
+                    }
+                };
+            }
+
+            return state;
+        }
+
         case GET_EMPLOYEE_DETAILS: {
             return { ...state, [action.employee.id]: action.employee}
         }
