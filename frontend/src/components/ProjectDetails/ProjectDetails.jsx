@@ -155,7 +155,7 @@ const ProjectDetails = () => {
                                             <div className="edit-button">
                                                 <OpenModalButton 
                                                     buttonText={<LuPencilRuler />}
-                                                    modalComponent={<EditEmployee employee={employee} />}
+                                                    modalComponent={<EditEmployee employee={employee} projectId={project.id}/>}
                                                 /> 
                                             </div>
                                             <div className="remove-buton">

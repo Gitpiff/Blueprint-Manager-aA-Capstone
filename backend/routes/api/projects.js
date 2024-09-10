@@ -316,5 +316,41 @@ router.post('/:projectId/images', async (req, res, next) => {
     }
 });
 
+// New Project Image
+router.post('/:projectId/employees', async (req, res, next) => {
+    const { projectId } = req.params;
+    const { firstName, lastName, jobTitle, hireDate, contactNumber, email, salary, picture } = req.body;
+
+    try {
+        const project = await Project.findByPk(projectId);
+
+        if(!project) {
+            return res.status(404).json({ message: "Project not found" });
+        }
+
+         // Check if the user is authorized to add an image to the project
+        if (project.projectManagerId !== req.user.id) {
+            return res.status(403).json({ message: "Unauthorized to add an image to this project" });
+        }
+
+        const newEmployee = await Employee.create({ 
+            firstName, 
+            lastName, 
+            jobTitle, 
+            hireDate, 
+            contactNumber, 
+            email, 
+            salary, 
+            picture, 
+            projectId 
+        });
+        res.status(201).json(newEmployee);
+    } catch (error) {
+        error.message = "Bad Request"
+        error.status = 400
+        next(error)
+    }
+})
+
 
 module.exports = router;

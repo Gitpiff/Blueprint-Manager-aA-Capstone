@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useModal } from "../../context/Modal";
-import { createEmployee } from "../../store/employee";
+import { createEmployee } from "../../store/project";
 
 
 const AddEmployee = ({ projectId }) => {
@@ -103,7 +103,7 @@ const AddEmployee = ({ projectId }) => {
                 picture,
             };
     
-            dispatch(createEmployee(newEmployee))
+            dispatch(createEmployee(projectId, newEmployee))
                 .then(() => {
                     closeModal();
                 })

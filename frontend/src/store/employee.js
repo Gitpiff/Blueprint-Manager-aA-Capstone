@@ -4,7 +4,7 @@ const GET_ALL_EMPLOYEES = 'employees/GET_ALL_EMPLOYEES';
 const GET_EMPLOYEE_DETAILS = 'employees/GET_EMPLOYEE_DETAILS';
 const UPDATE_EMPLOYEE = 'employees/UPDATE_EMPLOYEE';
 const DELETE_EMPLOYEE = 'employees/DELETE_EMPLOYEE';
-const CREATE_EMPLOYEE = 'employees/CREATE_EMPLOYEE';
+// const CREATE_EMPLOYEE = 'employees/CREATE_EMPLOYEE';
 
 // Action Creator
 const getAllEmployees = (employees) => {
@@ -35,12 +35,12 @@ const removeEmployee = (employee) => {
     }
 };
 
-const addEmployee = (employee) => {
-    return {
-        type: CREATE_EMPLOYEE,
-        employee
-    }
-};
+// const addEmployee = (employee) => {
+//     return {
+//         type: CREATE_EMPLOYEE,
+//         employee
+//     }
+// };
 
 // Thunks
 export const getEmployees = () => async (dispatch) => {
@@ -91,25 +91,25 @@ export const deleteEmployee = (employeeId) => async (dispatch) => {
     }
 };
 
-export const createEmployee = (employeeData) => async (dispatch) => {
-    console.log("Employee Data ", employeeData)
-    const response = await csrfFetch('/api/employees/new', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(employeeData)
-    });
+// export const createEmployee = (employeeData) => async (dispatch) => {
+//     console.log("Employee Data ", employeeData)
+//     const response = await csrfFetch('/api/employees/new', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(employeeData)
+//     });
 
-    if (response.ok) {
-        const newEmployee = await response.json();
-        dispatch(addEmployee(newEmployee));
-        return newEmployee;
-    } else {
-        const errors = await response.json();
-        return errors;
-    }
-};
+//     if (response.ok) {
+//         const newEmployee = await response.json();
+//         dispatch(addEmployee(newEmployee));
+//         return newEmployee;
+//     } else {
+//         const errors = await response.json();
+//         return errors;
+//     }
+// };
 
 // Reducer
 const employeeReducer = (state = {}, action) => {
@@ -132,9 +132,9 @@ const employeeReducer = (state = {}, action) => {
             delete newState[action.employee.id];
             return newState;
         }
-        case CREATE_EMPLOYEE: {
-            return { ...state, [action.employee.id]: action.employee}
-        }
+        // case CREATE_EMPLOYEE: {
+        //     return { ...state, [action.employee.id]: action.employee}
+        // }
         default:
             return state;
     }

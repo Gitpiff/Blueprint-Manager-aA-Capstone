@@ -6,8 +6,20 @@ const CREATE_PROJECT = 'projects/CREATE_PROJECT';
 const DELETE_PROJECT = 'projects/DELETE_PROJECT';
 const UPDATE_PROJECT = 'projects/UPDATE_PROJECT';
 const ADD_PROJECT_IMAGE = 'project/ADD_PROJECT_IMAGE';
+const CREATE_EMPLOYEE = 'project/CREATE_EMPLOYEE';
+const UPDATE_EMPLOYEE = 'project/UPDATE_EMPLOYEE';
+const GET_EMPLOYEE_DETAILS = 'employees/GET_EMPLOYEE_DETAILS';
+
 
 // Action Creator
+const updateEmployee = (employee) => {
+    return {
+        type: UPDATE_EMPLOYEE,
+        employee
+    }
+};
+
+
 const getAllProjects = (projects) => {
     return {
         type: GET_ALL_PROJECTS, 
@@ -48,6 +60,21 @@ const addProjectImage = (projectId, image) => {
         type: ADD_PROJECT_IMAGE,
         projectId,
         image
+    }
+};
+
+const getSingleEmployee = (employee) => {
+    return {
+        type: GET_EMPLOYEE_DETAILS,
+        employee
+    }
+};
+
+const addEmployee = (projectId, employee) => {
+    return {
+        type: CREATE_EMPLOYEE,
+        projectId,
+        employee
     }
 };
 
@@ -150,6 +177,55 @@ export const addImageToProject = (projectId, imageUrl) => async (dispatch) => {
     }
 };
 
+export const createEmployee = (projectId, employeeData) => async (dispatch) => {
+    console.log("Employee Data ", employeeData)
+    const response = await csrfFetch(`/api/projects/${projectId}/employees`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(employeeData)
+    });
+
+    if (response.ok) {
+        const newEmployee = await response.json();
+        dispatch(addEmployee(projectId, newEmployee));
+        return newEmployee;
+    } else {
+        const errors = await response.json();
+        return errors;
+    }
+};
+
+export const employeeUpdate = (employee) => async (dispatch) => {
+    console.log("Store Employee Id: ", employee.id)
+    const response = await csrfFetch(`/api/employees/${employee.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(employee)
+    })
+    console.log(response);
+
+    if (response.ok) {
+        const updatedEmployee = await response.json();
+        dispatch(updateEmployee(updatedEmployee));
+        return updatedEmployee;
+    }
+};
+
+export const getEmployee = (employeeId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/employees/${employeeId}`)
+    //console.log(`get employee ${response}`)
+
+    if (response.ok) {
+        const employee = await response.json();
+        //console.log(`store ${employee}`)
+        dispatch(getSingleEmployee(employee))
+    } else {
+        const errors = await response.json();
+        return errors;
+    }
+};
+
 // Reducer
 const projectsReducer = (state = {}, action) => {
     switch (action.type) {
@@ -173,6 +249,26 @@ const projectsReducer = (state = {}, action) => {
             const newState = {...state};
             delete newState[action.projectId];
             return newState;
+        }  
+        case CREATE_EMPLOYEE: {
+            // return { ...state, [action.employee.id]: action.employee}
+            const { projectId, employee } = action;
+            const project = state[projectId];
+        
+            if (project) {
+                return {
+                    ...state,
+                    [projectId]: {
+                        ...project,
+                        employees: [...project.employees, employee]
+                    }
+                };
+            }
+        
+            return state;
+        }   
+        case GET_EMPLOYEE_DETAILS: {
+            return { ...state, [action.employee.id]: action.employee}
         }
         case ADD_PROJECT_IMAGE: {
             const { projectId, image } = action;
