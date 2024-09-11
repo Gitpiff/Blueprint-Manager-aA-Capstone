@@ -108,13 +108,13 @@ const ProjectDetails = () => {
                                             <div className="edit-button">
                                                 <OpenModalButton 
                                                     buttonText={<LuPencilRuler />}
-                                                    modalComponent={<EditImage  projectImage={image}/>}
+                                                    modalComponent={<EditImage  projectImage={image} projectId={project.id}/>}
                                                 /> 
                                             </div>
                                             <div className="remove-buton">
                                                 <OpenModalButton
                                                     buttonText={<RiDeleteBin5Fill />}
-                                                    modalComponent={<DeleteImage projectImage={image}/>}
+                                                    modalComponent={<DeleteImage projectImage={image} projectId={project.id}/>}
                                                 />
                                             </div>
                                         </div>

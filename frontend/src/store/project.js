@@ -10,6 +10,7 @@ const CREATE_EMPLOYEE = 'project/CREATE_EMPLOYEE';
 const UPDATE_EMPLOYEE = 'project/UPDATE_EMPLOYEE';
 const GET_EMPLOYEE_DETAILS = 'employees/GET_EMPLOYEE_DETAILS';
 const DELETE_EMPLOYEE = 'project/DELETE_EMPLOYEE';
+const DELETE_IMAGE = 'project/DELETE_IMAGE';
 
 
 // Action Creator
@@ -28,6 +29,13 @@ const removeEmployee = (projectId, employeeId) => {
     };
 };
 
+const removeImage = (projectId, imageId) => {
+    return {
+        type: DELETE_IMAGE,
+        projectId,
+        imageId
+    }
+}
 
 const getAllProjects = (projects) => {
     return {
@@ -262,6 +270,23 @@ export const deleteEmployee = (projectId, employeeId) => async (dispatch) => {
     }
 };
 
+export const deleteImage = (projectId, imageId) =>  async (dispatch) => {
+    try {
+        const response = await csrfFetch(`/api/images/${imageId}`, {
+            method: 'DELETE'
+        })
+
+        if (response.ok) {
+            dispatch(removeImage(projectId, imageId))
+        } else {
+            const errors = await response.json();
+            throw new Error(errors);
+        }
+    } catch(error) {
+        console.error("Failed to delete image:", error);
+        throw error;
+    }
+}
 
 // Reducer
 const projectsReducer = (state = {}, action) => {
@@ -368,7 +393,26 @@ const projectsReducer = (state = {}, action) => {
             }
         
             return state;
-        }        
+        }  
+        
+        case DELETE_IMAGE: {
+            const { projectId, imageId } = action;
+            const project = state[projectId];
+
+            if (project) {
+                const filteredImages = project.projectImages.filter(img => img.id !== imageId);
+                
+                return {
+                    ...state,
+                    [projectId]: {
+                        ...project,
+                        projectImages: filteredImages
+                    }
+                }
+            }
+            return state;
+
+        }
         default:
             return state;
     }
