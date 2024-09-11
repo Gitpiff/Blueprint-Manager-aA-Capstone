@@ -161,7 +161,7 @@ const ProjectDetails = () => {
                                             <div className="remove-buton">
                                                 <OpenModalButton
                                                     buttonText={<RiDeleteBin5Fill />}
-                                                    modalComponent={<DeleteEmployee employee={employee} />}
+                                                    modalComponent={<DeleteEmployee employee={employee} projectId={project.id}/>}
                                                 />
                                             </div>
                                         </div>

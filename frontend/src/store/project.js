@@ -9,7 +9,7 @@ const ADD_PROJECT_IMAGE = 'project/ADD_PROJECT_IMAGE';
 const CREATE_EMPLOYEE = 'project/CREATE_EMPLOYEE';
 const UPDATE_EMPLOYEE = 'project/UPDATE_EMPLOYEE';
 const GET_EMPLOYEE_DETAILS = 'employees/GET_EMPLOYEE_DETAILS';
-//const DELETE_EMPLOYEE = 'project/DELETE_EMPLOYEE';
+const DELETE_EMPLOYEE = 'project/DELETE_EMPLOYEE';
 
 
 // Action Creator
@@ -20,13 +20,13 @@ const updateEmployee = (employee) => {
     }
 };
 
-// const deleteEmployee = (projectId, employeeId) => {
-//     return {
-//         type: DELETE_EMPLOYEE,
-//         projectId,
-//         employeeId
-//     };
-// };
+const removeEmployee = (projectId, employeeId) => {
+    return {
+        type: DELETE_EMPLOYEE,
+        projectId,
+        employeeId
+    };
+};
 
 
 const getAllProjects = (projects) => {
@@ -244,6 +244,25 @@ export const getEmployee = (employeeId) => async (dispatch) => {
     }
 };
 
+export const deleteEmployee = (projectId, employeeId) => async (dispatch) => {
+    try {
+        const response = await csrfFetch(`/api/employees/${employeeId}`, {
+            method: 'DELETE'
+        });
+
+        if (response.ok) {
+            dispatch(removeEmployee(projectId, employeeId));
+        } else {
+            const errors = await response.json();
+            throw new Error(errors);
+        }
+    } catch (error) {
+        console.error("Failed to delete employee:", error);
+        throw error;
+    }
+};
+
+
 // Reducer
 const projectsReducer = (state = {}, action) => {
     switch (action.type) {
@@ -254,7 +273,7 @@ const projectsReducer = (state = {}, action) => {
             });
             return projectState;
         }
-        
+
         case GET_PROJECT_DETAILS: {
             return { ...state, [action.project.id]: action.project}
         }
@@ -274,7 +293,6 @@ const projectsReducer = (state = {}, action) => {
         }  
 
         case CREATE_EMPLOYEE: {
-            // return { ...state, [action.employee.id]: action.employee}
             const { projectId, employee } = action;
             const project = state[projectId];
         
@@ -315,6 +333,26 @@ const projectsReducer = (state = {}, action) => {
         case GET_EMPLOYEE_DETAILS: {
             return { ...state, [action.employee.id]: action.employee}
         }
+
+        case DELETE_EMPLOYEE: {
+            const { projectId, employeeId } = action;
+            const project = state[projectId];
+
+            if (project) {
+                const updatedEmployees = project.employees.filter(emp => emp.id !== employeeId);
+
+                return {
+                    ...state,
+                    [projectId]: {
+                        ...project,
+                        employees: updatedEmployees
+                    }
+                };
+            }
+
+            return state;
+        }
+        
         case ADD_PROJECT_IMAGE: {
             const { projectId, image } = action;
             const project = state[projectId];

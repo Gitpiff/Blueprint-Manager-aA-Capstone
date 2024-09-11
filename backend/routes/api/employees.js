@@ -116,6 +116,7 @@ router.delete('/:id', async (req, res, next) => {
   }
 });
 
+
 // POST create new Employee
 router.post('/new', async (req, res, next) => {
   try {
