@@ -11,6 +11,8 @@ const UPDATE_EMPLOYEE = 'project/UPDATE_EMPLOYEE';
 const GET_EMPLOYEE_DETAILS = 'employees/GET_EMPLOYEE_DETAILS';
 const DELETE_EMPLOYEE = 'project/DELETE_EMPLOYEE';
 const DELETE_IMAGE = 'project/DELETE_IMAGE';
+const UPDATE_IMAGE = 'project/UPDATE_IMAGE';
+const GET_IMAGE = 'project/GET_IMAGE';
 
 
 // Action Creator
@@ -20,6 +22,13 @@ const updateEmployee = (employee) => {
         employee
     }
 };
+
+const replaceUrl = (projectImage) => {
+    return {
+        type: UPDATE_IMAGE,
+        projectImage
+    }
+}
 
 const removeEmployee = (projectId, employeeId) => {
     return {
@@ -72,6 +81,7 @@ const updateProject = (project) => {
     }
 };
 
+
 const addProjectImage = (projectId, image) => {
     return {
         type: ADD_PROJECT_IMAGE,
@@ -94,6 +104,13 @@ const addEmployee = (projectId, employee) => {
         employee
     }
 };
+
+const getImage = (imageId) => {
+    return {
+        type: GET_IMAGE,
+        imageId
+    }
+}
 
 
 // Thunks
@@ -238,6 +255,30 @@ export const employeeUpdate = (employee) => async (dispatch) => {
     }
 };
 
+export const updateImage = (image) => async (dispatch) => {
+    try {
+        const response = await csrfFetch(`/api/images/${image.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(image)
+        })
+    
+        if (response.ok) {
+            const updatedImage = await response.json();
+            dispatch(replaceUrl(updatedImage));
+            return updatedImage
+        } else {
+            const errors = await response.json();
+            throw new Error(errors);
+        }
+    } catch(error) {
+        console.error("Failed to fetch image:", error);
+        throw error;
+    }
+} 
+
 export const getEmployee = (employeeId) => async (dispatch) => {
     const response = await csrfFetch(`/api/employees/${employeeId}`)
     //console.log(`get employee ${response}`)
@@ -284,6 +325,23 @@ export const deleteImage = (projectId, imageId) =>  async (dispatch) => {
         }
     } catch(error) {
         console.error("Failed to delete image:", error);
+        throw error;
+    }
+}
+
+export const getCurrentImage = (imageId) => async (dispatch) => {
+    try {
+        const response = await csrfFetch(`/api/images/${imageId}`);
+
+        if (response.ok) {
+            const image = await response.json();
+            dispatch(getImage(image));
+        } else {
+            const errors = await response.json();
+            throw new Error(errors);
+        }
+    } catch(error) {
+        console.error("Failed to fetch image:", error);
         throw error;
     }
 }
@@ -352,6 +410,27 @@ const projectsReducer = (state = {}, action) => {
                 };
             }
 
+            return state;
+        }
+
+        // case UPDATE_IMAGE : {
+        //     return { ...state, [action.image.id]: action.image}
+        // }
+        case UPDATE_IMAGE: {
+            const { id: imageId, projectId } = action.projectImage;
+            const project = state[projectId];
+
+            if (project) {
+                const updatedProjectImage = project.projectImages.map(img => img.id === imageId ? action.projectImage : img);
+
+                return {
+                    ...state,
+                    [projectId]: {
+                        ...project,
+                        projectImages: updatedProjectImage
+                    }
+                }
+            }
             return state;
         }
 

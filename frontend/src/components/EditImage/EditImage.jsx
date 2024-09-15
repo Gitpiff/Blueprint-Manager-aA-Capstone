@@ -2,11 +2,11 @@ import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useModal } from "../../context/Modal";
 import './EditImage.css'
-import { getCurrentImage, updateImage } from "../../store/projectImage";
+import { getCurrentImage, updateImage } from "../../store/project";
 
 const EditImage = ({ projectImage }) => {
     console.log(projectImage.id)
-    const imageId = projectImage.id;
+    const imageId = projectImage?.id;
     const dispatch = useDispatch();
     const { closeModal } = useModal();
 

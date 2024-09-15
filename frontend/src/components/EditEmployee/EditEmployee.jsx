@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useModal } from "../../context/Modal";
 import { employeeUpdate, getEmployee } from "../../store/project";
-//import { getEmployee } from "../../store/employee";
 import './EditEmployee.css';
 
 const EditEmployee = ({ employee }) => {
