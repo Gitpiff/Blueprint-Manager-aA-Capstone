@@ -3,7 +3,7 @@ import { useDispatch} from 'react-redux';
 //import { Navigate } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import { useModal } from '../../context/Modal';
-import './SignUpForm.css'
+import './SignupForm.css'
 import { Navigate } from 'react-router-dom';
 
 const SignUpFormPage = () => {
