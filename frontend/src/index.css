@@ -3,6 +3,14 @@
     box-sizing: border-box;
 }
 
+#root {
+    background-image: url('../public//blueprint.jpeg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+  }
+  
+
 body {
     margin: 0;
     padding: 0;
