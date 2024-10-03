@@ -1,10 +1,6 @@
 'use strict';
 const bcrypt = require('bcryptjs');
 
-// if (process.env.NODE_ENV === 'production') {
-//   options.schema = process.env.SCHEMA;  
-// }
-
 module.exports = {
   async up(queryInterface, Sequelize) {
     const options = { tableName: 'Users' }; 
