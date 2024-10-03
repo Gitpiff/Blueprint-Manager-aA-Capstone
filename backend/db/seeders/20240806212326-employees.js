@@ -26,8 +26,6 @@ const demoEmployees = [
   }
 ]
 
-options.tableName = 'Employees';
-
 module.exports = {
   async up (queryInterface, Sequelize) {
     const options = { tableName: 'Employees'};
@@ -45,7 +43,13 @@ module.exports = {
 
   async down (queryInterface, Sequelize) {
     try {
+      const options = { tableName: 'Employees'};
       const Op = Sequelize.Op;
+
+      if (process.env.NODE_ENV === 'production') {
+        options.schema = process.env.SCHEMA;  
+      }
+      
       await queryInterface.bulkDelete(options, {
        [Op.or]: demoEmployees
       }, {}); 
