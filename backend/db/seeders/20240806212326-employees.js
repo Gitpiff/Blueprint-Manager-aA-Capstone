@@ -1,5 +1,5 @@
  'use strict';
-const bcrypt = require('bcryptjs');
+const Employee = require('../models/employee')
 
 const demoEmployees = [
   {
@@ -35,7 +35,7 @@ module.exports = {
     }
 
     try {
-      await queryInterface.bulkInsert(options, demoEmployees)
+      await Employee.bulkCreate(demoEmployees, { validate: true })
     } catch (error) {
      console.log(`Error Creating Employees: `, error)
     }
