@@ -33,7 +33,7 @@ module.exports = {
         allowNull: false
       },
       contactNumber: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
         allowNull: false
       },
       email: {
