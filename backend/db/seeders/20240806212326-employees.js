@@ -22,7 +22,7 @@ const demoEmployees = [
     email: 'hank.anderson@example.com',
     salary: 67000,
     picture: 'https://i0.wp.com/construct-ed.com/wp-content/uploads/2022/10/construction-foreman-job-description.jpg?fit=933%2C1000&ssl=1',
-    projectId: 2,
+    projectId: 3,
   },
   {
     firstName: 'Alice',
@@ -33,7 +33,7 @@ const demoEmployees = [
     email: 'alice.johnson@example.com',
     salary: 75000,
     picture: 'https://images.pexels.com/photos/374820/pexels-photo-374820.jpeg',
-    projectId: 2,
+    projectId: 3,
   },
   {
     firstName: 'Bob',
@@ -66,7 +66,7 @@ const demoEmployees = [
     email: 'diana.clark@example.com',
     salary: 58000,
     picture: 'https://images.pexels.com/photos/3807313/pexels-photo-3807313.jpeg',
-    projectId: 2,
+    projectId: 3,
   },
   {
     firstName: 'Ethan',
@@ -77,7 +77,7 @@ const demoEmployees = [
     email: 'ethan.wright@example.com',
     salary: 69000,
     picture: 'https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg',
-    projectId: 2,
+    projectId: 3,
   },
   {
     firstName: 'Fiona',
@@ -99,7 +99,7 @@ const demoEmployees = [
     email: 'george.king@example.com',
     salary: 67000,
     picture: 'https://images.pexels.com/photos/2969188/pexels-photo-2969188.jpeg',
-    projectId: 2,
+    projectId: 3,
   },
   {
     firstName: 'Helen',
@@ -121,7 +121,7 @@ const demoEmployees = [
     email: 'isaac.garcia@example.com',
     salary: 55000,
     picture: 'https://images.pexels.com/photos/848614/pexels-photo-848614.jpeg',
-    projectId: 2,
+    projectId: 3,
   },
   {
     firstName: 'Jessica',
