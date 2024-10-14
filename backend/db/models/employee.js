@@ -81,15 +81,6 @@ module.exports = (sequelize, DataTypes) => {
     contactNumber: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      validate: {
-        notEmpty: {
-          msg: 'Phone number is required'
-        },
-        is: {
-          args: /^\+?[1-9]\d{1,14}$/,
-          msg: 'Must be a valid phone number'
-        }
-      }
     },
     email: {
       type: DataTypes.STRING,
