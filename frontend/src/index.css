@@ -4,7 +4,7 @@
 }
 
 #root {
-    /* background-image: url('blueprint.jpeg'); */
+    background-image: url('/blueprint.jpeg');
     background-size: cover;
     background-position: center;
     height: 100vh;
