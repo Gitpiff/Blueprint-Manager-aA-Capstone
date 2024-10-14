@@ -12,12 +12,12 @@ module.exports = {
     try {
       await queryInterface.bulkInsert(options, [
         {
-          firstName: 'Victor',
-          lastName: 'Navarro',
-          username: 'VictorN',
-          companyName: 'Navarro Construction',
+          firstName: 'Bob',
+          lastName: 'The Builder',
+          username: 'BobTB',
+          companyName: 'Tonka Construction',
           industrySector: 'Construction',
-          email: 'victorn@navarroconstruction.com',
+          email: 'bobthebuilder@tonkaonstruction.com',
           hashedPassword: bcrypt.hashSync('password', 10)  
         },
       ]);
@@ -36,7 +36,7 @@ module.exports = {
     
     try {
       await queryInterface.bulkDelete(options, {
-        username: { [Op.in]: ['VictorN'] }
+        username: { [Op.in]: ['BobTB'] }
       });
     } catch (error) {
       console.error('Error deleting users:', error);

@@ -8,9 +8,9 @@ const demoEmployees = [
     jobTitle: 'Project Manager',
     hireDate: new Date('2024-03-01'),
     contactNumber: 12345678901,
-    email: 'john.doe@example.com',
+    email: '/john.doe@example.com',
     salary: 60000,
-    picture: 'https://images.pexels.com/photos/3771045/pexels-photo-3771045.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
+    picture: '/John.jpeg',
     projectId: 1,
   },
   {
@@ -21,7 +21,7 @@ const demoEmployees = [
     contactNumber: 12345678910,
     email: 'hank.anderson@example.com',
     salary: 67000,
-    picture: 'https://i0.wp.com/construct-ed.com/wp-content/uploads/2022/10/construction-foreman-job-description.jpg?fit=933%2C1000&ssl=1',
+    picture: '/Hank.jpeg',
     projectId: 3,
   },
   {
@@ -32,7 +32,7 @@ const demoEmployees = [
     contactNumber: 12345678911,
     email: 'alice.johnson@example.com',
     salary: 75000,
-    picture: 'https://images.pexels.com/photos/374820/pexels-photo-374820.jpeg',
+    picture: '/Alice1.jpeg',
     projectId: 3,
   },
   {
@@ -43,7 +43,7 @@ const demoEmployees = [
     contactNumber: 12345678912,
     email: 'bob.williams@example.com',
     salary: 55000,
-    picture: 'https://images.pexels.com/photos/776615/pexels-photo-776615.jpeg',
+    picture: '/Bob.jpeg',
     projectId: 1,
   },
   {
@@ -54,18 +54,18 @@ const demoEmployees = [
     contactNumber: 12345678913,
     email: 'charlie.smith@example.com',
     salary: 62000,
-    picture: 'https://images.pexels.com/photos/896056/pexels-photo-896056.jpeg',
+    picture: '/Charlie.jpeg',
     projectId: 1,
   },
   {
     firstName: 'Diana',
     lastName: 'Clark',
-    jobTitle: 'Plumber',
+    jobTitle: 'Site Engineer',
     hireDate: new Date('2024-04-18'),
     contactNumber: 12345678914,
     email: 'diana.clark@example.com',
-    salary: 58000,
-    picture: 'https://images.pexels.com/photos/3807313/pexels-photo-3807313.jpeg',
+    salary: 69000,
+    picture: '/Diana.jpeg',
     projectId: 3,
   },
   {
@@ -76,7 +76,7 @@ const demoEmployees = [
     contactNumber: 12345678915,
     email: 'ethan.wright@example.com',
     salary: 69000,
-    picture: 'https://images.pexels.com/photos/325185/pexels-photo-325185.jpeg',
+    picture: '/Ethan1.jpeg',
     projectId: 3,
   },
   {
@@ -87,7 +87,7 @@ const demoEmployees = [
     contactNumber: 12345678916,
     email: 'fiona.martinez@example.com',
     salary: 71000,
-    picture: 'https://images.pexels.com/photos/7659/pexels-photo.jpeg',
+    picture: '/Fiona.jpeg',
     projectId: 1,
   },
   {
@@ -98,7 +98,7 @@ const demoEmployees = [
     contactNumber: 12345678917,
     email: 'george.king@example.com',
     salary: 67000,
-    picture: 'https://images.pexels.com/photos/2969188/pexels-photo-2969188.jpeg',
+    picture: '/George.jpeg',
     projectId: 3,
   },
   {
@@ -109,7 +109,7 @@ const demoEmployees = [
     contactNumber: 12345678918,
     email: 'helen.lopez@example.com',
     salary: 60000,
-    picture: 'https://images.pexels.com/photos/262034/pexels-photo-262034.jpeg',
+    picture: '/Helen.jpeg',
     projectId: 1,
   },
   {
@@ -120,7 +120,7 @@ const demoEmployees = [
     contactNumber: 12345678919,
     email: 'isaac.garcia@example.com',
     salary: 55000,
-    picture: 'https://images.pexels.com/photos/848614/pexels-photo-848614.jpeg',
+    picture: '/Isaac.jpeg',
     projectId: 3,
   },
   {
@@ -131,7 +131,7 @@ const demoEmployees = [
     contactNumber: 12345678920,
     email: 'jessica.hernandez@example.com',
     salary: 53000,
-    picture: 'https://images.pexels.com/photos/4112059/pexels-photo-4112059.jpeg',
+    picture: '/Jessica.jpeg',
     projectId: 1,
   }
 ];
