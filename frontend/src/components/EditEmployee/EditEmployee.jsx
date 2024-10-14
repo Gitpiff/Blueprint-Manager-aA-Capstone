@@ -246,7 +246,7 @@ const EditEmployee = ({ employee }) => {
                 </label>
                 {errors.picture && <p className='errors'>{errors.picture}</p>}
                 
-                <label>
+                {/* <label>
                     Project ID:
                     <input
                         type="number"
@@ -256,7 +256,7 @@ const EditEmployee = ({ employee }) => {
                         required
                     />
                 </label>
-                {errors.projectId && <p className='errors'>{errors.projectId}</p>}
+                {errors.projectId && <p className='errors'>{errors.projectId}</p>} */}
                 
                 <button type="submit">Update Employee</button>
                 {errors.submit && <p className='errors'>{errors.submit}</p>}
