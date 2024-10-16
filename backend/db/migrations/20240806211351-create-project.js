@@ -10,10 +10,11 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Projects', {
       id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        unique: true
       },
       projectManagerId: {
         type: Sequelize.INTEGER,
