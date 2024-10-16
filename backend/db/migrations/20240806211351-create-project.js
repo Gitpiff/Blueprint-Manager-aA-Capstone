@@ -59,11 +59,6 @@ module.exports = {
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     }, options);
-
-    // Set the auto-increment start value for the `id` column
-    await queryInterface.sequelize.query(
-      `ALTER SEQUENCE "${options.schema ? `${options.schema}.` : ''}Projects_id_seq" RESTART WITH 4;`
-    );
   },
   async down(queryInterface, Sequelize) {
     options.tableName = 'Projects';

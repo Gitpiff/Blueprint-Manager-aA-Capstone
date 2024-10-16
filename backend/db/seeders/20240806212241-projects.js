@@ -12,7 +12,7 @@ module.exports = {
 
       await queryInterface.bulkInsert(options, [
         {
-          id: 1,
+          id: 501,
           projectManagerId: 1,
           coverImage: 'https://cdn.mos.cms.futurecdn.net/k9qjW7LvfxtGYwENHtzctZ.jpg',
           name: `Mr Isales's Backyard Pool`,
@@ -23,8 +23,8 @@ module.exports = {
           completionDate: new Date("2024-10-31")
         },
         {
-          id: 2,
-          projectManagerId: 2,
+          id: 502,
+          projectManagerId: 1,
           coverImage: 'https://files.holidaycottages.co.uk/FCImages/89130/89130-1EH.jpg',
           name: `Mrs Barnes's Cabin`,
           clientName: 'Sydney Barnes',
@@ -34,7 +34,7 @@ module.exports = {
           completionDate: new Date("2025-03-15")
         },
         {
-          id: 3,
+          id: 503,
           projectManagerId: 1,
           coverImage: 'https://theironoffice.com/cdn/shop/files/Gym_12.23-19.jpg?v=1701994187&width=3840',
           name: `Oscar's Gym`,
@@ -45,8 +45,8 @@ module.exports = {
           completionDate: new Date("2025-05-01")
         },
         {
-          id: 4,
-          projectManagerId: 2,
+          id: 504,
+          projectManagerId: 1,
           coverImage: 'https://i0.wp.com/www.touristitaly.com/wp-content/uploads/2023/11/shutterstock_1054754711.jpg?resize=1000%2C667&ssl=1',
           name: `Mangia Ristorante`,
           clientName: 'Giovanni Linguini',
