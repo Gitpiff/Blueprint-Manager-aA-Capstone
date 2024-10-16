@@ -35,7 +35,7 @@ module.exports = {
         },
         {
           id: 503,
-          projectManagerId: 1,
+          projectManagerId: 2000,
           coverImage: 'https://theironoffice.com/cdn/shop/files/Gym_12.23-19.jpg?v=1701994187&width=3840',
           name: `Oscar's Gym`,
           clientName: 'Oscar Robles',
