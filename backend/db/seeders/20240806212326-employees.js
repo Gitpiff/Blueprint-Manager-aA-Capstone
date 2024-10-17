@@ -11,7 +11,7 @@ const demoEmployees = [
     email: '/john.doe@example.com',
     salary: 60000,
     picture: '/John.jpeg',
-    projectId: 1,
+    projectId: 501,
   },
   {
     firstName: 'Hank',
@@ -22,7 +22,7 @@ const demoEmployees = [
     email: 'hank.anderson@example.com',
     salary: 67000,
     picture: '/Hank.jpeg',
-    projectId: 3,
+    projectId: 502,
   },
   {
     firstName: 'Alice',
@@ -33,7 +33,7 @@ const demoEmployees = [
     email: 'alice.johnson@example.com',
     salary: 75000,
     picture: '/Alice1.jpeg',
-    projectId: 3,
+    projectId: 501,
   },
   {
     firstName: 'Bob',
@@ -44,7 +44,7 @@ const demoEmployees = [
     email: 'bob.williams@example.com',
     salary: 55000,
     picture: '/Bob.jpeg',
-    projectId: 1,
+    projectId: 502,
   },
   {
     firstName: 'Charlie',
@@ -55,7 +55,7 @@ const demoEmployees = [
     email: 'charlie.smith@example.com',
     salary: 62000,
     picture: '/Charlie.jpeg',
-    projectId: 1,
+    projectId: 501,
   },
   {
     firstName: 'Diana',
@@ -66,7 +66,7 @@ const demoEmployees = [
     email: 'diana.clark@example.com',
     salary: 69000,
     picture: '/Diana.jpeg',
-    projectId: 3,
+    projectId: 502,
   },
   {
     firstName: 'Ethan',
@@ -77,7 +77,7 @@ const demoEmployees = [
     email: 'ethan.wright@example.com',
     salary: 69000,
     picture: '/Ethan1.jpeg',
-    projectId: 3,
+    projectId: 501,
   },
   {
     firstName: 'Fiona',
@@ -88,7 +88,7 @@ const demoEmployees = [
     email: 'fiona.martinez@example.com',
     salary: 71000,
     picture: '/Fiona.jpeg',
-    projectId: 1,
+    projectId: 502,
   },
   {
     firstName: 'George',
@@ -99,7 +99,7 @@ const demoEmployees = [
     email: 'george.king@example.com',
     salary: 67000,
     picture: '/George.jpeg',
-    projectId: 3,
+    projectId: 501,
   },
   {
     firstName: 'Helen',
@@ -110,7 +110,7 @@ const demoEmployees = [
     email: 'helen.lopez@example.com',
     salary: 60000,
     picture: '/Helen.jpeg',
-    projectId: 1,
+    projectId: 502,
   },
   {
     firstName: 'Isaac',
@@ -121,7 +121,7 @@ const demoEmployees = [
     email: 'isaac.garcia@example.com',
     salary: 55000,
     picture: '/Isaac.jpeg',
-    projectId: 3,
+    projectId: 501,
   },
   {
     firstName: 'Jessica',
@@ -132,7 +132,7 @@ const demoEmployees = [
     email: 'jessica.hernandez@example.com',
     salary: 53000,
     picture: '/Jessica.jpeg',
-    projectId: 1,
+    projectId: 502,
   }
 ];
 
