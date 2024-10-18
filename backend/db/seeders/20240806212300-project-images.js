@@ -25,7 +25,7 @@ const demoImages = [
   },
   {
     projectId: 501,
-    url: 'https://images.unsplash.com/photo-1674672670977-bcf517fc2376?q=80&w=4742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+    url: 'https://images.pexels.com/photos/28915352/pexels-photo-28915352/free-photo-of-luxury-villa-with-pool-in-tropical-setting.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
   },
   {
     projectId: 502,
