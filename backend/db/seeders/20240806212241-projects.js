@@ -24,7 +24,7 @@ module.exports = {
         },
         {
           id: 502,
-          projectManagerId: 1,
+          projectManagerId: 2000,
           coverImage: 'https://files.holidaycottages.co.uk/FCImages/89130/89130-1EH.jpg',
           name: `Mrs Barnes's Cabin`,
           clientName: 'Sydney Barnes',

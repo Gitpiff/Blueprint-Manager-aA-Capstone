@@ -22,7 +22,7 @@ const demoEmployees = [
     email: 'hank.anderson@example.com',
     salary: 67000,
     picture: '/Hank.jpeg',
-    projectId: 502,
+    projectId: 504,
   },
   {
     firstName: 'Alice',
@@ -44,7 +44,7 @@ const demoEmployees = [
     email: 'bob.williams@example.com',
     salary: 55000,
     picture: '/Bob.jpeg',
-    projectId: 502,
+    projectId: 504,
   },
   {
     firstName: 'Charlie',
@@ -66,7 +66,7 @@ const demoEmployees = [
     email: 'diana.clark@example.com',
     salary: 69000,
     picture: '/Diana.jpeg',
-    projectId: 502,
+    projectId: 504,
   },
   {
     firstName: 'Ethan',
@@ -88,7 +88,7 @@ const demoEmployees = [
     email: 'fiona.martinez@example.com',
     salary: 71000,
     picture: '/Fiona.jpeg',
-    projectId: 502,
+    projectId: 504,
   },
   {
     firstName: 'George',
@@ -110,7 +110,7 @@ const demoEmployees = [
     email: 'helen.lopez@example.com',
     salary: 60000,
     picture: '/Helen.jpeg',
-    projectId: 502,
+    projectId: 504,
   },
   {
     firstName: 'Isaac',
@@ -132,7 +132,7 @@ const demoEmployees = [
     email: 'jessica.hernandez@example.com',
     salary: 53000,
     picture: '/Jessica.jpeg',
-    projectId: 502,
+    projectId: 504,
   }
 ];
 
